@@ -6,3 +6,17 @@
 //
 
 import Foundation
+
+struct ToDoItem{
+    let id: String
+    let text: String
+    let importance: Importance
+    
+}
+
+
+enum Importance: String{
+    case low = "неважная"
+    case medium = "обычная"
+    case high = "важная"
+}
