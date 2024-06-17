@@ -10,7 +10,7 @@ import Foundation
 extension ToDoItem {
 
     var json: Any {
-        let isoFormatter = ISO8601DateFormatter()
+        let isoFormatter = ISO8601DateFormatter.shared
         var jsonObject: [String: Any] = [
             "id": id,
             "text": text,
@@ -33,7 +33,7 @@ extension ToDoItem {
     }
     
     static func parse(json: Any) -> ToDoItem?{
-        let isoFormatter = ISO8601DateFormatter()
+        let isoFormatter = ISO8601DateFormatter.shared
         
         guard let jsonData = json as? [String: Any] else {
             return nil

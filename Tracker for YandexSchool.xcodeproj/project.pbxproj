@@ -15,6 +15,7 @@
 		8723F96E2C1F742600AAAD38 /* ToDoItem + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F96D2C1F742600AAAD38 /* ToDoItem + extension.swift */; };
 		8723F9712C1F838000AAAD38 /* PriorityEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F9702C1F838000AAAD38 /* PriorityEnum.swift */; };
 		8723F9762C20C64C00AAAD38 /* FileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F9752C20C64C00AAAD38 /* FileCache.swift */; };
+		8723F9782C20D0BE00AAAD38 /* IsoFormatter + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F9772C20D0BE00AAAD38 /* IsoFormatter + extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		8723F96D2C1F742600AAAD38 /* ToDoItem + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToDoItem + extension.swift"; sourceTree = "<group>"; };
 		8723F9702C1F838000AAAD38 /* PriorityEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityEnum.swift; sourceTree = "<group>"; };
 		8723F9752C20C64C00AAAD38 /* FileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCache.swift; sourceTree = "<group>"; };
+		8723F9772C20D0BE00AAAD38 /* IsoFormatter + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IsoFormatter + extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				8723F96D2C1F742600AAAD38 /* ToDoItem + extension.swift */,
+				8723F9772C20D0BE00AAAD38 /* IsoFormatter + extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 			files = (
 				8723F95E2C1F5E6B00AAAD38 /* ContentView.swift in Sources */,
 				8723F95C2C1F5E6B00AAAD38 /* Tracker_for_YandexSchoolApp.swift in Sources */,
+				8723F9782C20D0BE00AAAD38 /* IsoFormatter + extension.swift in Sources */,
 				8723F9712C1F838000AAAD38 /* PriorityEnum.swift in Sources */,
 				8723F96E2C1F742600AAAD38 /* ToDoItem + extension.swift in Sources */,
 				8723F9762C20C64C00AAAD38 /* FileCache.swift in Sources */,
