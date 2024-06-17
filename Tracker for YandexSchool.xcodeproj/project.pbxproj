@@ -14,6 +14,7 @@
 		8723F96A2C1F5F3200AAAD38 /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F9692C1F5F3100AAAD38 /* ToDoItem.swift */; };
 		8723F96E2C1F742600AAAD38 /* ToDoItem + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F96D2C1F742600AAAD38 /* ToDoItem + extension.swift */; };
 		8723F9712C1F838000AAAD38 /* PriorityEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F9702C1F838000AAAD38 /* PriorityEnum.swift */; };
+		8723F9762C20C64C00AAAD38 /* FileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F9752C20C64C00AAAD38 /* FileCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		8723F9692C1F5F3100AAAD38 /* ToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
 		8723F96D2C1F742600AAAD38 /* ToDoItem + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToDoItem + extension.swift"; sourceTree = "<group>"; };
 		8723F9702C1F838000AAAD38 /* PriorityEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityEnum.swift; sourceTree = "<group>"; };
+		8723F9752C20C64C00AAAD38 /* FileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,11 +59,12 @@
 		8723F95A2C1F5E6B00AAAD38 /* Tracker for YandexSchool */ = {
 			isa = PBXGroup;
 			children = (
+				8723F9722C20BFEF00AAAD38 /* Resources */,
 				8723F96F2C1F837200AAAD38 /* Enums */,
 				8723F96B2C1F73B700AAAD38 /* Models */,
 				8723F95B2C1F5E6B00AAAD38 /* Tracker_for_YandexSchoolApp.swift */,
-				8723F95D2C1F5E6B00AAAD38 /* ContentView.swift */,
 				8723F95F2C1F5E6C00AAAD38 /* Assets.xcassets */,
+				8723F95D2C1F5E6B00AAAD38 /* ContentView.swift */,
 				8723F9612C1F5E6C00AAAD38 /* Preview Content */,
 				8723F96C2C1F73CE00AAAD38 /* Extensions */,
 			);
@@ -98,6 +101,14 @@
 				8723F9702C1F838000AAAD38 /* PriorityEnum.swift */,
 			);
 			path = Enums;
+			sourceTree = "<group>";
+		};
+		8723F9722C20BFEF00AAAD38 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8723F9752C20C64C00AAAD38 /* FileCache.swift */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -174,6 +185,7 @@
 				8723F95C2C1F5E6B00AAAD38 /* Tracker_for_YandexSchoolApp.swift in Sources */,
 				8723F9712C1F838000AAAD38 /* PriorityEnum.swift in Sources */,
 				8723F96E2C1F742600AAAD38 /* ToDoItem + extension.swift in Sources */,
+				8723F9762C20C64C00AAAD38 /* FileCache.swift in Sources */,
 				8723F96A2C1F5F3200AAAD38 /* ToDoItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
