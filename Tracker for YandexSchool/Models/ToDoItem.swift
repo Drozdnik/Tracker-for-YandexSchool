@@ -6,6 +6,11 @@
 //
 
 import Foundation
+protocol ToDoItemParceProtocol{
+    var json: Any {get}
+    //Вот тут наверное окей использовать self? (может только название протокола поменять) тк можем, если что подменить структуру
+    static func parse(json: Any) -> Self?
+}
 
 struct ToDoItem{
     let id: String

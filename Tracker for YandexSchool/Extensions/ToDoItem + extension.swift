@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension ToDoItem {
+extension ToDoItem: ToDoItemParceProtocol {
 
     var json: Any {
         let isoFormatter = ISO8601DateFormatter.shared

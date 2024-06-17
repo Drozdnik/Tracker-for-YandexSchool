@@ -16,6 +16,7 @@
 		8723F9712C1F838000AAAD38 /* PriorityEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F9702C1F838000AAAD38 /* PriorityEnum.swift */; };
 		8723F9762C20C64C00AAAD38 /* FileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F9752C20C64C00AAAD38 /* FileCache.swift */; };
 		8723F9782C20D0BE00AAAD38 /* IsoFormatter + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F9772C20D0BE00AAAD38 /* IsoFormatter + extension.swift */; };
+		8723F97A2C20E04800AAAD38 /* FileCacheError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F9792C20E04800AAAD38 /* FileCacheError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		8723F9702C1F838000AAAD38 /* PriorityEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityEnum.swift; sourceTree = "<group>"; };
 		8723F9752C20C64C00AAAD38 /* FileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCache.swift; sourceTree = "<group>"; };
 		8723F9772C20D0BE00AAAD38 /* IsoFormatter + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IsoFormatter + extension.swift"; sourceTree = "<group>"; };
+		8723F9792C20E04800AAAD38 /* FileCacheError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCacheError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				8723F9702C1F838000AAAD38 /* PriorityEnum.swift */,
+				8723F9792C20E04800AAAD38 /* FileCacheError.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 				8723F9782C20D0BE00AAAD38 /* IsoFormatter + extension.swift in Sources */,
 				8723F9712C1F838000AAAD38 /* PriorityEnum.swift in Sources */,
 				8723F96E2C1F742600AAAD38 /* ToDoItem + extension.swift in Sources */,
+				8723F97A2C20E04800AAAD38 /* FileCacheError.swift in Sources */,
 				8723F9762C20C64C00AAAD38 /* FileCache.swift in Sources */,
 				8723F96A2C1F5F3200AAAD38 /* ToDoItem.swift in Sources */,
 			);
