@@ -21,7 +21,7 @@ struct ToDoItem{
     let createdAt: Date
     let changedAt: Date?
     init(
-        id: String? = nil,
+        id: String?,
          text: String,
          priority: Priority,
          deadLine: Date? = nil,

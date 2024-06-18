@@ -17,6 +17,7 @@ extension ToDoItem: ToDoItemParceProtocol {
             "flag": flag,
             "createdAt": isoFormatter.string(from: createdAt)
         ]
+        
         if priority != .normal{
             jsonObject["priority"] = priority.rawValue
         }
@@ -76,6 +77,36 @@ extension ToDoItem: ToDoItemParceProtocol {
             createdAt: createdAt,
             changedAt: changedAt
         )
+    }
+}
+
+// В CSV файле пустые данные заполнены как nil
+extension ToDoItem{
+   static func parseCSV(csvString: String) -> [ToDoItem]{
+        var items: [ToDoItem] = []
+        let rows = csvString.split(separator: "\n")
+        
+        for row in rows.dropFirst(){
+            let columns = row.split(separator: ",").map({String($0)})
+            let id = columns[0] != "nil" ? columns[0] : nil
+            let text = columns[1]
+            let priority = Priority(rawValue: columns[2]) ?? .normal
+            let flag = columns[3] == "true"
+            let createdAt = columns[4] != "nil" ? ISO8601DateFormatter.shared.date(from: columns[4]) : Date()
+            let deadLine = columns[5] != "nil" ? ISO8601DateFormatter.shared.date(from: columns[5]) : nil
+            let changedAt = columns[6] != "nil" ? ISO8601DateFormatter.shared.date(from: columns[6]) : nil
+            
+            let item = ToDoItem(id: id,
+                                text: text,
+                                priority: priority,
+                                deadLine: deadLine,
+                                flag: flag,
+                                createdAt: createdAt!,
+                                changedAt: changedAt)
+            items.append(item)
+        }
+        return items
+    
     }
 }
     
