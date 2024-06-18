@@ -17,7 +17,19 @@
 		8723F9762C20C64C00AAAD38 /* FileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F9752C20C64C00AAAD38 /* FileCache.swift */; };
 		8723F9782C20D0BE00AAAD38 /* IsoFormatter + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F9772C20D0BE00AAAD38 /* IsoFormatter + extension.swift */; };
 		8723F97A2C20E04800AAAD38 /* FileCacheError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F9792C20E04800AAAD38 /* FileCacheError.swift */; };
+		8723F9822C21A2E400AAAD38 /* Tracker_for_YandexSchoolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F9812C21A2E400AAAD38 /* Tracker_for_YandexSchoolTests.swift */; };
+		8723F9892C22122A00AAAD38 /* JSONErrorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F9882C22122A00AAAD38 /* JSONErrorEnum.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8723F9832C21A2E400AAAD38 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8723F9502C1F5E6B00AAAD38 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8723F9572C1F5E6B00AAAD38;
+			remoteInfo = "Tracker for YandexSchool";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		8723F9582C1F5E6B00AAAD38 /* Tracker for YandexSchool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tracker for YandexSchool.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -31,10 +43,20 @@
 		8723F9752C20C64C00AAAD38 /* FileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCache.swift; sourceTree = "<group>"; };
 		8723F9772C20D0BE00AAAD38 /* IsoFormatter + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IsoFormatter + extension.swift"; sourceTree = "<group>"; };
 		8723F9792C20E04800AAAD38 /* FileCacheError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCacheError.swift; sourceTree = "<group>"; };
+		8723F97F2C21A2E400AAAD38 /* Tracker for YandexSchoolTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tracker for YandexSchoolTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8723F9812C21A2E400AAAD38 /* Tracker_for_YandexSchoolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker_for_YandexSchoolTests.swift; sourceTree = "<group>"; };
+		8723F9882C22122A00AAAD38 /* JSONErrorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONErrorEnum.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		8723F9552C1F5E6B00AAAD38 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8723F97C2C21A2E400AAAD38 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -48,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				8723F95A2C1F5E6B00AAAD38 /* Tracker for YandexSchool */,
+				8723F9802C21A2E400AAAD38 /* Tracker for YandexSchoolTests */,
 				8723F9592C1F5E6B00AAAD38 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -56,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				8723F9582C1F5E6B00AAAD38 /* Tracker for YandexSchool.app */,
+				8723F97F2C21A2E400AAAD38 /* Tracker for YandexSchoolTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -105,6 +129,7 @@
 			children = (
 				8723F9702C1F838000AAAD38 /* PriorityEnum.swift */,
 				8723F9792C20E04800AAAD38 /* FileCacheError.swift */,
+				8723F9882C22122A00AAAD38 /* JSONErrorEnum.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -115,6 +140,14 @@
 				8723F9752C20C64C00AAAD38 /* FileCache.swift */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		8723F9802C21A2E400AAAD38 /* Tracker for YandexSchoolTests */ = {
+			isa = PBXGroup;
+			children = (
+				8723F9812C21A2E400AAAD38 /* Tracker_for_YandexSchoolTests.swift */,
+			);
+			path = "Tracker for YandexSchoolTests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,6 +170,24 @@
 			productReference = 8723F9582C1F5E6B00AAAD38 /* Tracker for YandexSchool.app */;
 			productType = "com.apple.product-type.application";
 		};
+		8723F97E2C21A2E400AAAD38 /* Tracker for YandexSchoolTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8723F9852C21A2E400AAAD38 /* Build configuration list for PBXNativeTarget "Tracker for YandexSchoolTests" */;
+			buildPhases = (
+				8723F97B2C21A2E400AAAD38 /* Sources */,
+				8723F97C2C21A2E400AAAD38 /* Frameworks */,
+				8723F97D2C21A2E400AAAD38 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8723F9842C21A2E400AAAD38 /* PBXTargetDependency */,
+			);
+			name = "Tracker for YandexSchoolTests";
+			productName = "Tracker for YandexSchoolTests";
+			productReference = 8723F97F2C21A2E400AAAD38 /* Tracker for YandexSchoolTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -149,6 +200,10 @@
 				TargetAttributes = {
 					8723F9572C1F5E6B00AAAD38 = {
 						CreatedOnToolsVersion = 15.2;
+					};
+					8723F97E2C21A2E400AAAD38 = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = 8723F9572C1F5E6B00AAAD38;
 					};
 				};
 			};
@@ -166,6 +221,7 @@
 			projectRoot = "";
 			targets = (
 				8723F9572C1F5E6B00AAAD38 /* Tracker for YandexSchool */,
+				8723F97E2C21A2E400AAAD38 /* Tracker for YandexSchoolTests */,
 			);
 		};
 /* End PBXProject section */
@@ -180,6 +236,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8723F97D2C21A2E400AAAD38 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -191,6 +254,7 @@
 				8723F95C2C1F5E6B00AAAD38 /* Tracker_for_YandexSchoolApp.swift in Sources */,
 				8723F9782C20D0BE00AAAD38 /* IsoFormatter + extension.swift in Sources */,
 				8723F9712C1F838000AAAD38 /* PriorityEnum.swift in Sources */,
+				8723F9892C22122A00AAAD38 /* JSONErrorEnum.swift in Sources */,
 				8723F96E2C1F742600AAAD38 /* ToDoItem + extension.swift in Sources */,
 				8723F97A2C20E04800AAAD38 /* FileCacheError.swift in Sources */,
 				8723F9762C20C64C00AAAD38 /* FileCache.swift in Sources */,
@@ -198,7 +262,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8723F97B2C21A2E400AAAD38 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8723F9822C21A2E400AAAD38 /* Tracker_for_YandexSchoolTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8723F9842C21A2E400AAAD38 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8723F9572C1F5E6B00AAAD38 /* Tracker for YandexSchool */;
+			targetProxy = 8723F9832C21A2E400AAAD38 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		8723F9642C1F5E6C00AAAD38 /* Debug */ = {
@@ -378,6 +458,42 @@
 			};
 			name = Release;
 		};
+		8723F9862C21A2E400AAAD38 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4ZCZ4F2W3F;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Drozdnik.Tracker-for-YandexSchoolTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tracker for YandexSchool.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Tracker for YandexSchool";
+			};
+			name = Debug;
+		};
+		8723F9872C21A2E400AAAD38 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4ZCZ4F2W3F;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Drozdnik.Tracker-for-YandexSchoolTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tracker for YandexSchool.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Tracker for YandexSchool";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -395,6 +511,15 @@
 			buildConfigurations = (
 				8723F9672C1F5E6C00AAAD38 /* Debug */,
 				8723F9682C1F5E6C00AAAD38 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8723F9852C21A2E400AAAD38 /* Build configuration list for PBXNativeTarget "Tracker for YandexSchoolTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8723F9862C21A2E400AAAD38 /* Debug */,
+				8723F9872C21A2E400AAAD38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
