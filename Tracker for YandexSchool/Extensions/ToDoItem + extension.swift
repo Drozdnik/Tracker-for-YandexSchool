@@ -88,6 +88,7 @@ extension ToDoItem: ToDoItemParseProtocol {
         )
     }
     // В CSV файле пустые данные заполнены как nil
+    // Формат ввода  id,"text",priority,flag,createdAt,deadLine,changedAt
     static func parseCSV(csvString: String) -> [ToDoItem]{
         let isoFormatter = ISO8601DateFormatter.shared
         
@@ -95,7 +96,8 @@ extension ToDoItem: ToDoItemParseProtocol {
         let rows = csvString.split(separator: "\n")
         
         for row in rows.dropFirst(){
-            let columns = row.split(separator: ",").map({String($0)})
+            let columns = parseCSVRow(String(row))
+            guard columns.count >= 7 else {continue}
             let id = columns[0]
             let text = columns[1]
             let priority = Priority(rawValue: columns[2]) ?? .normal
@@ -109,14 +111,29 @@ extension ToDoItem: ToDoItemParseProtocol {
                                 priority: priority,
                                 deadLine: deadLine,
                                 flag: flag,
-                                createdAt: createdAt!,
+                                createdAt: createdAt ?? Date(),
                                 changedAt: changedAt)
             items.append(item)
         }
         return items
+    }
+    
+    static func parseCSVRow(_ row: String) -> [String] {
+        var columns = [String]()
+        let pattern = #" *"(?:[^"\\]*(?:\\.[^"\\]*)*)"|[^,]+"#
+        let regex = try! NSRegularExpression(pattern: pattern, options: [])
+        let matches = regex.matches(in: row, options: [], range: NSRange(location: 0, length: row.utf16.count))
         
+        for match in matches {
+            let columnRange = Range(match.range, in: row)!
+            var column = String(row[columnRange])
+            column = column.trimmingCharacters(in: .whitespacesAndNewlines)
+            if column.first == "\"" && column.last == "\"" {
+                column = String(column.dropFirst().dropLast())
+                column = column.replacingOccurrences(of: "\\\"", with: "\"")
+            }
+            columns.append(column)
+        }
+        return columns
     }
 }
-
-
-

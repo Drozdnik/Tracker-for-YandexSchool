@@ -86,12 +86,12 @@ final class Tracker_for_YandexSchoolTests: XCTestCase {
     func testParseCsv(){
         let csvString = """
                 id,text,priority,flag,createdAt,deadLine,changedAt
-                09c43515-6dfe-4cf9-9682-77c9751cc8d6,test,nil,false,2024-06-18T20:22:32Z,2024-06-25T20:22:32Z,2024-06-19T20:22:32Z
+                09c43515-6dfe-4cf9-9682-77c9751cc8d6, "Тест, с запятой",nil,false,2024-06-18T20:22:32Z,2024-06-25T20:22:32Z,2024-06-19T20:22:32Z
                 """
         let item = ToDoItem.parseCSV(csvString: csvString)
         
         XCTAssertEqual(item[0].id, "09c43515-6dfe-4cf9-9682-77c9751cc8d6")
-        XCTAssertEqual(item[0].text, "test")
+        XCTAssertEqual(item[0].text, "Тест, с запятой")
         XCTAssertEqual(item[0].priority.rawValue, "обычная")
         XCTAssertEqual(item[0].changedAt, ISO8601DateFormatter.shared.date(from: "2024-06-19T20:22:32Z"))
     }
