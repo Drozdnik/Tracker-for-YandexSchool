@@ -11,8 +11,11 @@
 		871C0A3E2C2711A900B66CC9 /* SwithcerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C0A3D2C2711A900B66CC9 /* SwithcerView.swift */; };
 		871C0A402C27224B00B66CC9 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C0A3F2C27224B00B66CC9 /* ListView.swift */; };
 		871C0A422C27356200B66CC9 /* ObservabToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C0A412C27356200B66CC9 /* ObservabToDoItem.swift */; };
+		871C0A442C27534B00B66CC9 /* CreateToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C0A432C27534B00B66CC9 /* CreateToDoItem.swift */; };
+		871C0A462C27586B00B66CC9 /* DeleteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C0A452C27586B00B66CC9 /* DeleteButtonView.swift */; };
+		871C0A482C275D3A00B66CC9 /* Color + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C0A472C275D3A00B66CC9 /* Color + extension.swift */; };
 		8723F95C2C1F5E6B00AAAD38 /* Tracker_for_YandexSchoolApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F95B2C1F5E6B00AAAD38 /* Tracker_for_YandexSchoolApp.swift */; };
-		8723F95E2C1F5E6B00AAAD38 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F95D2C1F5E6B00AAAD38 /* ContentView.swift */; };
+		8723F95E2C1F5E6B00AAAD38 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F95D2C1F5E6B00AAAD38 /* TextFieldView.swift */; };
 		8723F9602C1F5E6C00AAAD38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8723F95F2C1F5E6C00AAAD38 /* Assets.xcassets */; };
 		8723F9632C1F5E6C00AAAD38 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8723F9622C1F5E6C00AAAD38 /* Preview Assets.xcassets */; };
 		8723F96A2C1F5F3200AAAD38 /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F9692C1F5F3100AAAD38 /* ToDoItem.swift */; };
@@ -40,9 +43,12 @@
 		871C0A3D2C2711A900B66CC9 /* SwithcerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwithcerView.swift; sourceTree = "<group>"; };
 		871C0A3F2C27224B00B66CC9 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		871C0A412C27356200B66CC9 /* ObservabToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservabToDoItem.swift; sourceTree = "<group>"; };
+		871C0A432C27534B00B66CC9 /* CreateToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateToDoItem.swift; sourceTree = "<group>"; };
+		871C0A452C27586B00B66CC9 /* DeleteButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteButtonView.swift; sourceTree = "<group>"; };
+		871C0A472C275D3A00B66CC9 /* Color + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color + extension.swift"; sourceTree = "<group>"; };
 		8723F9582C1F5E6B00AAAD38 /* Tracker for YandexSchool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tracker for YandexSchool.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8723F95B2C1F5E6B00AAAD38 /* Tracker_for_YandexSchoolApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker_for_YandexSchoolApp.swift; sourceTree = "<group>"; };
-		8723F95D2C1F5E6B00AAAD38 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		8723F95D2C1F5E6B00AAAD38 /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
 		8723F95F2C1F5E6C00AAAD38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8723F9622C1F5E6C00AAAD38 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8723F9692C1F5F3100AAAD38 /* ToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
@@ -79,8 +85,10 @@
 			children = (
 				871C0A3D2C2711A900B66CC9 /* SwithcerView.swift */,
 				871C0A412C27356200B66CC9 /* ObservabToDoItem.swift */,
-				8723F95D2C1F5E6B00AAAD38 /* ContentView.swift */,
+				8723F95D2C1F5E6B00AAAD38 /* TextFieldView.swift */,
 				871C0A3F2C27224B00B66CC9 /* ListView.swift */,
+				871C0A432C27534B00B66CC9 /* CreateToDoItem.swift */,
+				871C0A452C27586B00B66CC9 /* DeleteButtonView.swift */,
 			);
 			path = ItemView;
 			sourceTree = "<group>";
@@ -140,6 +148,7 @@
 			children = (
 				8723F96D2C1F742600AAAD38 /* ToDoItem + extension.swift */,
 				8723F9772C20D0BE00AAAD38 /* IsoFormatter + extension.swift */,
+				871C0A472C275D3A00B66CC9 /* Color + extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -270,7 +279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8723F95E2C1F5E6B00AAAD38 /* ContentView.swift in Sources */,
+				8723F95E2C1F5E6B00AAAD38 /* TextFieldView.swift in Sources */,
 				8723F95C2C1F5E6B00AAAD38 /* Tracker_for_YandexSchoolApp.swift in Sources */,
 				871C0A3B2C26364400B66CC9 /* PriorityDeadLineView.swift in Sources */,
 				871C0A3E2C2711A900B66CC9 /* SwithcerView.swift in Sources */,
@@ -279,10 +288,13 @@
 				8723F9712C1F838000AAAD38 /* PriorityEnum.swift in Sources */,
 				8723F9892C22122A00AAAD38 /* JSONErrorEnum.swift in Sources */,
 				8723F96E2C1F742600AAAD38 /* ToDoItem + extension.swift in Sources */,
+				871C0A482C275D3A00B66CC9 /* Color + extension.swift in Sources */,
 				871C0A402C27224B00B66CC9 /* ListView.swift in Sources */,
 				8723F97A2C20E04800AAAD38 /* FileCacheError.swift in Sources */,
 				8723F9762C20C64C00AAAD38 /* FileCache.swift in Sources */,
+				871C0A442C27534B00B66CC9 /* CreateToDoItem.swift in Sources */,
 				8723F96A2C1F5F3200AAAD38 /* ToDoItem.swift in Sources */,
+				871C0A462C27586B00B66CC9 /* DeleteButtonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,7 +11,7 @@ import SwiftUI
 struct Tracker_for_YandexSchoolApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TextFieldView(taskData: ObservabToDoItem())
         }
     }
 }

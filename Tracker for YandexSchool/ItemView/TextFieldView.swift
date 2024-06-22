@@ -7,27 +7,23 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    @State private var taskName: String = ""
-    @State private var textEditorHeight: CGFloat = 120
+struct TextFieldView: View {
+    @ObservedObject var taskData: ObservabToDoItem
     
     var body: some View {
         VStack {
-            TextField("Что надо сделать?", text: $taskName, axis: .vertical)
+            TextField("Что надо сделать?", text: $taskData.taskName, axis: .vertical)
                 .lineLimit(5...Int.max)
-                .frame(minHeight: textEditorHeight)
+                .frame(minHeight: 120)
                 .padding(16)
                 .background(
                 RoundedRectangle(cornerRadius: 16)
                     .stroke(Color.gray, lineWidth: 1)
                 )
         }
-        .padding()
-        
-        Spacer()
     }
 }
 
 #Preview {
-    ContentView()
+    TextFieldView(taskData: ObservabToDoItem())
 }

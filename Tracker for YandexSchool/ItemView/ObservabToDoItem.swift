@@ -8,6 +8,7 @@
 import SwiftUI
 
 class ObservabToDoItem: ObservableObject {
+    @Published var taskName: String = ""
     @Published var selectedIcon: SwitchcerViewElementEnum = .text("нет")
     @Published var dueDate: Date = Date()
     @Published var deadLineActivate: Bool = false
