@@ -38,5 +38,5 @@ struct SwitcherView: View {
 }
 
 #Preview {
-   SwitcherView(selectedIcon: ObservabToDoItem())
+   SwitcherView(taskData: ObservabToDoItem())
 }

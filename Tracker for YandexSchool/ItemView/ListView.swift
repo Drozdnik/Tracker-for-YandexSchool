@@ -1,30 +1,33 @@
 import SwiftUI
 
 struct ImportanceListView: View {
-    @State private var dueDate = Date()
-    @State private var deadLineActivate: Bool = false
-
+    @ObservedObject var taskData: ObservabToDoItem
+    
     var body: some View {
         List {
+            
             HStack{
                 Text ("Важность")
                 Spacer()
-                SwitcherView()
+                SwitcherView(taskData: taskData)
                     .frame(width: 150)
                     .padding(.top, 10)
                     .padding(.bottom, 10)
-                //Скорее всего лучше без скейла
-                    .scaledToFit()
-                    .scaleEffect(CGSize(width: 1.0, height: 1.5))
-
             }
-            .frame(height: 56)
+                        .frame(height: 56)
+            
             HStack{
                 Text("Сделать до")
-                Toggle("", isOn: $deadLineActivate)
+                Toggle("", isOn: $taskData.deadLineActivate)
             }
-            .frame(height: 56)
+                        .frame(height: 56)
             
+            
+            if taskData.deadLineActivate {
+                DatePicker("Выберите дату", selection: $taskData.dueDate, displayedComponents: .date)
+                    .datePickerStyle(GraphicalDatePickerStyle())
+                    .padding()
+            }
         }
         .listStyle(InsetGroupedListStyle())
     }
@@ -32,6 +35,6 @@ struct ImportanceListView: View {
 
 struct ImportanceListView_Previews: PreviewProvider {
     static var previews: some View {
-        ImportanceListView()
+        ImportanceListView(taskData: ObservabToDoItem())
     }
 }
