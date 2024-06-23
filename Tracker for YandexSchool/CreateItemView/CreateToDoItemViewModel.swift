@@ -5,8 +5,9 @@ final class CreateToDoItemViewModel: ObservableObject {
     
     @Published var taskName: String = ""
     @Published var selectedIcon: SwitchcerViewElementEnum = .text("нет")
-    @Published var deadLine: Date = Date()
+    @Published var deadLine: Date? = Calendar.current.date(byAdding: .day, value: 1, to: Date())
     @Published var deadLineActivate: Bool = false
+    @Published var datePickerIsShown: Bool = false 
     
     init(fileCache: FileCache){
         self.fileCache = fileCache

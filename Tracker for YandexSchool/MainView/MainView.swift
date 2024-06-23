@@ -12,12 +12,13 @@ struct MainView:View {
                     List {
                         ForEach(viewModel.items, id: \.id) { item in
                             ListCell(item: item)
-                                .swipeActions(edge: .trailing, allowsFullSwipe: true){
+                                .swipeActions(edge: .leading, allowsFullSwipe: true){
                                     Button (action: {
                                         viewModel.toogleFlag(for: item.id)
                                     }){
                                         Label("Выполнено", systemImage: "checkmark.circle.fill")
                                     }
+                                    .tint(.green)
                                 }
                         }
                         .onDelete(perform: { indexSet in
@@ -45,6 +46,7 @@ struct MainView:View {
                     .padding(.bottom, 10)
                 }
             }
+            .navigationTitle("Мои дела")
     }
     }
 }

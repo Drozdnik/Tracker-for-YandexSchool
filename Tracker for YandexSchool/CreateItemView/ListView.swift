@@ -17,19 +17,45 @@ struct ImportanceListView: View {
             .padding(.horizontal)
             
             Divider()
-
+            
             HStack {
-                Text("Сделать до")
-                Toggle("", isOn: $taskData.deadLineActivate)
+                VStack{
+                    Text("Сделать до")
+                    if taskData.deadLineActivate {
+                        Text("\(DateFormatter.dayMonth.string(from: taskData.deadLine!))")
+                            .foregroundColor(.blue)
+                            .onTapGesture {
+                                taskData.datePickerIsShown.toggle()
+                            }
+                    }
+                }
+                Toggle("", isOn: Binding(
+                    get: {
+                        taskData.deadLineActivate
+                    },
+                    set: { value in
+                        taskData.deadLineActivate = value
+                        taskData.datePickerIsShown = value
+                    }
+                    ))
+                
             }
             .frame(height: 56)
             .padding(.horizontal)
             
-            if taskData.deadLineActivate {
+            if taskData.deadLineActivate && taskData.datePickerIsShown {
                 Divider()
-                DatePicker("Выберите дату", selection: $taskData.deadLine, displayedComponents: .date)
+                if let tomorrow = taskData.deadLine {
+                    DatePicker("Выберите дату", selection: Binding(
+                        get: { taskData.deadLine ?? tomorrow },
+                        set: { 
+                            taskData.deadLine = $0
+                            taskData.datePickerIsShown = true
+                        }
+                    ),
+                               in: Date()...    , displayedComponents: .date)
                     .datePickerStyle(GraphicalDatePickerStyle())
-//                    .padding()
+                }
             }
         }
         .background(
@@ -41,6 +67,6 @@ struct ImportanceListView: View {
     }
 }
 
-//#Preview {
-//    ImportanceListView(taskData: CreateToDoItemViewModel())
-//}
+#Preview {
+    ImportanceListView(taskData: CreateToDoItemViewModel(fileCache: FileCacheImpl(fileName: "file")))
+}

@@ -2,17 +2,37 @@ import SwiftUI
 
 struct ListCell: View {
     var item: ToDoItem
+    
     var body: some View {
         HStack {
+            if item.flag {
+                Image(systemName: "checkmark.circle.fill")
+                    .foregroundColor(.green)
+                    .font(.system(size: 24))
+            } else {
+                Circle()
+                    .strokeBorder(Color.gray, lineWidth: 2)
+                    .frame(width: 24, height: 24)
+            }
             
-            Circle()
-                .strokeBorder(item.flag ? Color.green : Color.gray, lineWidth: 2)
-                .background(Circle().foregroundColor(item.flag ? .green : .clear))
-                .frame(width: 24, height: 24)
-            
-            Text(item.text)
-                .foregroundColor(.primary)
-                .strikethrough(item.flag, color: .green)
+            VStack(alignment: .leading, spacing: 4) {
+                Text(item.text)
+                    .foregroundColor(.primary)
+                    .strikethrough(item.flag, color: .gray)
+                    .lineLimit(3)
+                    .truncationMode(.tail)
+                
+                if let deadLine = item.deadLine {
+                    HStack(spacing: 2){
+                        Image(systemName: "calendar")
+                            .foregroundColor(.gray)
+                            .font(.caption)
+                        Text(DateFormatter.dayMonth.string(from: deadLine))
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                    }
+                }
+            }
             
             Spacer()
             
