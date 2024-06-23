@@ -5,8 +5,8 @@ enum SwitchcerViewElementEnum: Hashable{
    
 }
 struct SwitcherView: View {
-    @ObservedObject var taskData: ObservabToDoItem
-//    @State private var selectedIcon = "leaf.fill"
+    @ObservedObject var taskData: CreateToDoItemViewModel
+
     
     private let icons: [SwitchcerViewElementEnum] = [
         .image("arrow.down"),
@@ -31,12 +31,11 @@ struct SwitcherView: View {
                 }
             }
             .pickerStyle(SegmentedPickerStyle())
-            
         }
         
     }
 }
 
 #Preview {
-   SwitcherView(taskData: ObservabToDoItem())
+    SwitcherView(taskData: CreateToDoItemViewModel(fileCache: FileCacheImpl(fileName: "file")))
 }

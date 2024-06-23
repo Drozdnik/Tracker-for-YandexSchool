@@ -1,16 +1,16 @@
-//
-//  DeleteButton.swift
-//  Tracker for YandexSchool
-//
-//  Created by Михаил  on 22.06.2024.
-//
-
 import SwiftUI
 
 struct DeleteButtonView: View {
+    private var action: (() -> Void)?
+    
+    init (action: @escaping () -> Void){
+        self.action = action
+    }
+    
     var body: some View {
         
         Button(action: {
+            action?()
                 }) {
                     Text("Удалить")
                         .foregroundColor(.red)
@@ -22,6 +22,6 @@ struct DeleteButtonView: View {
     }
 }
 
-#Preview {
-    DeleteButtonView()
-}
+//#Preview {
+//    DeleteButtonView()
+//}

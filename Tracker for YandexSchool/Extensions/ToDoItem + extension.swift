@@ -18,7 +18,7 @@ extension ToDoItem: ToDoItemParseProtocol {
             "createdAt": isoFormatter.string(from: createdAt)
         ]
         
-        if priority != .normal{
+        if priority != .normal {
             jsonObject["priority"] = priority.rawValue
         }
         
@@ -37,7 +37,7 @@ extension ToDoItem: ToDoItemParseProtocol {
         }
     }
     
-    static func parse(json: Any) -> ToDoItem?{
+    static func parse(json: Any) -> ToDoItem? {
         let isoFormatter = ISO8601DateFormatter.shared
         guard let jsonAsData = json as? Data else {
             assertionFailure ("\(JSONErrorEnum.jsonAsDataError)")
@@ -89,7 +89,7 @@ extension ToDoItem: ToDoItemParseProtocol {
     }
     // В CSV файле пустые данные заполнены как nil
     // Формат ввода  id,"text",priority,flag,createdAt,deadLine,changedAt
-    static func parseCSV(csvString: String) -> [ToDoItem]{
+    static func parseCSV(csvString: String) -> [ToDoItem] {
         let isoFormatter = ISO8601DateFormatter.shared
         
         var items: [ToDoItem] = []

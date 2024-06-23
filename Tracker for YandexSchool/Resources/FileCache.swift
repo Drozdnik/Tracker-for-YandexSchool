@@ -1,13 +1,7 @@
-//
-//  FileCache.swift
-//  Tracker for YandexSchool
-//
-//  Created by Михаил  on 17.06.2024.
-//
 
 import Foundation
 
-protocol FileCacheProtocol{
+protocol FileCache {
     func getItems() -> [ToDoItem]
     func addItem(_ item: ToDoItem)
     func deleteItem(id: String) throws
@@ -15,7 +9,7 @@ protocol FileCacheProtocol{
     func loadFromFile() throws
 }
 
-final class FileCache: FileCacheProtocol{
+final class FileCacheImpl: FileCache {
     private(set) var items: [ToDoItem] = []
     private static let manager = FileManager.default
     private let fileName: String
@@ -33,7 +27,7 @@ final class FileCache: FileCacheProtocol{
             items.append(item)
         }
     }
-    // Вот тут не уверен не избыточно ли пробрасывать ошибку?
+   
     func deleteItem(id: String) throws {
         guard items.contains(where: {$0.id == id}) else {
             throw FileCacheError.itemNotFound
@@ -66,7 +60,7 @@ final class FileCache: FileCacheProtocol{
     }
     
     private func getUrlForManager() throws -> URL{
-        guard let url = FileCache.manager.urls(for: .documentDirectory, in: .userDomainMask).first else {
+        guard let url = FileCacheImpl.manager.urls(for: .documentDirectory, in: .userDomainMask).first else {
             throw FileCacheError.urlCreationError
         }
         return url.appendingPathComponent(fileName)
