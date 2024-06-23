@@ -1,10 +1,3 @@
-//
-//  Tracker_for_YandexSchoolTests.swift
-//  Tracker for YandexSchoolTests
-//
-//  Created by Михаил  on 18.06.2024.
-//
-
 import XCTest
 @testable import Tracker_for_YandexSchool
 
@@ -26,7 +19,7 @@ final class Tracker_for_YandexSchoolTests: XCTestCase {
             let isoFormatter = ISO8601DateFormatter()
             isoFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
 
-        let item = ToDoItem(id: "123", text: "Complete the task", priority: .high, flag: true)
+        let item = ToDoItem(id: UUID(uuidString: "123") , text: "Complete the task", priority: .high, flag: true)
 
         let jsonResult = item.json
             
@@ -34,7 +27,7 @@ final class Tracker_for_YandexSchoolTests: XCTestCase {
             
             if let data = jsonResult as? Data,
                let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                XCTAssertEqual(jsonObject["id"] as? String, "123")
+                XCTAssertEqual(jsonObject["id"] as? UUID, UUID(uuidString: "123"))
                 XCTAssertEqual(jsonObject["text"] as? String, "Complete the task")
                 XCTAssertEqual(jsonObject["priority"] as? String, "важная")
                 XCTAssertEqual(jsonObject["flag"] as? Bool, true)
@@ -60,14 +53,14 @@ final class Tracker_for_YandexSchoolTests: XCTestCase {
             return 
         }
         
-        XCTAssertEqual(item.id, "09c43515-6dfe-4cf9-9682-77c9751cc8d6")
+        XCTAssertEqual(item.id, UUID(uuidString: "09c43515-6dfe-4cf9-9682-77c9751cc8d6"))
         XCTAssertEqual(item.text, "test")
         XCTAssertEqual(item.priority.rawValue, "обычная")
         XCTAssertEqual(item.changedAt, ISO8601DateFormatter.shared.date(from: "2024-06-19T20:22:32Z"))
     }
     
     func testToDoToJSONToToDo(){
-        let item = ToDoItem(id: "123", text: "Complete the task", priority: .high, flag: true)
+        let item = ToDoItem(id: UUID(uuidString: "123e4567-e89b-12d3-a456-426614174000"), text: "Complete the task", priority: .high, flag: true)
 
         let jsonResult = item.json
         
@@ -76,7 +69,7 @@ final class Tracker_for_YandexSchoolTests: XCTestCase {
             return
         }
         
-        XCTAssertEqual(item.id, "123")
+        XCTAssertEqual(item.id, UUID(uuidString: "123e4567-e89b-12d3-a456-426614174000"))
         XCTAssertEqual(item.text, "Complete the task")
         XCTAssertEqual(item.priority.rawValue, "важная")
         XCTAssertEqual(item.flag, true)
@@ -90,7 +83,7 @@ final class Tracker_for_YandexSchoolTests: XCTestCase {
                 """
         let item = ToDoItem.parseCSV(csvString: csvString)
         
-        XCTAssertEqual(item[0].id, "09c43515-6dfe-4cf9-9682-77c9751cc8d6")
+        XCTAssertEqual(item[0].id, UUID(uuidString: "09c43515-6dfe-4cf9-9682-77c9751cc8d6"))
         XCTAssertEqual(item[0].text, "Тест, с запятой")
         XCTAssertEqual(item[0].priority.rawValue, "обычная")
         XCTAssertEqual(item[0].changedAt, ISO8601DateFormatter.shared.date(from: "2024-06-19T20:22:32Z"))

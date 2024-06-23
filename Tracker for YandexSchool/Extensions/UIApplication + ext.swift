@@ -1,10 +1,3 @@
-//
-//  UIApplication + ext.swift
-//  Tracker for YandexSchool
-//
-//  Created by Михаил  on 23.06.2024.
-//
-
 import SwiftUI
 
 extension UIApplication {

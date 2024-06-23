@@ -1,10 +1,3 @@
-//
-//  ToDoItem + extension.swift
-//  Tracker for YandexSchool
-//
-//  Created by Михаил  on 16.06.2024.
-//
-
 import Foundation
 
 extension ToDoItem: ToDoItemParseProtocol {
@@ -12,7 +5,7 @@ extension ToDoItem: ToDoItemParseProtocol {
     var json: Any {
         let isoFormatter = ISO8601DateFormatter.shared
         var jsonObject: [String: Any] = [
-            "id": id,
+            "id": id.uuidString,
             "text": text,
             "flag": flag,
             "createdAt": isoFormatter.string(from: createdAt)
@@ -39,44 +32,36 @@ extension ToDoItem: ToDoItemParseProtocol {
     
     static func parse(json: Any) -> ToDoItem? {
         let isoFormatter = ISO8601DateFormatter.shared
-        guard let jsonAsData = json as? Data else {
-            assertionFailure ("\(JSONErrorEnum.jsonAsDataError)")
-            return nil
-        }
-        guard let jsonData = try? JSONSerialization.jsonObject(with: jsonAsData) as? [String : Any] else {
-            return nil
-        }
         
-        guard let id = jsonData["id"] as? String,
+        
+        guard let jsonAsData = json as? Data else {
+                   assertionFailure ("\(JSONErrorEnum.jsonAsDataError)")
+                   return nil
+               }
+               guard let jsonData = try? JSONSerialization.jsonObject(with: jsonAsData) as? [String : Any] else {
+                   return nil
+               }
+        
+        guard let idString = jsonData["id"] as? String,
+              let id = UUID(uuidString: idString),
               let text = jsonData["text"] as? String,
               let flag = jsonData["flag"] as? Bool,
-              let createdAtString = jsonData["createdAt"] as? String else {
+              let createdAtString = jsonData["createdAt"] as? String,
+              let createdAt = isoFormatter.date(from: createdAtString) else {
             return nil
         }
-        
-        guard let createdAt = isoFormatter.date(from: createdAtString) else {
-            print ("\(createdAtString)")
-            return nil
-        }
-        
-        var changedAt: Date? = nil
-        if let changedAtTimeString = jsonData["changedAt"] as? String {
-            changedAt = isoFormatter.date(from: changedAtTimeString)
-        }
-        
-        var deadLine: Date? = nil
-        if let deadLineString = jsonData["deadLine"] as? String{
-            deadLine = isoFormatter.date(from: deadLineString)
-        }
-        
+
+        let changedAt: Date? = (jsonData["changedAt"] as? String).flatMap(isoFormatter.date(from:))
+        let deadLine: Date? = (jsonData["deadLine"] as? String).flatMap(isoFormatter.date(from:))
+
         let priority: Priority
         if let priorityRaw = jsonData["priority"] as? String,
-           let value = Priority(rawValue: priorityRaw){
+           let value = Priority(rawValue: priorityRaw) {
             priority = value
         } else {
-            priority = Priority.normal
+            priority = .normal
         }
-        
+
         return ToDoItem(
             id: id,
             text: text,
@@ -87,6 +72,7 @@ extension ToDoItem: ToDoItemParseProtocol {
             changedAt: changedAt
         )
     }
+
     // В CSV файле пустые данные заполнены как nil
     // Формат ввода  id,"text",priority,flag,createdAt,deadLine,changedAt
     static func parseCSV(csvString: String) -> [ToDoItem] {
@@ -98,7 +84,7 @@ extension ToDoItem: ToDoItemParseProtocol {
         for row in rows.dropFirst(){
             let columns = parseCSVRow(String(row))
             guard columns.count >= 7 else {continue}
-            let id = columns[0]
+            let id = UUID(uuidString: columns[0])
             let text = columns[1]
             let priority = Priority(rawValue: columns[2]) ?? .normal
             let flag = columns[3] == "true"

@@ -8,7 +8,7 @@ protocol ToDoItemParseProtocol {
 }
 
 struct ToDoItem {
-    let id: String
+    let id: UUID
     let text: String
     let priority: Priority
     let deadLine: Date?
@@ -17,7 +17,7 @@ struct ToDoItem {
     let changedAt: Date?
     
     init(
-        id: String? = nil,
+        id: UUID? = nil,
         text: String,
         priority: Priority,
         deadLine: Date? = nil,
@@ -25,7 +25,7 @@ struct ToDoItem {
         createdAt: Date = Date(),
         changedAt: Date? = nil
     ) {
-        self.id = id ?? UUID().uuidString
+        self.id = id ?? UUID()
         self.text = text
         self.priority = priority
         self.deadLine = deadLine

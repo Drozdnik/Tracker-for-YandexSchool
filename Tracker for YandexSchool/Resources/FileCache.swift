@@ -4,7 +4,7 @@ import Foundation
 protocol FileCache {
     func getItems() -> [ToDoItem]
     func addItem(_ item: ToDoItem)
-    func deleteItem(id: String) throws
+    func deleteItem(id: UUID) throws
     func saveToFile() throws
     func loadFromFile() throws
 }
@@ -22,18 +22,23 @@ final class FileCacheImpl: FileCache {
         return items
     }
     
-    func addItem(_ item: ToDoItem){
-        if !items.contains(where: {$0.id == item.id}){
+    func addItem(_ item: ToDoItem) {
+        for i in 0..<items.count {
+                if items[i].id == item.id {
+                    items[i] = item
+                    return
+                }
+            }
             items.append(item)
         }
-    }
    
-    func deleteItem(id: String) throws {
-        guard items.contains(where: {$0.id == id}) else {
+    func deleteItem(id: UUID) throws {
+        guard items.contains(where: { $0.id == id }) else {
             throw FileCacheError.itemNotFound
         }
-        items.removeAll(where: {$0.id == id})
+        items.removeAll(where: { $0.id == id })
     }
+
     
     func saveToFile() throws {
         do {

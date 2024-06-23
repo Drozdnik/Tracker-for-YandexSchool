@@ -11,8 +11,14 @@ struct MainView:View {
                 VStack {
                     List {
                         ForEach(viewModel.items, id: \.id) { item in
-                            Text("\(item.text)")
-                                .foregroundColor(item.flag ? .green : .gray)
+                            ListCell(item: item)
+                                .swipeActions(edge: .trailing, allowsFullSwipe: true){
+                                    Button (action: {
+                                        viewModel.toogleFlag(for: item.id)
+                                    }){
+                                        Label("Выполнено", systemImage: "checkmark.circle.fill")
+                                    }
+                                }
                         }
                         .onDelete(perform: { indexSet in
                             print("Я удаляюсь")
