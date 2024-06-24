@@ -178,10 +178,10 @@
 			isa = PBXGroup;
 			children = (
 				8723F96D2C1F742600AAAD38 /* ToDoItem + extension.swift */,
+				871C0A542C28AB5000B66CC9 /* EnviromentValues + ext.swift */,
 				8723F9772C20D0BE00AAAD38 /* IsoFormatter + extension.swift */,
 				871C0A472C275D3A00B66CC9 /* Color + extension.swift */,
 				871C0A4C2C2830BD00B66CC9 /* UIApplication + ext.swift */,
-				871C0A542C28AB5000B66CC9 /* EnviromentValues + ext.swift */,
 				871C0A592C28D12300B66CC9 /* DateFormatter + ext.swift */,
 			);
 			path = Extensions;

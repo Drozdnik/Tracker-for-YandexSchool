@@ -1,9 +1,13 @@
 import SwiftUI
 
-
 struct TextFieldView: View {
     @ObservedObject var viewModel: CreateToDoItemViewModel
     @FocusState private var taskNameIsFocused: Bool
+ 
+    
+    init(viewModel: CreateToDoItemViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         VStack {
@@ -12,6 +16,7 @@ struct TextFieldView: View {
 
                 .lineLimit(5...Int.max)
                 .frame(minHeight: 120)
+                
                 .padding(16)
                 .background(
                     RoundedRectangle(cornerRadius: 16)
