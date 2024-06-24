@@ -35,6 +35,11 @@ final class CreateToDoItemViewModel: ObservableObject {
         selectedIcon = .text("нет")
         deadLineActivate = false
     }
+    func showDatePicker(_ isActivate: Bool){
+        if isActivate{
+            datePickerIsShown = true
+        }
+    }
     
     private func updatePriority(from icon: SwitchcerViewElementEnum) -> Priority {
         switch icon {

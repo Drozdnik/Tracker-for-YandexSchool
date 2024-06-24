@@ -16,7 +16,7 @@ struct CreateToDoItem: View {
                         .padding(.horizontal)
                         .background(Color.backgroundColor)
                     
-                    ImportanceListView(taskData: viewModel)
+                    ImportanceListView(viewModel: viewModel)
                     
                     DeleteButtonView(action: viewModel.deleteButtonTapped, viewModel: viewModel)
                         .padding(.horizontal)

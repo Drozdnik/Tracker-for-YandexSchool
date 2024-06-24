@@ -1,14 +1,14 @@
 import SwiftUI
 
 struct ImportanceListView: View {
-    @ObservedObject var taskData: CreateToDoItemViewModel
+    @ObservedObject var viewModel: CreateToDoItemViewModel
     
     var body: some View {
         VStack(spacing: 0) {
             HStack {
                 Text("Важность")
                 Spacer()
-                SwitcherView(taskData: taskData)
+                SwitcherView(taskData: viewModel)
                     .frame(width: 150)
                     .padding(.top, 10)
                     .padding(.bottom, 10)
@@ -21,42 +21,41 @@ struct ImportanceListView: View {
             HStack {
                 VStack{
                     Text("Сделать до")
-                    if taskData.deadLineActivate {
-                        if let deadLine = taskData.deadLine{
+                    if viewModel.deadLineActivate {
+                        if let deadLine = viewModel.deadLine{
                             Text("\(DateFormatter.dayMonth.string(from: deadLine))")
                                 .foregroundStyle(.blue)
                                 .onTapGesture {
-                                    taskData.datePickerIsShown.toggle()
+                                    withAnimation(.bouncy(duration: 0.7)){
+                                        viewModel.datePickerIsShown.toggle()
+                                    }
                                 }
                         }
                     }
                 }
-                Toggle("", isOn: Binding (
-                    get: {
-                        taskData.deadLineActivate
-                    },
-                    set: { value in
-                        taskData.deadLineActivate = value
-                        taskData.datePickerIsShown = value
+                Toggle("", isOn: $viewModel.deadLineActivate.animation(.bouncy(duration: 0.7)))
+                    .onChange(of: viewModel.deadLineActivate) {
+                        if viewModel.deadLineActivate {
+                            viewModel.showDatePicker(viewModel.deadLineActivate)
+                        }
                     }
-                    ))
-                
             }
             .frame(height: 56)
             .padding(.horizontal)
             
-            if taskData.deadLineActivate && taskData.datePickerIsShown {
+            if viewModel.deadLineActivate && viewModel.datePickerIsShown {
                 Divider()
                 if let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: Date()) {
                     DatePicker("Выберите дату", selection: Binding (
-                        get: { taskData.deadLine ?? tomorrow },
-                        set: { 
-                            taskData.deadLine = $0
-                            taskData.datePickerIsShown = true
+                        get: { viewModel.deadLine ?? tomorrow },
+                        set: {
+                            viewModel.deadLine = $0
+                            viewModel.datePickerIsShown = true
                         }
                     ),
                                in: Date()...    , displayedComponents: .date)
                     .datePickerStyle(GraphicalDatePickerStyle())
+                    
                 }
             }
         }
@@ -70,5 +69,5 @@ struct ImportanceListView: View {
 }
 
 #Preview {
-    ImportanceListView(taskData: CreateToDoItemViewModel(fileCache: FileCacheImpl(fileName: "file")))
+    ImportanceListView(viewModel: CreateToDoItemViewModel(fileCache: FileCacheImpl(fileName: "file")))
 }
