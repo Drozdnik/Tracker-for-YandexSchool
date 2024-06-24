@@ -7,7 +7,7 @@ struct ListCell: View {
         HStack {
             if item.flag {
                 Image(systemName: "checkmark.circle.fill")
-                    .foregroundColor(.green)
+                    .foregroundStyle(.green)
                     .font(.system(size: 24))
             } else {
                 Circle()
@@ -17,7 +17,7 @@ struct ListCell: View {
             
             VStack(alignment: .leading, spacing: 4) {
                 Text(item.text)
-                    .foregroundColor(.primary)
+                    .foregroundStyle(.primary)
                     .strikethrough(item.flag, color: .gray)
                     .lineLimit(3)
                     .truncationMode(.tail)
@@ -25,11 +25,11 @@ struct ListCell: View {
                 if let deadLine = item.deadLine {
                     HStack(spacing: 2){
                         Image(systemName: "calendar")
-                            .foregroundColor(.gray)
+                            .foregroundStyle(.gray)
                             .font(.caption)
                         Text(DateFormatter.dayMonth.string(from: deadLine))
                             .font(.caption)
-                            .foregroundColor(.gray)
+                            .foregroundStyle(.gray)
                     }
                 }
             }
@@ -37,7 +37,7 @@ struct ListCell: View {
             Spacer()
             
             Image(systemName: "chevron.right")
-                .foregroundColor(.gray)
+                .foregroundStyle(.gray)
         }
         .padding(.vertical, 8)
     }

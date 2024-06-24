@@ -22,14 +22,16 @@ struct ImportanceListView: View {
                 VStack{
                     Text("Сделать до")
                     if taskData.deadLineActivate {
-                        Text("\(DateFormatter.dayMonth.string(from: taskData.deadLine!))")
-                            .foregroundColor(.blue)
-                            .onTapGesture {
-                                taskData.datePickerIsShown.toggle()
-                            }
+                        if let deadLine = taskData.deadLine{
+                            Text("\(DateFormatter.dayMonth.string(from: deadLine))")
+                                .foregroundStyle(.blue)
+                                .onTapGesture {
+                                    taskData.datePickerIsShown.toggle()
+                                }
+                        }
                     }
                 }
-                Toggle("", isOn: Binding(
+                Toggle("", isOn: Binding (
                     get: {
                         taskData.deadLineActivate
                     },
@@ -45,8 +47,8 @@ struct ImportanceListView: View {
             
             if taskData.deadLineActivate && taskData.datePickerIsShown {
                 Divider()
-                if let tomorrow = taskData.deadLine {
-                    DatePicker("Выберите дату", selection: Binding(
+                if let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: Date()) {
+                    DatePicker("Выберите дату", selection: Binding (
                         get: { taskData.deadLine ?? tomorrow },
                         set: { 
                             taskData.deadLine = $0
@@ -60,7 +62,7 @@ struct ImportanceListView: View {
         }
         .background(
             RoundedRectangle(cornerRadius: 10)
-                .foregroundColor(.white) 
+                .foregroundStyle(.whiteDarkTheme)
         )
         .padding(.horizontal)
         .background(Color.backgroundColor.edgesIgnoringSafeArea(.all))

@@ -18,7 +18,7 @@ struct CreateToDoItem: View {
                     
                     ImportanceListView(taskData: viewModel)
                     
-                    DeleteButtonView(action: viewModel.deleteButtonTapped)
+                    DeleteButtonView(action: viewModel.deleteButtonTapped, viewModel: viewModel)
                         .padding(.horizontal)
                         .padding(.bottom, 20)
                     Spacer()
@@ -40,6 +40,8 @@ struct CreateToDoItem: View {
                         viewModel.addItem()
                         createToDoItemPresented.wrappedValue.dismiss()
                     })
+                    .disabled(viewModel.taskName.isEmpty)
+                    .opacity(viewModel.taskName.isEmpty ? 0.5 : 1.0)
                 }
             }
         }

@@ -22,7 +22,9 @@ struct MainView:View {
                                 }
                         }
                         .onDelete(perform: { indexSet in
-                            print("Я удаляюсь")
+                            if let index = indexSet.first{
+                                viewModel.deleteItem(for: index)
+                            }
                         })
                     }
                 }
@@ -47,6 +49,7 @@ struct MainView:View {
                 }
             }
             .navigationTitle("Мои дела")
+            
     }
     }
 }

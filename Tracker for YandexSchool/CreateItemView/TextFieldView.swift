@@ -15,7 +15,7 @@ struct TextFieldView: View {
                 .padding(16)
                 .background(
                     RoundedRectangle(cornerRadius: 16)
-                        .foregroundColor(.white)
+                        .foregroundStyle(.whiteDarkTheme)
                 )
         }
         .background(Color.backgroundColor)

@@ -3,7 +3,7 @@ import SwiftUI
 final class MainViewModel: ObservableObject {
     private let fileCache: FileCache
     
-    @Published var items: [ToDoItem] = [ToDoItem(text: "Первый итем", priority: .normal), ToDoItem(text: "Второй", priority: .low), ToDoItem(text: "Третий", priority: .high), ToDoItem(text: "Первый итем", priority: .normal),ToDoItem(text: "Первый итем", priority: .normal),ToDoItem(text: "Первый итем", priority: .normal),ToDoItem(text: "Первый итем", priority: .normal),ToDoItem(text: "Первый итем", priority: .normal),ToDoItem(text: "Первый итем", priority: .normal),ToDoItem(text: "Первый итем", priority: .normal),ToDoItem(text: "Первый итем", priority: .normal),ToDoItem(text: "Первый итем", priority: .normal),ToDoItem(text: "Первый итем", priority: .normal),ToDoItem(text: "Первый итем", priority: .normal),ToDoItem(text: "Первый итем", priority: .normal),]
+    @Published var items: [ToDoItem] = [ToDoItem(text: "Первый итем", priority: .normal), ToDoItem(text: "Второй", priority: .low), ToDoItem(text: "Третий", priority: .high), ToDoItem(text: "Первый итем", priority: .normal),ToDoItem(text: "Первый итем", priority: .normal),ToDoItem(text: "Первый итем", priority: .normal),ToDoItem(text: "Первый итем", priority: .normal),ToDoItem(text: "Первый итем", priority: .normal),ToDoItem(text: "Первый итем", priority: .normal),ToDoItem(text: "Первый итем", priority: .normal),ToDoItem(text: "Первый итем", priority: .normal),ToDoItem(text: "Первый итем", priority: .normal),ToDoItem(text: "Первый итем", priority: .normal),ToDoItem(text: "Первый итем", priority: .normal),ToDoItem(text: "Первый итем", priority: .normal)]
     
     init(fileCache: FileCache) {
         self.fileCache = fileCache
@@ -27,7 +27,17 @@ final class MainViewModel: ObservableObject {
             )
             
             fileCache.addItem(newItem)
-            items = fileCache.getItems()
+            getItems()
+        }
+    }
+    
+    func deleteItem(for item: Int) {
+        let itemID = items[item].id
+        do {
+            try fileCache.deleteItem(id: itemID)
+            getItems()
+        } catch {
+            assertionFailure("Item с id \(itemID) не найден")
         }
     }
 }
