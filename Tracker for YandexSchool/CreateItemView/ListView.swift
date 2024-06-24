@@ -8,7 +8,7 @@ struct ImportanceListView: View {
             HStack {
                 Text("Важность")
                 Spacer()
-                SwitcherView(taskData: viewModel)
+                SwitcherView(viewModel: viewModel)
                     .frame(width: 150)
                     .padding(.top, 10)
                     .padding(.bottom, 10)

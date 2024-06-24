@@ -9,6 +9,12 @@ struct MainView:View {
         NavigationStack{
             ZStack {
                 VStack {
+                    HStack{
+                        Text("Выполнено - \(viewModel.finishedTasks)")
+                        Spacer()
+                        FilterMenu(viewModel: viewModel)
+                    }
+                    .padding(.horizontal, 20)
                     List {
                         ForEach(viewModel.items, id: \.id) { item in
                             ListCell(item: item)
@@ -27,6 +33,9 @@ struct MainView:View {
                             }
                         })
                     }
+                    
+                    .scrollContentBackground(.hidden)
+                    .listRowBackground(Color.backgroundColor)
                 }
                 .sheet(isPresented: $isBottomSheetPresented, onDismiss: viewModel.getItems, content: {
                     
@@ -49,8 +58,8 @@ struct MainView:View {
                 }
             }
             .navigationTitle("Мои дела")
-            
-    }
+            .background(Color.backgroundColor)
+        }
     }
 }
 

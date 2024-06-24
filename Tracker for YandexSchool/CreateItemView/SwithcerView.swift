@@ -5,7 +5,7 @@ enum SwitchcerViewElementEnum: Hashable{
    
 }
 struct SwitcherView: View {
-    @ObservedObject var taskData: CreateToDoItemViewModel
+    @ObservedObject var viewModel: CreateToDoItemViewModel
 
     
     private let icons: [SwitchcerViewElementEnum] = [
@@ -16,7 +16,7 @@ struct SwitcherView: View {
     
     var body: some View {
         VStack {
-            Picker("Выберите опцию", selection: $taskData.selectedIcon) {
+            Picker("Выберите опцию", selection: $viewModel.selectedIcon) {
                 ForEach(icons, id: \.self) { icon in
                     switch icon {
                     case .text(let text):
@@ -37,5 +37,5 @@ struct SwitcherView: View {
 }
 
 #Preview {
-    SwitcherView(taskData: CreateToDoItemViewModel(fileCache: FileCacheImpl(fileName: "file")))
+    SwitcherView(viewModel: CreateToDoItemViewModel(fileCache: FileCacheImpl(fileName: "file")))
 }

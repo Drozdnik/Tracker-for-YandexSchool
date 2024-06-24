@@ -2,12 +2,12 @@ import SwiftUI
 
 
 struct TextFieldView: View {
-    @ObservedObject var taskData: CreateToDoItemViewModel
+    @ObservedObject var viewModel: CreateToDoItemViewModel
     @FocusState private var taskNameIsFocused: Bool
     
     var body: some View {
         VStack {
-            TextField("Что надо сделать?", text: $taskData.taskName, axis: .vertical)
+            TextField("Что надо сделать?", text: $viewModel.taskName, axis: .vertical)
                 .focused($taskNameIsFocused)
 
                 .lineLimit(5...Int.max)

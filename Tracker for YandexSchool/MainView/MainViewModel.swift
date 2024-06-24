@@ -3,7 +3,10 @@ import SwiftUI
 final class MainViewModel: ObservableObject {
     private let fileCache: FileCache
     
-    @Published var items: [ToDoItem] = [ToDoItem(text: "Первый итем", priority: .normal), ToDoItem(text: "Второй", priority: .low), ToDoItem(text: "Третий", priority: .high), ToDoItem(text: "Первый итем", priority: .normal),ToDoItem(text: "Первый итем", priority: .normal),ToDoItem(text: "Первый итем", priority: .normal),ToDoItem(text: "Первый итем", priority: .normal),ToDoItem(text: "Первый итем", priority: .normal),ToDoItem(text: "Первый итем", priority: .normal),ToDoItem(text: "Первый итем", priority: .normal),ToDoItem(text: "Первый итем", priority: .normal),ToDoItem(text: "Первый итем", priority: .normal),ToDoItem(text: "Первый итем", priority: .normal),ToDoItem(text: "Первый итем", priority: .normal),ToDoItem(text: "Первый итем", priority: .normal)]
+    @Published var items: [ToDoItem] = [ToDoItem(text: "Первый итем", priority: .normal), ToDoItem(text: "Второй", priority: .low), ToDoItem(text: "Третий", priority: .high),ToDoItem(text: "Первый итем", priority: .normal), ToDoItem(text: "Второй", priority: .low), ToDoItem(text: "Третий", priority: .high),ToDoItem(text: "Первый итем", priority: .normal), ToDoItem(text: "Второй", priority: .low), ToDoItem(text: "Третий", priority: .high),ToDoItem(text: "Первый итем", priority: .normal), ToDoItem(text: "Второй", priority: .low), ToDoItem(text: "Третий", priority: .high),ToDoItem(text: "Первый итем", priority: .normal), ToDoItem(text: "Второй", priority: .low), ToDoItem(text: "Третий", priority: .high),]
+    @Published var showFinished: Bool = true
+    @Published var sortByPriority: Bool = true
+    @Published var finishedTasks: Int = 0
     
     init(fileCache: FileCache) {
         self.fileCache = fileCache
@@ -11,6 +14,12 @@ final class MainViewModel: ObservableObject {
     
     func getItems() {
         items = fileCache.getItems()
+        filterTasks()
+        sortTasks()
+    }
+    
+    func findFinishedTasks(){
+        finishedTasks = items.filter { $0.flag }.count
     }
     
     func toogleFlag(for itemID: UUID) {
@@ -28,6 +37,7 @@ final class MainViewModel: ObservableObject {
             
             fileCache.addItem(newItem)
             getItems()
+            findFinishedTasks()
         }
     }
     
@@ -40,4 +50,31 @@ final class MainViewModel: ObservableObject {
             assertionFailure("Item с id \(itemID) не найден")
         }
     }
+    
+    func toggleShowFinished() {
+        showFinished.toggle()
+        getItems()
+        filterTasks()
+    }
+    
+    func toggleSortPreference() {
+        sortByPriority.toggle()
+        getItems()
+        sortTasks()
+    }
+    
+    private func filterTasks() {
+        if !showFinished {
+            items = items.filter { !$0.flag }
+        }
+    }
+    
+    private func sortTasks() {
+        if sortByPriority {
+            items.sort { $0.priority > $1.priority }
+        } else {
+            items.sort { $0.createdAt < $1.createdAt }
+        }
+    }
 }
+

@@ -26,7 +26,3 @@ struct DeleteButtonView: View {
         .disabled(viewModel.taskName.isEmpty)
     }
 }
-
-//#Preview {
-//    DeleteButtonView()
-//}

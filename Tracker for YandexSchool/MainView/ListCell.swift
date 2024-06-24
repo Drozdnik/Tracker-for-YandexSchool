@@ -42,3 +42,7 @@ struct ListCell: View {
         .padding(.vertical, 8)
     }
 }
+
+#Preview {
+    ListCell(item: ToDoItem( text: "Текст", priority: .high))
+}

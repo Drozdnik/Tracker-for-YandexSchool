@@ -12,7 +12,7 @@ struct CreateToDoItem: View {
         NavigationStack{
             ScrollView{
                 VStack(spacing: 16) {
-                    TextFieldView(taskData: viewModel)
+                    TextFieldView(viewModel: viewModel)
                         .padding(.horizontal)
                         .background(Color.backgroundColor)
                     
@@ -48,6 +48,6 @@ struct CreateToDoItem: View {
     }
 }
 
-//#Preview {
-//    CreateToDoItem(viewModel: CreateToDoItemViewModel(fileCache: FileCacheImpl(fileName: "ded")))
-//}
+#Preview {
+    CreateToDoItem(viewModel: CreateToDoItemViewModel(fileCache: FileCacheImpl(fileName: "ded")))
+}
