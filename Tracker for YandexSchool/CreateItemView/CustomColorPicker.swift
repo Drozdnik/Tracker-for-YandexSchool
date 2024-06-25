@@ -1,7 +1,6 @@
 import SwiftUI
 struct CustomColorPicker: View {
     @ObservedObject var viewModel: CreateToDoItemViewModel
-    //    @State private var selectedColor = Color.green
     @State private var brightness: CGFloat = 1.0
     @State private var currentPoint = CGPoint(x: 150, y: 150)
     

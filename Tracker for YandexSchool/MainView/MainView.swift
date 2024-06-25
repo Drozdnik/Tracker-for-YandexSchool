@@ -4,6 +4,7 @@ struct MainView:View {
     @State private var isBottomSheetPresented: Bool = false
     @ObservedObject var viewModel: MainViewModel
     @Environment(\.containerDI) var container
+    @Environment(\.horizontalSizeClass) var sizeClass
     @State private var itemToEdit: ToDoItem?
     @State private var isEdditing: Bool?
     
@@ -58,6 +59,7 @@ struct MainView:View {
                     itemToEdit = nil
                     isEdditing = false
                 }){
+                    
                     if let itemToEdit = itemToEdit{
                         CreateToDoItem(viewModel: CreateToDoItemViewModel(fileCache: container.fileCache, item: itemToEdit))
                     } else {

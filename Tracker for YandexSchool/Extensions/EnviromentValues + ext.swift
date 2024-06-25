@@ -1,7 +1,7 @@
 
 import SwiftUI
 
-private struct ContainerEnvKey: EnvironmentKey{
+private struct ContainerEnvKey: EnvironmentKey {
     static let defaultValue = DiContainer()
 }
 
@@ -10,4 +10,5 @@ extension EnvironmentValues {
       get { self[ContainerEnvKey.self] }
     set {  }
   }
+    
 }

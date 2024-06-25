@@ -25,6 +25,7 @@
 		871C0A5C2C292D6E00B66CC9 /* FilterMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C0A5B2C292D6E00B66CC9 /* FilterMenu.swift */; };
 		871C0A602C2A303A00B66CC9 /* ToDoItemConfigurationEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C0A5F2C2A303A00B66CC9 /* ToDoItemConfigurationEnum.swift */; };
 		871C0A622C2AFE5400B66CC9 /* CustomColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C0A612C2AFE5400B66CC9 /* CustomColorPicker.swift */; };
+		871C0A652C2B7C4700B66CC9 /* MainViewForIpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C0A642C2B7C4700B66CC9 /* MainViewForIpad.swift */; };
 		8723F95C2C1F5E6B00AAAD38 /* Tracker_for_YandexSchoolApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F95B2C1F5E6B00AAAD38 /* Tracker_for_YandexSchoolApp.swift */; };
 		8723F95E2C1F5E6B00AAAD38 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F95D2C1F5E6B00AAAD38 /* TextFieldView.swift */; };
 		8723F9602C1F5E6C00AAAD38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8723F95F2C1F5E6C00AAAD38 /* Assets.xcassets */; };
@@ -68,6 +69,7 @@
 		871C0A5B2C292D6E00B66CC9 /* FilterMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterMenu.swift; sourceTree = "<group>"; };
 		871C0A5F2C2A303A00B66CC9 /* ToDoItemConfigurationEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemConfigurationEnum.swift; sourceTree = "<group>"; };
 		871C0A612C2AFE5400B66CC9 /* CustomColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColorPicker.swift; sourceTree = "<group>"; };
+		871C0A642C2B7C4700B66CC9 /* MainViewForIpad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewForIpad.swift; sourceTree = "<group>"; };
 		8723F9582C1F5E6B00AAAD38 /* Tracker for YandexSchool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tracker for YandexSchool.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8723F95B2C1F5E6B00AAAD38 /* Tracker_for_YandexSchoolApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker_for_YandexSchoolApp.swift; sourceTree = "<group>"; };
 		8723F95D2C1F5E6B00AAAD38 /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
@@ -128,6 +130,14 @@
 			path = MainView;
 			sourceTree = "<group>";
 		};
+		871C0A632C2B7C2A00B66CC9 /* MainForIpad */ = {
+			isa = PBXGroup;
+			children = (
+				871C0A642C2B7C4700B66CC9 /* MainViewForIpad.swift */,
+			);
+			path = MainForIpad;
+			sourceTree = "<group>";
+		};
 		8723F94F2C1F5E6B00AAAD38 = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +159,7 @@
 		8723F95A2C1F5E6B00AAAD38 /* Tracker for YandexSchool */ = {
 			isa = PBXGroup;
 			children = (
+				871C0A632C2B7C2A00B66CC9 /* MainForIpad */,
 				871C0A492C281FFC00B66CC9 /* MainView */,
 				871C0A3C2C27118200B66CC9 /* CreateItemView */,
 				8723F9722C20BFEF00AAAD38 /* Resources */,
@@ -345,6 +356,7 @@
 				871C0A512C28930400B66CC9 /* MainViewModel.swift in Sources */,
 				8723F9762C20C64C00AAAD38 /* FileCache.swift in Sources */,
 				871C0A442C27534B00B66CC9 /* CreateToDoItem.swift in Sources */,
+				871C0A652C2B7C4700B66CC9 /* MainViewForIpad.swift in Sources */,
 				8723F96A2C1F5F3200AAAD38 /* ToDoItem.swift in Sources */,
 				871C0A462C27586B00B66CC9 /* DeleteButtonView.swift in Sources */,
 			);
