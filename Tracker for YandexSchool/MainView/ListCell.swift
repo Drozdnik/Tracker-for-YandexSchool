@@ -22,7 +22,7 @@ struct ListCell: View {
                 }
                 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(item.text)
+                    Text((item.priority == .high ? "‼️ " : "") + item.text)
                         .foregroundStyle(.primary)
                         .strikethrough(item.flag, color: .gray)
                         .lineLimit(3)
