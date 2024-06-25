@@ -23,6 +23,7 @@
 		871C0A572C28B1B800B66CC9 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C0A562C28B1B800B66CC9 /* ListCell.swift */; };
 		871C0A5A2C28D12300B66CC9 /* DateFormatter + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C0A592C28D12300B66CC9 /* DateFormatter + ext.swift */; };
 		871C0A5C2C292D6E00B66CC9 /* FilterMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C0A5B2C292D6E00B66CC9 /* FilterMenu.swift */; };
+		871C0A602C2A303A00B66CC9 /* ToDoItemConfigurationEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C0A5F2C2A303A00B66CC9 /* ToDoItemConfigurationEnum.swift */; };
 		8723F95C2C1F5E6B00AAAD38 /* Tracker_for_YandexSchoolApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F95B2C1F5E6B00AAAD38 /* Tracker_for_YandexSchoolApp.swift */; };
 		8723F95E2C1F5E6B00AAAD38 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F95D2C1F5E6B00AAAD38 /* TextFieldView.swift */; };
 		8723F9602C1F5E6C00AAAD38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8723F95F2C1F5E6C00AAAD38 /* Assets.xcassets */; };
@@ -64,6 +65,7 @@
 		871C0A562C28B1B800B66CC9 /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		871C0A592C28D12300B66CC9 /* DateFormatter + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter + ext.swift"; sourceTree = "<group>"; };
 		871C0A5B2C292D6E00B66CC9 /* FilterMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterMenu.swift; sourceTree = "<group>"; };
+		871C0A5F2C2A303A00B66CC9 /* ToDoItemConfigurationEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemConfigurationEnum.swift; sourceTree = "<group>"; };
 		8723F9582C1F5E6B00AAAD38 /* Tracker for YandexSchool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tracker for YandexSchool.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8723F95B2C1F5E6B00AAAD38 /* Tracker_for_YandexSchoolApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker_for_YandexSchoolApp.swift; sourceTree = "<group>"; };
 		8723F95D2C1F5E6B00AAAD38 /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				8723F9702C1F838000AAAD38 /* PriorityEnum.swift */,
 				8723F9792C20E04800AAAD38 /* FileCacheError.swift */,
 				8723F9882C22122A00AAAD38 /* JSONErrorEnum.swift */,
+				871C0A5F2C2A303A00B66CC9 /* ToDoItemConfigurationEnum.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 			files = (
 				8723F95E2C1F5E6B00AAAD38 /* TextFieldView.swift in Sources */,
 				8723F95C2C1F5E6B00AAAD38 /* Tracker_for_YandexSchoolApp.swift in Sources */,
+				871C0A602C2A303A00B66CC9 /* ToDoItemConfigurationEnum.swift in Sources */,
 				871C0A3B2C26364400B66CC9 /* PriorityDeadLineView.swift in Sources */,
 				871C0A3E2C2711A900B66CC9 /* SwithcerView.swift in Sources */,
 				871C0A532C28A84400B66CC9 /* DiContainer.swift in Sources */,

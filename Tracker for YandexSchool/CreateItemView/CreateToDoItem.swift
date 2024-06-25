@@ -6,7 +6,7 @@ struct CreateToDoItem: View {
     @Environment(\.presentationMode) var createToDoItemPresented
     @State private var orientation: UIDeviceOrientation = UIDevice.current.orientation
     @State private var orientationChangePublisher: AnyCancellable?
-    
+
     init(viewModel: CreateToDoItemViewModel) {
         self.viewModel = viewModel
     }
@@ -72,7 +72,6 @@ struct CreateToDoItem: View {
     private func horizontalLayout(geometry: GeometryProxy) -> some View {
         HStack {
             TextFieldView(viewModel: viewModel)
-//                .frame(width: geometry.size.width / 2, height: geometry.size.height)  
                 .padding(.horizontal)
                 .background(Color.backgroundColor)
             

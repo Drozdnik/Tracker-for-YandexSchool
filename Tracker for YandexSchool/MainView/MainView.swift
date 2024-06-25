@@ -4,6 +4,8 @@ struct MainView:View {
     @State private var isBottomSheetPresented: Bool = false
     @ObservedObject var viewModel: MainViewModel
     @Environment(\.containerDI) var container
+    @State private var itemToEdit: ToDoItem?
+    @State private var isEdditing: Bool?
     
     var body: some View {
         NavigationStack{
@@ -26,6 +28,21 @@ struct MainView:View {
                                     }
                                     .tint(.green)
                                 }
+                                .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                                    Button(role: .destructive, action: {
+                                    }) {
+                                        Label("Удалить", systemImage: "trash")
+                                    }
+                                    Button(action: {
+                                        itemToEdit = item
+                                        isEdditing = true
+                                        isBottomSheetPresented = true
+                                    })
+                                    {
+                                        Label("Редактировать", systemImage: "pencil")
+                                    }
+                                    .tint(.blue)
+                                }
                         }
                         .onDelete(perform: { indexSet in
                             if let index = indexSet.first{
@@ -33,14 +50,21 @@ struct MainView:View {
                             }
                         })
                     }
-                    
                     .scrollContentBackground(.hidden)
                     .listRowBackground(Color.backgroundColor)
                 }
-                .sheet(isPresented: $isBottomSheetPresented, onDismiss: viewModel.getItems, content: {
-                    
-                    CreateToDoItem(viewModel: CreateToDoItemViewModel(fileCache: container.fileCache))
-                })
+                .sheet(isPresented: $isBottomSheetPresented, onDismiss: {
+                    viewModel.getItems()
+                    itemToEdit = nil
+                    isEdditing = false
+                }){
+                    if let itemToEdit = itemToEdit{
+                        CreateToDoItem(viewModel: CreateToDoItemViewModel(fileCache: container.fileCache, item: itemToEdit))
+                    } else {
+                        CreateToDoItem(viewModel: CreateToDoItemViewModel(fileCache: container.fileCache))
+                    }
+                   
+                }
                 
                 VStack{
                     Spacer()
