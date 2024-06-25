@@ -18,6 +18,36 @@ struct ImportanceListView: View {
             
             Divider()
             
+            HStack{
+                VStack(spacing: 2){
+                    Text("Выбрать цвет")
+                    
+                    if viewModel.colorPickerActivate {
+                        if let pickedColor = viewModel.pickedColor {
+                            RoundedRectangle(cornerRadius: 12)
+                                .fill(pickedColor)
+                                .overlay(Text(pickedColor.toHexString()).foregroundColor(.white).bold())
+                                .onTapGesture {
+                                    viewModel.colorPickerIsShown.toggle()
+                                }
+                        }
+                    }
+                }
+                
+                Toggle("", isOn: $viewModel.colorPickerActivate)
+                    .onChange(of: viewModel.colorPickerActivate){
+                        viewModel.colorPickerIsShown = true
+                    }
+            }
+            .frame(height: 56)
+            .padding(.horizontal)
+            
+            if viewModel.colorPickerActivate && viewModel.colorPickerIsShown {
+                Divider()
+                CustomColorPicker(viewModel: viewModel)
+            }
+            Divider()
+            
             HStack {
                 VStack{
                     Text("Сделать до")

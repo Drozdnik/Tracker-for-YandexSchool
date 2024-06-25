@@ -1,4 +1,4 @@
-import Foundation
+import SwiftUI
 
 protocol ToDoItemParseProtocol {
     var json: Any {get}
@@ -15,6 +15,7 @@ struct ToDoItem {
     let flag: Bool
     let createdAt: Date
     let changedAt: Date?
+    let pickedColor: Color?
     
     init(
         id: UUID? = nil,
@@ -23,7 +24,8 @@ struct ToDoItem {
         deadLine: Date? = nil,
         flag: Bool = false,
         createdAt: Date = Date(),
-        changedAt: Date? = nil
+        changedAt: Date? = nil,
+        pickedColor: Color? = nil
     ) {
         self.id = id ?? UUID()
         self.text = text
@@ -32,6 +34,7 @@ struct ToDoItem {
         self.flag = flag
         self.createdAt = createdAt
         self.changedAt = changedAt
+        self.pickedColor = pickedColor
     }
 }
 

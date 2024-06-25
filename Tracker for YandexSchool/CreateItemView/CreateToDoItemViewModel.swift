@@ -9,6 +9,9 @@ final class CreateToDoItemViewModel: ObservableObject {
     @Published var selectedIcon: SwitchcerViewElementEnum = .text("нет")
     @Published var deadLine: Date? = nil
     @Published var datePickerIsShown: Bool = false
+    @Published var pickedColor: Color? = nil
+    @Published var colorPickerIsShown: Bool = false
+    @Published var colorPickerActivate: Bool = false
     @Published var deadLineActivate: Bool = false {
         didSet {
             if deadLineActivate {
@@ -30,16 +33,25 @@ final class CreateToDoItemViewModel: ObservableObject {
             self.deadLine = item.deadLine
             self.deadLineActivate = item.deadLine != nil
             self.changedAt = Date()
+            self.pickedColor = item.pickedColor ?? .clear
         }
     }
     
     func addItem() {
         let priority = updatePriority(from: selectedIcon)
         if let changedItem = changedItem {
-            let item = ToDoItem(id: changedItem.id, text: taskName, priority: priority, deadLine: deadLine, createdAt: changedItem.createdAt, changedAt: Date())
+            let item = ToDoItem(
+                id: changedItem.id,
+                text: taskName,
+                priority: priority,
+                deadLine: deadLine,
+                createdAt: changedItem.createdAt,
+                changedAt: Date(),
+                pickedColor: pickedColor
+            )
             fileCache.addItem(item)
         } else {
-            let item = ToDoItem(text: taskName, priority: priority, deadLine: deadLine)
+            let item = ToDoItem(text: taskName, priority: priority, deadLine: deadLine, pickedColor: pickedColor)
             fileCache.addItem(item)
         }
     }
@@ -48,8 +60,10 @@ final class CreateToDoItemViewModel: ObservableObject {
         taskName = ""
         selectedIcon = .text("нет")
         deadLineActivate = false
+        pickedColor = .clear
     }
-    func showDatePicker(_ isActivate: Bool){
+    
+    func showDatePicker(_ isActivate: Bool) {
         if isActivate{
             datePickerIsShown = true
         }
