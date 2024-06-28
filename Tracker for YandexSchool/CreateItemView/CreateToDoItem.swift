@@ -5,8 +5,7 @@ struct CreateToDoItem: View {
     @ObservedObject private var viewModel: CreateToDoItemViewModel
     @Environment(\.presentationMode) var createToDoItemPresented
     @State private var orientation: UIDeviceOrientation = UIDevice.current.orientation
-    @State private var orientationChangePublisher: AnyCancellable?
-
+    @State private var orientationChangePublisher: AnyCancellable?    
     init(viewModel: CreateToDoItemViewModel) {
         self.viewModel = viewModel
     }

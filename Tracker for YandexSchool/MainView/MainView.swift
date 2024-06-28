@@ -29,7 +29,7 @@ struct MainView:View {
                                     }
                                     .tint(.green)
                                 }
-                                .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                     Button(role: .destructive, action: {
                                     }) {
                                         Label("Удалить", systemImage: "trash")
@@ -53,8 +53,12 @@ struct MainView:View {
                     }
                     .scrollContentBackground(.hidden)
                     .listRowBackground(Color.backgroundColor)
+                    .refreshable {
+                        viewModel.getItems()
+                    }
                 }
                 .sheet(isPresented: $isBottomSheetPresented, onDismiss: {
+                    
                     viewModel.getItems()
                     itemToEdit = nil
                     isEdditing = false
@@ -71,7 +75,12 @@ struct MainView:View {
                 VStack{
                     Spacer()
                     Button(action: {
-                        isBottomSheetPresented = true
+                        if UIDevice.current.userInterfaceIdiom == .pad {
+                           
+                        } else {
+                            isBottomSheetPresented = true
+                        }
+                        
                     }) {
                         PlusView()
                             .frame(width: 44, height: 44)

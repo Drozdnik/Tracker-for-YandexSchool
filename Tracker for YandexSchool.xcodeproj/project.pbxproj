@@ -26,6 +26,7 @@
 		871C0A602C2A303A00B66CC9 /* ToDoItemConfigurationEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C0A5F2C2A303A00B66CC9 /* ToDoItemConfigurationEnum.swift */; };
 		871C0A622C2AFE5400B66CC9 /* CustomColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C0A612C2AFE5400B66CC9 /* CustomColorPicker.swift */; };
 		871C0A652C2B7C4700B66CC9 /* MainViewForIpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C0A642C2B7C4700B66CC9 /* MainViewForIpad.swift */; };
+		871C0A6B2C2D303700B66CC9 /* DeviceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C0A6A2C2D303700B66CC9 /* DeviceUtils.swift */; };
 		8723F95C2C1F5E6B00AAAD38 /* Tracker_for_YandexSchoolApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F95B2C1F5E6B00AAAD38 /* Tracker_for_YandexSchoolApp.swift */; };
 		8723F95E2C1F5E6B00AAAD38 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F95D2C1F5E6B00AAAD38 /* TextFieldView.swift */; };
 		8723F9602C1F5E6C00AAAD38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8723F95F2C1F5E6C00AAAD38 /* Assets.xcassets */; };
@@ -70,6 +71,7 @@
 		871C0A5F2C2A303A00B66CC9 /* ToDoItemConfigurationEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemConfigurationEnum.swift; sourceTree = "<group>"; };
 		871C0A612C2AFE5400B66CC9 /* CustomColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColorPicker.swift; sourceTree = "<group>"; };
 		871C0A642C2B7C4700B66CC9 /* MainViewForIpad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewForIpad.swift; sourceTree = "<group>"; };
+		871C0A6A2C2D303700B66CC9 /* DeviceUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceUtils.swift; sourceTree = "<group>"; };
 		8723F9582C1F5E6B00AAAD38 /* Tracker for YandexSchool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tracker for YandexSchool.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8723F95B2C1F5E6B00AAAD38 /* Tracker_for_YandexSchoolApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker_for_YandexSchoolApp.swift; sourceTree = "<group>"; };
 		8723F95D2C1F5E6B00AAAD38 /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 			children = (
 				8723F9752C20C64C00AAAD38 /* FileCache.swift */,
 				871C0A522C28A84400B66CC9 /* DiContainer.swift */,
+				871C0A6A2C2D303700B66CC9 /* DeviceUtils.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				871C0A602C2A303A00B66CC9 /* ToDoItemConfigurationEnum.swift in Sources */,
 				871C0A3B2C26364400B66CC9 /* PriorityDeadLineView.swift in Sources */,
 				871C0A3E2C2711A900B66CC9 /* SwithcerView.swift in Sources */,
+				871C0A6B2C2D303700B66CC9 /* DeviceUtils.swift in Sources */,
 				871C0A532C28A84400B66CC9 /* DiContainer.swift in Sources */,
 				871C0A422C27356200B66CC9 /* CreateToDoItemViewModel.swift in Sources */,
 				8723F9782C20D0BE00AAAD38 /* IsoFormatter + extension.swift in Sources */,

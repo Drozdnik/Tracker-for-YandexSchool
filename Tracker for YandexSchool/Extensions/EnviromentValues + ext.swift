@@ -6,9 +6,9 @@ private struct ContainerEnvKey: EnvironmentKey {
 }
 
 extension EnvironmentValues {
-  var containerDI: DiContainer {
-      get { self[ContainerEnvKey.self] }
-    set {  }
-  }
+    var containerDI: DiContainer {
+        get { self[ContainerEnvKey.self] }
+        set {  }
+    }
     
 }

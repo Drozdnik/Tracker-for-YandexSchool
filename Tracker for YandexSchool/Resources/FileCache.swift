@@ -2,6 +2,7 @@
 import Foundation
 
 protocol FileCache {
+    var items: [ToDoItem] {get}
     func getItems() -> [ToDoItem]
     func addItem(_ item: ToDoItem)
     func deleteItem(id: UUID) throws

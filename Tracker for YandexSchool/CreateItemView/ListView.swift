@@ -34,7 +34,7 @@ struct ImportanceListView: View {
                     }
                 }
                 
-                Toggle("", isOn: $viewModel.colorPickerActivate)
+                Toggle("", isOn: $viewModel.colorPickerActivate.animation(.bouncy(duration: 0.7)))
                     .onChange(of: viewModel.colorPickerActivate){
                         viewModel.colorPickerIsShown = true
                     }
@@ -53,7 +53,7 @@ struct ImportanceListView: View {
                     Text("Сделать до")
                     if viewModel.deadLineActivate {
                         if let deadLine = viewModel.deadLine{
-                            Text("\(DateFormatter.dayMonth.string(from: deadLine))")
+                            Text("\(DateFormatter.dayMonthYear.string(from: deadLine))")
                                 .foregroundStyle(.blue)
                                 .onTapGesture {
                                     withAnimation(.bouncy(duration: 0.7)){
