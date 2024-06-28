@@ -1,21 +1,16 @@
-//
-//  FileCache.swift
-//  Tracker for YandexSchool
-//
-//  Created by Михаил  on 17.06.2024.
-//
 
 import Foundation
 
-protocol FileCacheProtocol{
+protocol FileCache {
+    var items: [ToDoItem] {get}
     func getItems() -> [ToDoItem]
     func addItem(_ item: ToDoItem)
-    func deleteItem(id: String) throws
+    func deleteItem(id: UUID) throws
     func saveToFile() throws
     func loadFromFile() throws
 }
 
-final class FileCache: FileCacheProtocol{
+final class FileCacheImpl: FileCache {
     private(set) var items: [ToDoItem] = []
     private static let manager = FileManager.default
     private let fileName: String
@@ -28,18 +23,23 @@ final class FileCache: FileCacheProtocol{
         return items
     }
     
-    func addItem(_ item: ToDoItem){
-        if !items.contains(where: {$0.id == item.id}){
+    func addItem(_ item: ToDoItem) {
+        for i in 0..<items.count {
+                if items[i].id == item.id {
+                    items[i] = item
+                    return
+                }
+            }
             items.append(item)
         }
-    }
-    // Вот тут не уверен не избыточно ли пробрасывать ошибку?
-    func deleteItem(id: String) throws {
-        guard items.contains(where: {$0.id == id}) else {
+   
+    func deleteItem(id: UUID) throws {
+        guard items.contains(where: { $0.id == id }) else {
             throw FileCacheError.itemNotFound
         }
-        items.removeAll(where: {$0.id == id})
+        items.removeAll(where: { $0.id == id })
     }
+
     
     func saveToFile() throws {
         do {
@@ -66,7 +66,7 @@ final class FileCache: FileCacheProtocol{
     }
     
     private func getUrlForManager() throws -> URL{
-        guard let url = FileCache.manager.urls(for: .documentDirectory, in: .userDomainMask).first else {
+        guard let url = FileCacheImpl.manager.urls(for: .documentDirectory, in: .userDomainMask).first else {
             throw FileCacheError.urlCreationError
         }
         return url.appendingPathComponent(fileName)

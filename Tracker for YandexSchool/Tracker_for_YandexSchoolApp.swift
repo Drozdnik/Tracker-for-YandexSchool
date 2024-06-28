@@ -1,17 +1,16 @@
-//
-//  Tracker_for_YandexSchoolApp.swift
-//  Tracker for YandexSchool
-//
-//  Created by Михаил  on 16.06.2024.
-//
-
 import SwiftUI
-
+// Красивость для айпада сделана, но после добавление нужно обновить свайпом вниз (потом обязательно доделаю)
 @main
 struct Tracker_for_YandexSchoolApp: App {
+    @Environment(\.containerDI) var container
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                MainViewForIpad(viewModel: MainViewModel(fileCache: container.fileCache))
+            } else {
+                MainView(viewModel: MainViewModel(fileCache: container.fileCache))
+            }
         }
     }
 }
