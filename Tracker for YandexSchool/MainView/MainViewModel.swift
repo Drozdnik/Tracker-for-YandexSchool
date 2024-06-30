@@ -3,7 +3,7 @@ import SwiftUI
 final class MainViewModel: ObservableObject {
     private let fileCache: FileCache
     
-    @Published var items: [ToDoItem] = [ToDoItem(text: "Первый итем", priority: .normal), ToDoItem(text: "Второй", priority: .low), ToDoItem(text: "Третий", priority: .high),ToDoItem(text: "Первый итем", priority: .normal), ToDoItem(text: "Второй", priority: .low), ToDoItem(text: "Третий", priority: .high),ToDoItem(text: "Первый итем", priority: .normal), ToDoItem(text: "Второй", priority: .low), ToDoItem(text: "Третий", priority: .high),ToDoItem(text: "Первый итем", priority: .normal), ToDoItem(text: "Второй", priority: .low), ToDoItem(text: "Третий", priority: .high),ToDoItem(text: "Первый итем", priority: .normal), ToDoItem(text: "Второй", priority: .low), ToDoItem(text: "Третий", priority: .high),]
+    @Published var items: [ToDoItem] = []
     @Published var showFinished: Bool = true
     @Published var sortByPriority: Bool = true
     @Published var finishedTasks: Int = 0
