@@ -11,7 +11,7 @@ struct Tracker_for_YandexSchoolApp: App {
 //            } else {
 //                MainView(viewModel: MainViewModel(fileCache: container.fileCache))
 //            }
-            
+//            
             CalendarViewControllerRepresentable(fileCache: container.fileCache)
         }
     }

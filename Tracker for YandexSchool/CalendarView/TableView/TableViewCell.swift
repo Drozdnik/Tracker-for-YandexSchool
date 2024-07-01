@@ -23,7 +23,7 @@ final class TableViewCell: UITableViewCell {
     }()
     
     private func setupView() {
-        addSubview(title)
+        contentView.addSubview(title)
         
         NSLayoutConstraint.activate([
             title.topAnchor.constraint(equalTo: topAnchor, constant: 10),

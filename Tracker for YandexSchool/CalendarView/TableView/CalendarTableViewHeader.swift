@@ -26,7 +26,7 @@ final class CalendarTableViewHeader: UITableViewHeaderFooterView {
     }
     
     private func setupViews() {
-        contentView.backgroundColor = UIColor.systemGray  
+        contentView.backgroundColor = UIColor.background
 
         contentView.addSubview(titleLabel)
         

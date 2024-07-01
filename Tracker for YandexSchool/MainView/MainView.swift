@@ -63,13 +63,8 @@ struct MainView:View {
                     itemToEdit = nil
                     isEdditing = false
                 }){
-                    
-                    if let itemToEdit = itemToEdit{
                         CreateToDoItem(viewModel: CreateToDoItemViewModel(fileCache: container.fileCache, item: itemToEdit))
-                    } else {
-                        CreateToDoItem(viewModel: CreateToDoItemViewModel(fileCache: container.fileCache))
                     }
-                   
                 }
                 
                 VStack{

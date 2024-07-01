@@ -12,7 +12,14 @@ protocol FileCache {
 final class FileCacheImpl: FileCache {
     private(set) var items: [ToDoItem] = [
         ToDoItem(text: "Task 1", priority: .high, deadLine: Date(), flag: true),
-        ToDoItem(text: "Task 2", priority: .low, deadLine: nil, flag: false)
+        ToDoItem(text: "Task 2", priority: .low, deadLine: Date(), flag: false),
+        ToDoItem(text: "Task 3", priority: .low, deadLine: Calendar.current.date(byAdding: .day, value: 7, to: Date())!, flag: false),
+        ToDoItem(text: "Task 4", priority: .low, deadLine: Calendar.current.date(byAdding: .day, value: 2, to: Date())!, flag: false),
+        ToDoItem(text: "Task 5", priority: .low, deadLine: Calendar.current.date(byAdding: .day, value: 3, to: Date())!, flag: false),
+        ToDoItem(text: "Task 5", priority: .low, deadLine: Calendar.current.date(byAdding: .day, value: 4, to: Date())!, flag: false),
+        ToDoItem(text: "Task 5", priority: .low, deadLine: Calendar.current.date(byAdding: .day, value: 5, to: Date())!, flag: false),
+        ToDoItem(text: "Task 5", priority: .low, deadLine: Calendar.current.date(byAdding: .day, value: 6, to: Date())!, flag: false),
+        ToDoItem(text: "Task 5", priority: .low, deadLine: nil, flag: false)
     ]
     private static let manager = FileManager.default
     private let fileName: String

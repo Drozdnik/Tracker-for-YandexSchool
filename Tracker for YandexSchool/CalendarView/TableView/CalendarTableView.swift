@@ -7,7 +7,6 @@ class CalendarTableView: UIView {
         self.presenter = presenter
         super.init(frame: frame)
         setupTableView()
-        presenter.loadData()
     }
     
     required init?(coder: NSCoder) {
@@ -15,9 +14,10 @@ class CalendarTableView: UIView {
     }
     
     private lazy var tableView: UITableView = {
-        let table = UITableView(frame: .zero, style: .grouped)
+        let table = UITableView(frame: .zero, style: .insetGrouped)
         table.dataSource = self
         table.delegate = self
+        table.contentInsetAdjustmentBehavior = .never
         table.register(CalendarTableViewHeader.self, forHeaderFooterViewReuseIdentifier: CalendarTableViewHeader.reuseIdentifier)
         table.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.reuseIdentifier)
         table.translatesAutoresizingMaskIntoConstraints = false
@@ -26,6 +26,8 @@ class CalendarTableView: UIView {
     
     private func setupTableView() {
         addSubview(tableView)
+        backgroundColor = .background
+        tableView.backgroundColor = .background
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: topAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
@@ -37,7 +39,15 @@ class CalendarTableView: UIView {
 
 extension CalendarTableView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44
+        return 40
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return CGFloat.leastNormalMagnitude
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return nil
     }
 }
 

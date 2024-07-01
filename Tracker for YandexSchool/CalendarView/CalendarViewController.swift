@@ -4,13 +4,13 @@ final class CalendarViewController: UIViewController {
     private var fileCache: FileCache
     private var presenter: CalendarViewPresenter
     private var tableView: CalendarTableView
-//    private var collectionView: DatesCollectionView
+    private var collectionView: DatesCollectionView
     
     init(fileCache: FileCache) {
         self.fileCache = fileCache
         self.presenter = CalendarViewPresenter(fileCache: fileCache)
         self.tableView = CalendarTableView(presenter: presenter)
-//        self.collectionView = DatesCollectionView(presenter: presenter)
+        self.collectionView = DatesCollectionView(presenter: presenter)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -25,16 +25,18 @@ final class CalendarViewController: UIViewController {
     
     private func setupView() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
-//        collectionView.translatesAutoresizingMaskIntoConstraints = false
-//        view.addSubview(collectionView)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = .background
+        view.addSubview(collectionView)
         view.addSubview(tableView)
+        view.backgroundColor = .background
         
         NSLayoutConstraint.activate([
-//            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-//            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-//            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor/*collectionView.bottomAnchor*/, constant: 15),
+            tableView.topAnchor.constraint(equalTo: collectionView.bottomAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)

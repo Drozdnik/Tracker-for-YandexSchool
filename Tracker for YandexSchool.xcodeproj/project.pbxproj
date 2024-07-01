@@ -36,6 +36,7 @@
 		871C0ADB2C31F94F00B66CC9 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C0ADA2C31F94F00B66CC9 /* TableViewCell.swift */; };
 		871C0ADD2C31FCE400B66CC9 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C0ADC2C31FCE400B66CC9 /* CalendarViewController.swift */; };
 		871C0ADF2C32040000B66CC9 /* CalendarViewControllerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C0ADE2C32040000B66CC9 /* CalendarViewControllerRepresentable.swift */; };
+		871C0AE12C33623E00B66CC9 /* CollectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C0AE02C33623D00B66CC9 /* CollectionItem.swift */; };
 		8723F95C2C1F5E6B00AAAD38 /* Tracker_for_YandexSchoolApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F95B2C1F5E6B00AAAD38 /* Tracker_for_YandexSchoolApp.swift */; };
 		8723F95E2C1F5E6B00AAAD38 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F95D2C1F5E6B00AAAD38 /* TextFieldView.swift */; };
 		8723F9602C1F5E6C00AAAD38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8723F95F2C1F5E6C00AAAD38 /* Assets.xcassets */; };
@@ -90,6 +91,7 @@
 		871C0ADA2C31F94F00B66CC9 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		871C0ADC2C31FCE400B66CC9 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		871C0ADE2C32040000B66CC9 /* CalendarViewControllerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewControllerRepresentable.swift; sourceTree = "<group>"; };
+		871C0AE02C33623D00B66CC9 /* CollectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionItem.swift; sourceTree = "<group>"; };
 		8723F9582C1F5E6B00AAAD38 /* Tracker for YandexSchool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tracker for YandexSchool.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8723F95B2C1F5E6B00AAAD38 /* Tracker_for_YandexSchoolApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker_for_YandexSchoolApp.swift; sourceTree = "<group>"; };
 		8723F95D2C1F5E6B00AAAD38 /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 			children = (
 				871C0ACE2C31CDE300B66CC9 /* DateCell.swift */,
 				871C0ACC2C31A17200B66CC9 /* DatesCollectionView.swift */,
+				871C0AE02C33623D00B66CC9 /* CollectionItem.swift */,
 			);
 			path = CollectionView;
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 				871C0A552C28AB5000B66CC9 /* EnviromentValues + ext.swift in Sources */,
 				871C0A4D2C2830BD00B66CC9 /* UIApplication + ext.swift in Sources */,
 				871C0A572C28B1B800B66CC9 /* ListCell.swift in Sources */,
+				871C0AE12C33623E00B66CC9 /* CollectionItem.swift in Sources */,
 				871C0A402C27224B00B66CC9 /* ListView.swift in Sources */,
 				871C0A5C2C292D6E00B66CC9 /* FilterMenu.swift in Sources */,
 				871C0ADB2C31F94F00B66CC9 /* TableViewCell.swift in Sources */,
