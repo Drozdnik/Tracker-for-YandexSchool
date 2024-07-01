@@ -29,9 +29,7 @@ class DateCell: UICollectionViewCell {
         ])
     }
     
-    func configure(with date: Date) {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd MMM yyyy"
-        dateLabel.text = formatter.string(from: date)
+    func configure(with date: String) {
+        dateLabel.text = date
     }
 }

@@ -1,11 +1,14 @@
 import UIKit
 
 final class DatesCollectionView: UIView {
-    private var dates: [Date] = []
+    private var presenter: CalendarViewPresenter
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(presenter: CalendarViewPresenter) {
+        self.presenter = presenter
+        presenter.loadData()
+        super.init(frame: .zero)
         setupCollectionView()
+
     }
     
     required init?(coder: NSCoder) {
@@ -39,7 +42,7 @@ final class DatesCollectionView: UIView {
 
 extension DatesCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dates.count
+        return presenter.numberOfSections()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -47,7 +50,7 @@ extension DatesCollectionView: UICollectionViewDataSource {
             assertionFailure("Не удалось создать ячейку")
             return UICollectionViewCell()
         }
-        cell.configure(with: dates[indexPath.row])
+        cell.configure(with: presenter.sortedDates[indexPath.row])
         return cell
     }
 }

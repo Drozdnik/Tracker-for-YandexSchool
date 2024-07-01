@@ -31,6 +31,11 @@
 		871C0ACF2C31CDE300B66CC9 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C0ACE2C31CDE300B66CC9 /* DateCell.swift */; };
 		871C0AD12C31D12E00B66CC9 /* CalendarTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C0AD02C31D12E00B66CC9 /* CalendarTableView.swift */; };
 		871C0AD32C31D22300B66CC9 /* ToDoItemSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C0AD22C31D22300B66CC9 /* ToDoItemSection.swift */; };
+		871C0AD52C31D44600B66CC9 /* CalendarViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C0AD42C31D44600B66CC9 /* CalendarViewPresenter.swift */; };
+		871C0AD72C31F75400B66CC9 /* CalendarTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C0AD62C31F75400B66CC9 /* CalendarTableViewHeader.swift */; };
+		871C0ADB2C31F94F00B66CC9 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C0ADA2C31F94F00B66CC9 /* TableViewCell.swift */; };
+		871C0ADD2C31FCE400B66CC9 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C0ADC2C31FCE400B66CC9 /* CalendarViewController.swift */; };
+		871C0ADF2C32040000B66CC9 /* CalendarViewControllerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C0ADE2C32040000B66CC9 /* CalendarViewControllerRepresentable.swift */; };
 		8723F95C2C1F5E6B00AAAD38 /* Tracker_for_YandexSchoolApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F95B2C1F5E6B00AAAD38 /* Tracker_for_YandexSchoolApp.swift */; };
 		8723F95E2C1F5E6B00AAAD38 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F95D2C1F5E6B00AAAD38 /* TextFieldView.swift */; };
 		8723F9602C1F5E6C00AAAD38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8723F95F2C1F5E6C00AAAD38 /* Assets.xcassets */; };
@@ -80,6 +85,11 @@
 		871C0ACE2C31CDE300B66CC9 /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
 		871C0AD02C31D12E00B66CC9 /* CalendarTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTableView.swift; sourceTree = "<group>"; };
 		871C0AD22C31D22300B66CC9 /* ToDoItemSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemSection.swift; sourceTree = "<group>"; };
+		871C0AD42C31D44600B66CC9 /* CalendarViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewPresenter.swift; sourceTree = "<group>"; };
+		871C0AD62C31F75400B66CC9 /* CalendarTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTableViewHeader.swift; sourceTree = "<group>"; };
+		871C0ADA2C31F94F00B66CC9 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		871C0ADC2C31FCE400B66CC9 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		871C0ADE2C32040000B66CC9 /* CalendarViewControllerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewControllerRepresentable.swift; sourceTree = "<group>"; };
 		8723F9582C1F5E6B00AAAD38 /* Tracker for YandexSchool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tracker for YandexSchool.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8723F95B2C1F5E6B00AAAD38 /* Tracker_for_YandexSchoolApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker_for_YandexSchoolApp.swift; sourceTree = "<group>"; };
 		8723F95D2C1F5E6B00AAAD38 /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
@@ -117,6 +127,7 @@
 		871C0A3C2C27118200B66CC9 /* CreateItemView */ = {
 			isa = PBXGroup;
 			children = (
+				871C0A3A2C26364400B66CC9 /* PriorityDeadLineView.swift */,
 				871C0A3D2C2711A900B66CC9 /* SwithcerView.swift */,
 				871C0A412C27356200B66CC9 /* CreateToDoItemViewModel.swift */,
 				8723F95D2C1F5E6B00AAAD38 /* TextFieldView.swift */,
@@ -151,11 +162,32 @@
 		871C0ACB2C31A11E00B66CC9 /* CalendarView */ = {
 			isa = PBXGroup;
 			children = (
-				871C0ACC2C31A17200B66CC9 /* DatesCollectionView.swift */,
-				871C0ACE2C31CDE300B66CC9 /* DateCell.swift */,
-				871C0AD02C31D12E00B66CC9 /* CalendarTableView.swift */,
+				871C0AD92C31F93500B66CC9 /* TableView */,
+				871C0AD82C31F92000B66CC9 /* CollectionView */,
+				871C0AD42C31D44600B66CC9 /* CalendarViewPresenter.swift */,
+				871C0ADC2C31FCE400B66CC9 /* CalendarViewController.swift */,
+				871C0ADE2C32040000B66CC9 /* CalendarViewControllerRepresentable.swift */,
 			);
 			path = CalendarView;
+			sourceTree = "<group>";
+		};
+		871C0AD82C31F92000B66CC9 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				871C0ACE2C31CDE300B66CC9 /* DateCell.swift */,
+				871C0ACC2C31A17200B66CC9 /* DatesCollectionView.swift */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		871C0AD92C31F93500B66CC9 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				871C0AD02C31D12E00B66CC9 /* CalendarTableView.swift */,
+				871C0AD62C31F75400B66CC9 /* CalendarTableViewHeader.swift */,
+				871C0ADA2C31F94F00B66CC9 /* TableViewCell.swift */,
+			);
+			path = TableView;
 			sourceTree = "<group>";
 		};
 		8723F94F2C1F5E6B00AAAD38 = {
@@ -188,7 +220,6 @@
 				8723F96B2C1F73B700AAAD38 /* Models */,
 				8723F95B2C1F5E6B00AAAD38 /* Tracker_for_YandexSchoolApp.swift */,
 				8723F95F2C1F5E6C00AAAD38 /* Assets.xcassets */,
-				871C0A3A2C26364400B66CC9 /* PriorityDeadLineView.swift */,
 				8723F9612C1F5E6C00AAAD38 /* Preview Content */,
 				8723F96C2C1F73CE00AAAD38 /* Extensions */,
 			);
@@ -363,6 +394,7 @@
 				871C0A6B2C2D303700B66CC9 /* DeviceUtils.swift in Sources */,
 				871C0A532C28A84400B66CC9 /* DiContainer.swift in Sources */,
 				871C0A422C27356200B66CC9 /* CreateToDoItemViewModel.swift in Sources */,
+				871C0ADD2C31FCE400B66CC9 /* CalendarViewController.swift in Sources */,
 				8723F9782C20D0BE00AAAD38 /* IsoFormatter + extension.swift in Sources */,
 				8723F9712C1F838000AAAD38 /* PriorityEnum.swift in Sources */,
 				8723F9892C22122A00AAAD38 /* JSONErrorEnum.swift in Sources */,
@@ -375,16 +407,20 @@
 				871C0A572C28B1B800B66CC9 /* ListCell.swift in Sources */,
 				871C0A402C27224B00B66CC9 /* ListView.swift in Sources */,
 				871C0A5C2C292D6E00B66CC9 /* FilterMenu.swift in Sources */,
+				871C0ADB2C31F94F00B66CC9 /* TableViewCell.swift in Sources */,
 				871C0AD32C31D22300B66CC9 /* ToDoItemSection.swift in Sources */,
 				871C0A4B2C28201200B66CC9 /* MainView.swift in Sources */,
+				871C0AD52C31D44600B66CC9 /* CalendarViewPresenter.swift in Sources */,
 				8723F97A2C20E04800AAAD38 /* FileCacheError.swift in Sources */,
 				871C0A622C2AFE5400B66CC9 /* CustomColorPicker.swift in Sources */,
+				871C0AD72C31F75400B66CC9 /* CalendarTableViewHeader.swift in Sources */,
 				871C0ACF2C31CDE300B66CC9 /* DateCell.swift in Sources */,
 				871C0A5A2C28D12300B66CC9 /* DateFormatter + ext.swift in Sources */,
 				871C0A512C28930400B66CC9 /* MainViewModel.swift in Sources */,
 				8723F9762C20C64C00AAAD38 /* FileCache.swift in Sources */,
 				871C0A442C27534B00B66CC9 /* CreateToDoItem.swift in Sources */,
 				871C0A652C2B7C4700B66CC9 /* MainViewForIpad.swift in Sources */,
+				871C0ADF2C32040000B66CC9 /* CalendarViewControllerRepresentable.swift in Sources */,
 				8723F96A2C1F5F3200AAAD38 /* ToDoItem.swift in Sources */,
 				871C0A462C27586B00B66CC9 /* DeleteButtonView.swift in Sources */,
 			);
