@@ -3,7 +3,8 @@ import Foundation
 final class CalendarViewPresenter {
     private var groupedItems: [String: [String]] = [:]
     var sortedDates: [String] = []
-    var onUpdate: (() -> Void)?
+    var onUpdateCollection: (() -> Void)?
+    var onUpdateTable: (() -> Void)?
     let fileCache: FileCache
     
     init(fileCache: FileCache) {

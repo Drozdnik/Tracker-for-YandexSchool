@@ -13,8 +13,7 @@ final class DatesCollectionView: UIView {
     init(presenter: CalendarViewPresenter, frame: CGRect = .zero) {
         self.presenter = presenter
         super.init(frame: .zero)
-        // Тут все окей
-        presenter.onUpdate = { [weak self] in
+        presenter.onUpdateCollection = { [weak self] in
             self?.dateCollectionView.reloadData()
         }
             presenter.loadData()
@@ -109,8 +108,7 @@ extension DatesCollectionView: DatesCollectionViewDelegate {
     
         func didSelectItemAt(index: Int) {
             let indexPath = IndexPath(item: index, section: 0)
-                  dateCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-                  // Дополнительно обновляем выделение элемента
-                  dateCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+                  dateCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
+                  dateCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
         }
     }

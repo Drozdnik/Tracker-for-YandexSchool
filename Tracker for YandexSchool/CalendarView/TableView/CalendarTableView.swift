@@ -7,8 +7,7 @@ final class CalendarTableView: UIView {
     init(presenter: CalendarViewPresenter, frame: CGRect = .zero) {
         self.presenter = presenter
         super.init(frame: frame)
-        // Вот оно не вызывается
-        presenter.onUpdate = { [weak self] in
+        presenter.onUpdateTable = { [weak self] in
             self?.tableView.reloadData()
         }
         
@@ -68,15 +67,14 @@ extension CalendarTableView: UITableViewDelegate {
         }
         updateVisibleSection()
     }
-
     
     private func updateVisibleSection() {
-           guard let visibleRows = tableView.indexPathsForVisibleRows, !visibleRows.isEmpty else { return }
-           let visibleSections = Set(visibleRows.map { $0.section })
-           if let firstVisibleSection = visibleSections.min() {
-               selectionDelegate?.didSelectItemAt(index: firstVisibleSection)
-           }
-       }
+        guard let visibleRows = tableView.indexPathsForVisibleRows, !visibleRows.isEmpty else { return }
+        let visibleSections = Set(visibleRows.map { $0.section })
+        if let firstVisibleSection = visibleSections.min() {
+            selectionDelegate?.didSelectItemAt(index: firstVisibleSection)
+        }
+    }
 }
 
 extension CalendarTableView: UITableViewDataSource {

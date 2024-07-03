@@ -70,7 +70,8 @@ final class CalendarViewController: UIViewController {
     private func showCreateToDoItem() {
         let createToDoItemView = CreateToDoItem(viewModel: CreateToDoItemViewModel(fileCache: fileCache)){ [weak self] in
             self?.presenter.loadData()
-            self?.presenter.onUpdate?()
+            self?.presenter.onUpdateCollection?()
+            self?.presenter.onUpdateTable?()
         }
         let viewHostingController = UIHostingController(rootView: createToDoItemView)
         self.present(viewHostingController, animated: true)
@@ -80,14 +81,14 @@ final class CalendarViewController: UIViewController {
 extension CalendarViewController: DatesCollectionViewDelegate {
     
     var isProgrammaticScroll: Bool {
-        get { return _isProgrammaticScroll }
-        set { _isProgrammaticScroll = newValue }
-    }
-
-    func didSelectItemAt(index: Int) {
-        isProgrammaticScroll = true
-        tableView.scrollToSection(index: index)
-    }
+            get { return _isProgrammaticScroll }
+            set { _isProgrammaticScroll = newValue }
+        }
+        
+        func didSelectItemAt(index: Int) {
+            isProgrammaticScroll = true
+            tableView.scrollToSection(index: index)
+        }
 }
 
 
