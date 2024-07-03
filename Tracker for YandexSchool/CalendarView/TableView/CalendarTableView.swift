@@ -77,6 +77,31 @@ extension CalendarTableView: UITableViewDelegate {
             tableScrollDelegate?.didScrollToSection(index: firstVisibleSection)
         }
     }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let completeAction = UIContextualAction(style: .normal, title: nil) { [weak self] action, view, completionHandler in
+            self?.presenter.toggleCompletion(at: indexPath)
+            tableView.reloadRows(at: [indexPath], with: .none)
+            completionHandler(true)
+        }
+        completeAction.backgroundColor = .systemGreen
+        completeAction.image = UIImage(systemName: "checkmark.circle.fill")  // Используйте системную иконку
+
+        return UISwipeActionsConfiguration(actions: [completeAction])
+    }
+
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let uncompleteAction = UIContextualAction(style: .normal, title: nil) { [weak self] action, view, completionHandler in
+            self?.presenter.toggleCompletion(at: indexPath)
+            tableView.reloadRows(at: [indexPath], with: .none)
+            completionHandler(true)
+        }
+        uncompleteAction.backgroundColor = .systemRed
+        uncompleteAction.image = UIImage(systemName: "xmark.app")
+
+        return UISwipeActionsConfiguration(actions: [uncompleteAction])
+    }
 }
 
 
@@ -107,9 +132,11 @@ extension CalendarTableView: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        if let text = presenter.textForItem(at: indexPath) {
-            cell.configure(text: text)
+        if let item = presenter.getItem(at: indexPath) {
+            cell.configure(with: item)
         }
+        
+        cell.selectionStyle = .none
         return cell
     }
 }

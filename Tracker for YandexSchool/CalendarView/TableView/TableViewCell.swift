@@ -1,7 +1,24 @@
 import UIKit
-
 final class TableViewCell: UITableViewCell {
     static let reuseIdentifier = "TableViewCell"
+    
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        label.numberOfLines = 0
+        label.textColor = .black
+        label.backgroundColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var strikeThroughView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .gray
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isHidden = true
+        return view
+    }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -12,26 +29,24 @@ final class TableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private lazy var title: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        label.numberOfLines = 0
-        label.tintColor = .black
-        label.backgroundColor = .white
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
     private func setupView() {
-        contentView.addSubview(title)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(strikeThroughView)
         
         NSLayoutConstraint.activate([
-            title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            title.centerYAnchor.constraint(equalTo: centerYAnchor)
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            
+            strikeThroughView.heightAnchor.constraint(equalToConstant: 1), 
+            strikeThroughView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            strikeThroughView.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
+            strikeThroughView.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor)
         ])
     }
     
-    func configure(text: String) {
-        title.text = text
+    func configure(with item: ToDoItem) {
+        titleLabel.text = item.text
+        strikeThroughView.isHidden = !item.flag
     }
 }

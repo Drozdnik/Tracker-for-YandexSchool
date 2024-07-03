@@ -12,7 +12,6 @@ final class CalendarViewController: UIViewController {
         self.presenter = CalendarViewPresenter(fileCache: fileCache)
         self.tableView = CalendarTableView(presenter: presenter)
         self.collectionView = DatesCollectionView(presenter: presenter)
-        //        self.tableView.selectionDelegate = self.collectionView
         super.init(nibName: nil, bundle: nil)
     }
     

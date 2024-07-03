@@ -1,7 +1,7 @@
 import Foundation
 
 final class CalendarViewPresenter {
-    private var groupedItems: [String: [String]] = [:]
+    private var groupedItems: [String: [ToDoItem]] = [:]
     var sortedDates: [String] = []
     var onUpdateCollection: (() -> Void)?
     var onUpdateTable: (() -> Void)?
@@ -14,13 +14,11 @@ final class CalendarViewPresenter {
     func loadData() {
         let items = fileCache.getItems()
         
+        groupedItems.removeAll()
+        
         for item in items {
-            if let deadLine = item.deadLine {
-                let key = DateFormatter.dayMonth.string(from: deadLine)
-                groupedItems[key, default: []].append(item.text)
-            } else {
-                groupedItems["Другое", default: []].append(item.text)
-            }
+            let key = item.deadLine.map { DateFormatter.dayMonth.string(from: $0) } ?? "Другое"
+            groupedItems[key, default: []].append(item)
         }
         
         sortedDates = groupedItems.keys.sorted()
@@ -35,12 +33,31 @@ final class CalendarViewPresenter {
         return groupedItems[dateKey]?.count ?? 0
     }
     
+    
     func titleForHeaderInSection(section: Int) -> String {
         return sortedDates[section]
     }
     
-    func textForItem(at indexPath: IndexPath) -> String? {
+    func getItem(at indexPath: IndexPath) -> ToDoItem? {
         let dateKey = sortedDates[indexPath.section]
         return groupedItems[dateKey]?[indexPath.row]
     }
+    
+    func toggleCompletion(at indexPath: IndexPath) {
+            guard let item = getItem(at: indexPath) else { return }
+            let updatedItem = ToDoItem(
+                id: item.id,
+                text: item.text,
+                priority: item.priority,
+                deadLine: item.deadLine,
+                flag: !item.flag,
+                createdAt: item.createdAt,
+                changedAt: Date(),
+                pickedColor: item.pickedColor
+            )
+            
+            fileCache.addItem(updatedItem)
+        loadData()
+        onUpdateTable?()
+        }
 }
