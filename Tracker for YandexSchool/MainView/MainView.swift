@@ -63,27 +63,14 @@ struct MainView:View {
                     itemToEdit = nil
                     isEdditing = false
                 }){
-                        CreateToDoItem(viewModel: CreateToDoItemViewModel(fileCache: container.fileCache, item: itemToEdit))
-                    }
+                    CreateToDoItem(viewModel: CreateToDoItemViewModel(fileCache: container.fileCache, item: itemToEdit))
                 }
                 
                 VStack{
                     Spacer()
-                    Button(action: {
-                        if UIDevice.current.userInterfaceIdiom == .pad {
-                           
-                        } else {
-                            isBottomSheetPresented = true
-                        }
-                        
-                    }) {
-                        PlusView()
-                            .frame(width: 44, height: 44)
-                            .background(Color.blue)
-                            .clipShape(Circle())
-                            .shadow(color: Color.black.opacity(0.3), radius: 5, x: 0, y: 5)
-                    }
-                    
+                    PlusView(action: {
+                      isBottomSheetPresented = true
+                    })
                     .padding(.bottom, 10)
                 }
             }

@@ -3,9 +3,9 @@ import Foundation
 final class CalendarViewPresenter {
     private var groupedItems: [String: [String]] = [:]
     var sortedDates: [String] = []
-
+    var onUpdate: (() -> Void)?
     let fileCache: FileCache
-
+    
     init(fileCache: FileCache) {
         self.fileCache = fileCache
     }
@@ -23,7 +23,6 @@ final class CalendarViewPresenter {
         }
         
         sortedDates = groupedItems.keys.sorted()
-        // Вот тут возможно нужно вызвать замыкание 
     }
     
     func numberOfSections() -> Int {
@@ -42,5 +41,9 @@ final class CalendarViewPresenter {
     func textForItem(at indexPath: IndexPath) -> String? {
         let dateKey = sortedDates[indexPath.section]
         return groupedItems[dateKey]?[indexPath.row]
+    }
+    
+    deinit {
+        print("CalendarViewPresenter is being deinitialized _________________________________")
     }
 }

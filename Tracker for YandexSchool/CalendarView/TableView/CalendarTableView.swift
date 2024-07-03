@@ -1,11 +1,15 @@
 import UIKit
 
-class CalendarTableView: UIView {
+final class CalendarTableView: UIView {
     private var presenter: CalendarViewPresenter
     
     init(presenter: CalendarViewPresenter, frame: CGRect = .zero) {
         self.presenter = presenter
         super.init(frame: frame)
+        // Вот оно не вызывается 
+        presenter.onUpdate = { [weak self] in
+            self?.tableView.reloadData()
+        }
         setupTableView()
     }
     

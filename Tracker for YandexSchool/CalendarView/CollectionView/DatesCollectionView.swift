@@ -5,8 +5,12 @@ final class DatesCollectionView: UIView {
     
     init(presenter: CalendarViewPresenter, frame: CGRect = .zero) {
         self.presenter = presenter
-        presenter.loadData()
         super.init(frame: .zero)
+        // Тут все окей 
+        presenter.onUpdate = { [weak self] in
+            self?.dateCollectionView.reloadData()
+        }
+        presenter.loadData()
         setupCollectionView()
     }
     

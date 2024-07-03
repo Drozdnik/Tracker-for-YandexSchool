@@ -5,9 +5,12 @@ struct CreateToDoItem: View {
     @ObservedObject private var viewModel: CreateToDoItemViewModel
     @Environment(\.presentationMode) var createToDoItemPresented
     @State private var orientation: UIDeviceOrientation = UIDevice.current.orientation
-    @State private var orientationChangePublisher: AnyCancellable?    
-    init(viewModel: CreateToDoItemViewModel) {
+    @State private var orientationChangePublisher: AnyCancellable? 
+    var onDismiss: (() -> Void)?
+    
+    init(viewModel: CreateToDoItemViewModel, onDismiss:  (() -> Void)? = nil) {
         self.viewModel = viewModel
+        self.onDismiss = onDismiss
     }
     
     var body: some View {
@@ -34,6 +37,7 @@ struct CreateToDoItem: View {
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     Button("Сохранить", action: {
                         viewModel.addItem()
+                        onDismiss?()
                         createToDoItemPresented.wrappedValue.dismiss()
                     })
                     .disabled(viewModel.taskName.isEmpty)

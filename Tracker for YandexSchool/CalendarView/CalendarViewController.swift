@@ -1,4 +1,5 @@
 import UIKit
+import SwiftUI
 
 final class CalendarViewController: UIViewController {
     private var fileCache: FileCache
@@ -21,6 +22,8 @@ final class CalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        setupSUIButton()
+        self.title = "Мои дела"
     }
     
     private func setupView() {
@@ -41,5 +44,32 @@ final class CalendarViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])
+    }
+    
+    private func setupSUIButton() {
+        let button = PlusView {
+            self.showCreateToDoItem()
+        }
+        
+        let buttonHostingController = UIHostingController(rootView: button)
+        addChild(buttonHostingController)
+        view.addSubview(buttonHostingController.view)
+        buttonHostingController.didMove(toParent: self)
+        buttonHostingController.view.backgroundColor = .clear
+        
+        buttonHostingController.view.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            buttonHostingController.view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            buttonHostingController.view.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
+        ])
+    }
+    
+    private func showCreateToDoItem() {
+        let createToDoItemView = CreateToDoItem(viewModel: CreateToDoItemViewModel(fileCache: fileCache)){ [weak self] in
+            self?.presenter.loadData()
+            self?.presenter.onUpdate?()
+        }
+        let viewHostingController = UIHostingController(rootView: createToDoItemView)
+        self.present(viewHostingController, animated: true)
     }
 }
