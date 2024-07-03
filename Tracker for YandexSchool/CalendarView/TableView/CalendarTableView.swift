@@ -1,9 +1,14 @@
 import UIKit
 
+protocol TableScrollDelegate: AnyObject {
+    func didScrollToSection(index: Int)
+}
+
 final class CalendarTableView: UIView {
     private var presenter: CalendarViewPresenter
-    weak var selectionDelegate: DatesCollectionViewDelegate?
-
+    var isProgrammaticAction = false
+    weak var tableScrollDelegate: TableScrollDelegate?
+    
     init(presenter: CalendarViewPresenter, frame: CGRect = .zero) {
         self.presenter = presenter
         super.init(frame: frame)
@@ -61,21 +66,19 @@ extension CalendarTableView: UITableViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard !(selectionDelegate?.isProgrammaticScroll ?? false) else {
-            selectionDelegate?.isProgrammaticScroll = false
+        guard !isProgrammaticAction else {
+            isProgrammaticAction = false
             return
         }
-        updateVisibleSection()
-    }
-    
-    private func updateVisibleSection() {
-        guard let visibleRows = tableView.indexPathsForVisibleRows, !visibleRows.isEmpty else { return }
-        let visibleSections = Set(visibleRows.map { $0.section })
+        
+        let visibleRows = tableView.indexPathsForVisibleRows
+        let visibleSections = Set(visibleRows?.map { $0.section } ?? [])
         if let firstVisibleSection = visibleSections.min() {
-            selectionDelegate?.didSelectItemAt(index: firstVisibleSection)
+            tableScrollDelegate?.didScrollToSection(index: firstVisibleSection)
         }
     }
 }
+
 
 extension CalendarTableView: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {

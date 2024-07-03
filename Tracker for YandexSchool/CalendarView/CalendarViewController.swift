@@ -6,14 +6,13 @@ final class CalendarViewController: UIViewController {
     private var presenter: CalendarViewPresenter
     private var tableView: CalendarTableView
     private var collectionView: DatesCollectionView
-    private var _isProgrammaticScroll = false
     
     init(fileCache: FileCache) {
         self.fileCache = fileCache
         self.presenter = CalendarViewPresenter(fileCache: fileCache)
         self.tableView = CalendarTableView(presenter: presenter)
         self.collectionView = DatesCollectionView(presenter: presenter)
-        self.tableView.selectionDelegate = self.collectionView
+        //        self.tableView.selectionDelegate = self.collectionView
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -25,7 +24,8 @@ final class CalendarViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         setupSUIButton()
-        collectionView.selectionDelegate = self
+        tableView.tableScrollDelegate = self
+        collectionView.collectionScrollDelegate = self
         self.title = "Мои дела"
     }
     
@@ -78,17 +78,16 @@ final class CalendarViewController: UIViewController {
     }
 }
 
-extension CalendarViewController: DatesCollectionViewDelegate {
+extension CalendarViewController: CollectionScrollDelegate, TableScrollDelegate {
+    func didSelectItem(at index: Int) {
+        tableView.isProgrammaticAction = true
+        tableView.scrollToSection(index: index)
+        tableView.isProgrammaticAction = false
+    }
     
-    var isProgrammaticScroll: Bool {
-            get { return _isProgrammaticScroll }
-            set { _isProgrammaticScroll = newValue }
-        }
-        
-        func didSelectItemAt(index: Int) {
-            isProgrammaticScroll = true
-            tableView.scrollToSection(index: index)
-        }
+    func didScrollToSection(index: Int) {
+        collectionView.isProgrammaticAction = true
+        collectionView.selectItem(at: index, animated: true, scrollPosition: .centeredHorizontally)
+        collectionView.isProgrammaticAction = false
+    }
 }
-
-
