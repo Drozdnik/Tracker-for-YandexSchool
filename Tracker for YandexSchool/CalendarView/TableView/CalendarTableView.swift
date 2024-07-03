@@ -2,11 +2,12 @@ import UIKit
 
 final class CalendarTableView: UIView {
     private var presenter: CalendarViewPresenter
-    
+    weak var selectionDelegate: DatesCollectionViewDelegate?
+
     init(presenter: CalendarViewPresenter, frame: CGRect = .zero) {
         self.presenter = presenter
         super.init(frame: frame)
-        // Вот оно не вызывается 
+        // Вот оно не вызывается
         presenter.onUpdate = { [weak self] in
             self?.tableView.reloadData()
         }
@@ -59,6 +60,23 @@ extension CalendarTableView: UITableViewDelegate {
         let indexPath = IndexPath(row: 0, section: index)
         tableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard !(selectionDelegate?.isProgrammaticScroll ?? false) else {
+            selectionDelegate?.isProgrammaticScroll = false
+            return
+        }
+        updateVisibleSection()
+    }
+
+    
+    private func updateVisibleSection() {
+           guard let visibleRows = tableView.indexPathsForVisibleRows, !visibleRows.isEmpty else { return }
+           let visibleSections = Set(visibleRows.map { $0.section })
+           if let firstVisibleSection = visibleSections.min() {
+               selectionDelegate?.didSelectItemAt(index: firstVisibleSection)
+           }
+       }
 }
 
 extension CalendarTableView: UITableViewDataSource {

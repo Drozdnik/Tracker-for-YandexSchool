@@ -1,5 +1,5 @@
 import SwiftUI
-// Красивость для айпада сделана, но после добавление нужно обновить свайпом вниз (потом обязательно доделаю)
+
 @main
 struct Tracker_for_YandexSchoolApp: App {
     @Environment(\.containerDI) var container

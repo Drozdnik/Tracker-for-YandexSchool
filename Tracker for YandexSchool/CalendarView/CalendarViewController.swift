@@ -6,12 +6,14 @@ final class CalendarViewController: UIViewController {
     private var presenter: CalendarViewPresenter
     private var tableView: CalendarTableView
     private var collectionView: DatesCollectionView
+    private var _isProgrammaticScroll = false
     
     init(fileCache: FileCache) {
         self.fileCache = fileCache
         self.presenter = CalendarViewPresenter(fileCache: fileCache)
         self.tableView = CalendarTableView(presenter: presenter)
         self.collectionView = DatesCollectionView(presenter: presenter)
+        self.tableView.selectionDelegate = self.collectionView
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -75,8 +77,17 @@ final class CalendarViewController: UIViewController {
     }
 }
 
-extension CalendarViewController: DatesCollectionViewDelgate {
+extension CalendarViewController: DatesCollectionViewDelegate {
+    
+    var isProgrammaticScroll: Bool {
+        get { return _isProgrammaticScroll }
+        set { _isProgrammaticScroll = newValue }
+    }
+
     func didSelectItemAt(index: Int) {
+        isProgrammaticScroll = true
         tableView.scrollToSection(index: index)
     }
 }
+
+
