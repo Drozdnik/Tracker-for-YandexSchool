@@ -26,9 +26,8 @@ final class TableViewCell: UITableViewCell {
         contentView.addSubview(title)
         
         NSLayoutConstraint.activate([
-            title.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            title.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
+            title.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
     

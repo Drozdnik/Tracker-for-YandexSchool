@@ -10,6 +10,7 @@ final class CalendarTableView: UIView {
         presenter.onUpdate = { [weak self] in
             self?.tableView.reloadData()
         }
+        
         setupTableView()
     }
     
@@ -43,7 +44,7 @@ final class CalendarTableView: UIView {
 
 extension CalendarTableView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 40
+        return 60
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -52,6 +53,11 @@ extension CalendarTableView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return nil
+    }
+    
+    func scrollToSection(index: Int) {
+        let indexPath = IndexPath(row: 0, section: index)
+        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
 }
 
@@ -88,3 +94,5 @@ extension CalendarTableView: UITableViewDataSource {
         return cell
     }
 }
+
+

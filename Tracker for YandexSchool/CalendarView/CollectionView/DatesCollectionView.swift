@@ -1,7 +1,12 @@
 import UIKit
 
+protocol DatesCollectionViewDelgate: AnyObject {
+    func didSelectItemAt(index: Int)
+}
+
 final class DatesCollectionView: UIView {
     private var presenter: CalendarViewPresenter
+    weak var selectionDelegate: DatesCollectionViewDelgate?
     
     init(presenter: CalendarViewPresenter, frame: CGRect = .zero) {
         self.presenter = presenter
@@ -10,6 +15,7 @@ final class DatesCollectionView: UIView {
         presenter.onUpdate = { [weak self] in
             self?.dateCollectionView.reloadData()
         }
+        
         presenter.loadData()
         setupCollectionView()
     }
@@ -90,6 +96,6 @@ extension DatesCollectionView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? DateCell else { return }
         cell.isSelected = !cell.isSelected
+        selectionDelegate?.didSelectItemAt(index: indexPath.row)
     }
 }
-

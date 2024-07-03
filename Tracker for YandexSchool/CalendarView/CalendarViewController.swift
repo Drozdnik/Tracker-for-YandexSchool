@@ -23,6 +23,7 @@ final class CalendarViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         setupSUIButton()
+        collectionView.selectionDelegate = self
         self.title = "Мои дела"
     }
     
@@ -71,5 +72,11 @@ final class CalendarViewController: UIViewController {
         }
         let viewHostingController = UIHostingController(rootView: createToDoItemView)
         self.present(viewHostingController, animated: true)
+    }
+}
+
+extension CalendarViewController: DatesCollectionViewDelgate {
+    func didSelectItemAt(index: Int) {
+        tableView.scrollToSection(index: index)
     }
 }

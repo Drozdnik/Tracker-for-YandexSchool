@@ -42,8 +42,4 @@ final class CalendarViewPresenter {
         let dateKey = sortedDates[indexPath.section]
         return groupedItems[dateKey]?[indexPath.row]
     }
-    
-    deinit {
-        print("CalendarViewPresenter is being deinitialized _________________________________")
-    }
 }
