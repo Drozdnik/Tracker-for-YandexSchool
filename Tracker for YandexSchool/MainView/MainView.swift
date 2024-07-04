@@ -2,6 +2,7 @@ import SwiftUI
 
 struct MainView:View {
     @State private var isBottomSheetPresented: Bool = false
+    @State private var showCalendarView: Bool = false
     @ObservedObject var viewModel: MainViewModel
     @Environment(\.containerDI) var container
     @Environment(\.horizontalSizeClass) var sizeClass
@@ -65,20 +66,42 @@ struct MainView:View {
                 }){
                     CreateToDoItem(viewModel: CreateToDoItemViewModel(fileCache: container.fileCache, item: itemToEdit))
                 }
-                
                 VStack{
                     Spacer()
                     PlusView(action: {
-                      isBottomSheetPresented = true
+                        isBottomSheetPresented = true
                     })
                     .padding(.bottom, 10)
                 }
             }
             .navigationTitle("Мои дела")
             .background(Color.backgroundColor)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        showCalendarView = true
+                    }) {
+                        Image(systemName: "calendar")
+                    }
+                    .padding(.horizontal, 15)
+                }
+            }
+            .fullScreenCover(isPresented: $showCalendarView) {
+                NavigationView {
+                    CalendarViewControllerRepresentable(fileCache: container.fileCache)
+                        .toolbarBackground(Color(UIColor.background), for: .navigationBar)
+                        .toolbarBackground(.visible, for: .navigationBar)
+                        .ignoresSafeArea()
+                }
+                .edgesIgnoringSafeArea(.all)
+            }
+            .onAppear(){
+                viewModel.getItems()
+            }
         }
     }
 }
+
 
 #Preview {
     MainView(viewModel: MainViewModel(fileCache: FileCacheImpl(fileName: "file")))

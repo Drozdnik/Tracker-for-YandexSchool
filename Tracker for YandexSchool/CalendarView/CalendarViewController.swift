@@ -23,9 +23,13 @@ final class CalendarViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         setupSUIButton()
+        view.backgroundColor = .background
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.backgroundColor = .background
+        self.view.backgroundColor = .background
         tableView.tableScrollDelegate = self
         collectionView.collectionScrollDelegate = self
-        self.title = "Мои дела"
+        setupNavigationBar()
     }
     
     private func setupView() {
@@ -35,6 +39,7 @@ final class CalendarViewController: UIViewController {
         view.addSubview(collectionView)
         view.addSubview(tableView)
         view.backgroundColor = .background
+        
         
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -47,6 +52,17 @@ final class CalendarViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])
     }
+    
+    private func setupNavigationBar() {
+        self.title = "Календарь дел"
+        let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonPressed))
+        navigationItem.leftBarButtonItem = backButton
+
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.backgroundColor = .background
+    }
+
+    
     
     private func setupSUIButton() {
         let button = PlusView {
@@ -75,6 +91,10 @@ final class CalendarViewController: UIViewController {
         let viewHostingController = UIHostingController(rootView: createToDoItemView)
         self.present(viewHostingController, animated: true)
     }
+    
+    @objc private func backButtonPressed() {
+        self.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension CalendarViewController: CollectionScrollDelegate, TableScrollDelegate {
@@ -86,7 +106,7 @@ extension CalendarViewController: CollectionScrollDelegate, TableScrollDelegate 
     
     func didScrollToSection(index: Int) {
         collectionView.isProgrammaticAction = true
-        collectionView.selectItem(at: index, animated: true, scrollPosition: .centeredHorizontally)
+        collectionView.selectItem(at: index, animated: false, scrollPosition: .centeredHorizontally)
         collectionView.isProgrammaticAction = false
     }
 }

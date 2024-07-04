@@ -62,7 +62,7 @@ extension CalendarTableView: UITableViewDelegate {
     
     func scrollToSection(index: Int) {
         let indexPath = IndexPath(row: 0, section: index)
-        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        tableView.scrollToRow(at: indexPath, at: .top, animated: false)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -85,8 +85,7 @@ extension CalendarTableView: UITableViewDelegate {
             completionHandler(true)
         }
         completeAction.backgroundColor = .systemGreen
-        completeAction.image = UIImage(systemName: "checkmark.circle.fill")  // Используйте системную иконку
-
+        completeAction.image = UIImage(systemName: "checkmark.circle.fill")  
         return UISwipeActionsConfiguration(actions: [completeAction])
     }
 

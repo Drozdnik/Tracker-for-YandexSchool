@@ -40,7 +40,13 @@ final class DatesCollectionView: UIView {
     private func setupCollectionView() {
         let topSeparator = createSeparator()
         let bottomSeparator = createSeparator()
-        
+        if presenter.sortedDates.isEmpty {
+            topSeparator.isHidden = true
+            bottomSeparator.isHidden = true
+        } else {
+            topSeparator.isHidden = false
+            bottomSeparator.isHidden = false
+        }
         addSubview(dateCollectionView)
         addSubview(topSeparator)
         addSubview(bottomSeparator)
