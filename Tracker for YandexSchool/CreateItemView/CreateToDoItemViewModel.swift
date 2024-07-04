@@ -78,6 +78,10 @@ final class CreateToDoItemViewModel: ObservableObject {
         }
     }
     
+    func addCategory(category: Categories){
+        categories.insert(category, at: categories.count - 1)
+    }
+    
     private func updatePriority(from icon: SwitchcerViewElementEnum) -> Priority {
         switch icon {
         case .text("нет"):

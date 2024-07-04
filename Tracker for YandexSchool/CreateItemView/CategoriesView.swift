@@ -2,11 +2,14 @@ import SwiftUI
 
 struct CategoriesView: View {
     @ObservedObject var viewModel: CreateToDoItemViewModel
+    @State private var showColorPicker: Bool = false
+    @State private var newCategoryName: String = ""
     private var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 1)
     
     init(viewModel: CreateToDoItemViewModel) {
         self.viewModel = viewModel
     }
+    
     var body: some View {
         VStack {
             HStack {
@@ -19,7 +22,11 @@ struct CategoriesView: View {
                         ForEach(viewModel.categories, id: \.name) { category in
                             CategoryCell(category: category, isSelected: viewModel.selectedCategory?.name == category.name)
                                 .onTapGesture {
-                                    viewModel.selectedCategory = category
+                                    if category.name == "Другое" {
+                                        showColorPicker.toggle()
+                                    } else {
+                                        viewModel.selectedCategory = category
+                                    }
                                 }
                         }
                     }
@@ -27,14 +34,37 @@ struct CategoriesView: View {
                 }
             }
             .frame(height: 56)
+
+            if showColorPicker {
+                HStack {
+                    TextField("Введите название категории", text: $newCategoryName)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding()
+
+                    Button(action: {
+                        let newColor = viewModel.pickedColor ?? .clear
+                        let newCategory = Categories(name: newCategoryName, color: newColor)
+                        viewModel.addCategory(category: newCategory)
+                        newCategoryName = "" 
+                        showColorPicker = false
+                    }) {
+                        Image(systemName: "plus.circle.fill")
+                            .foregroundColor(viewModel.pickedColor)
+                            .padding(.trailing, 10)
+                    }
+                }
+                
+                CustomColorPicker(viewModel: viewModel)
+            }
         }
     }
 }
 
+
 struct CategoryCell: View {
     let category: Categories
     var isSelected: Bool
-
+    
     var body: some View {
         Text(category.name)
             .padding(.vertical, 8)
