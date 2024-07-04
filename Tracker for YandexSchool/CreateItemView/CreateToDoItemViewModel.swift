@@ -12,6 +12,10 @@ final class CreateToDoItemViewModel: ObservableObject {
     @Published var pickedColor: Color? = nil
     @Published var colorPickerIsShown: Bool = false
     @Published var colorPickerActivate: Bool = false
+    @Published var selectedCategory: Categories?
+    @Published var categories: [Categories] = [
+    ]
+    
     @Published var deadLineActivate: Bool = false {
         didSet {
             if deadLineActivate {
@@ -26,7 +30,10 @@ final class CreateToDoItemViewModel: ObservableObject {
     init(fileCache: FileCache, item: ToDoItem? = nil) {
         self.fileCache = fileCache
         self.changedItem = item
-        
+        self.categories = [Categories(name: "Работа", color: Color.red),
+        Categories(name: "Учеба", color: Color.blue),
+        Categories(name: "Хобби", color: Color.green),
+        Categories(name: "Другое", color: Color.clear)]
         if let item = item {
             self.taskName = item.text
             self.selectedIcon = getIcon(from: item.priority)
@@ -34,6 +41,7 @@ final class CreateToDoItemViewModel: ObservableObject {
             self.deadLineActivate = item.deadLine != nil
             self.changedAt = Date()
             self.pickedColor = item.pickedColor ?? .clear
+            self.selectedCategory = item.category
         }
     }
     
@@ -47,11 +55,12 @@ final class CreateToDoItemViewModel: ObservableObject {
                 deadLine: deadLine,
                 createdAt: changedItem.createdAt,
                 changedAt: Date(),
-                pickedColor: pickedColor
+                pickedColor: pickedColor,
+                category: selectedCategory
             )
             fileCache.addItem(item)
         } else {
-            let item = ToDoItem(text: taskName, priority: priority, deadLine: deadLine, pickedColor: pickedColor)
+            let item = ToDoItem(text: taskName, priority: priority, deadLine: deadLine, pickedColor: pickedColor, category: selectedCategory)
             fileCache.addItem(item)
         }
     }

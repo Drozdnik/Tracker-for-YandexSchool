@@ -11,8 +11,6 @@ struct CalendarViewControllerRepresentable: UIViewControllerRepresentable {
         let calendarViewController = CalendarViewController(fileCache: fileCache)
         calendarViewController.view.backgroundColor = .background
           let navigationController = UINavigationController(rootViewController: calendarViewController)
-//          navigationController.navigationBar.prefersLargeTitles = true
-        
           return navigationController
       }
   }

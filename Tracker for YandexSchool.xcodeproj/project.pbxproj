@@ -49,6 +49,8 @@
 		8723F97A2C20E04800AAAD38 /* FileCacheError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F9792C20E04800AAAD38 /* FileCacheError.swift */; };
 		8723F9822C21A2E400AAAD38 /* Tracker_for_YandexSchoolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F9812C21A2E400AAAD38 /* Tracker_for_YandexSchoolTests.swift */; };
 		8723F9892C22122A00AAAD38 /* JSONErrorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F9882C22122A00AAAD38 /* JSONErrorEnum.swift */; };
+		877281D82C37402E00DF0944 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877281D72C37402E00DF0944 /* Categories.swift */; };
+		877281DB2C37438D00DF0944 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877281DA2C37438D00DF0944 /* CategoriesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +108,8 @@
 		8723F97F2C21A2E400AAAD38 /* Tracker for YandexSchoolTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tracker for YandexSchoolTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8723F9812C21A2E400AAAD38 /* Tracker_for_YandexSchoolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker_for_YandexSchoolTests.swift; sourceTree = "<group>"; };
 		8723F9882C22122A00AAAD38 /* JSONErrorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONErrorEnum.swift; sourceTree = "<group>"; };
+		877281D72C37402E00DF0944 /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
+		877281DA2C37438D00DF0944 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,14 +133,10 @@
 		871C0A3C2C27118200B66CC9 /* CreateItemView */ = {
 			isa = PBXGroup;
 			children = (
-				871C0A3A2C26364400B66CC9 /* PriorityDeadLineView.swift */,
-				871C0A3D2C2711A900B66CC9 /* SwithcerView.swift */,
+				877281D92C37436100DF0944 /* Components */,
 				871C0A412C27356200B66CC9 /* CreateToDoItemViewModel.swift */,
-				8723F95D2C1F5E6B00AAAD38 /* TextFieldView.swift */,
-				871C0A3F2C27224B00B66CC9 /* ListView.swift */,
+				877281DA2C37438D00DF0944 /* CategoriesView.swift */,
 				871C0A432C27534B00B66CC9 /* CreateToDoItem.swift */,
-				871C0A452C27586B00B66CC9 /* DeleteButtonView.swift */,
-				871C0A612C2AFE5400B66CC9 /* CustomColorPicker.swift */,
 			);
 			path = CreateItemView;
 			sourceTree = "<group>";
@@ -242,6 +242,7 @@
 			children = (
 				8723F9692C1F5F3100AAAD38 /* ToDoItem.swift */,
 				871C0AD22C31D22300B66CC9 /* ToDoItemSection.swift */,
+				877281D72C37402E00DF0944 /* Categories.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -286,6 +287,19 @@
 				8723F9812C21A2E400AAAD38 /* Tracker_for_YandexSchoolTests.swift */,
 			);
 			path = "Tracker for YandexSchoolTests";
+			sourceTree = "<group>";
+		};
+		877281D92C37436100DF0944 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				871C0A3D2C2711A900B66CC9 /* SwithcerView.swift */,
+				8723F95D2C1F5E6B00AAAD38 /* TextFieldView.swift */,
+				871C0A3F2C27224B00B66CC9 /* ListView.swift */,
+				871C0A612C2AFE5400B66CC9 /* CustomColorPicker.swift */,
+				871C0A452C27586B00B66CC9 /* DeleteButtonView.swift */,
+				871C0A3A2C26364400B66CC9 /* PriorityDeadLineView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -402,9 +416,11 @@
 				8723F9712C1F838000AAAD38 /* PriorityEnum.swift in Sources */,
 				8723F9892C22122A00AAAD38 /* JSONErrorEnum.swift in Sources */,
 				871C0A4F2C28395C00B66CC9 /* PlusView.swift in Sources */,
+				877281DB2C37438D00DF0944 /* CategoriesView.swift in Sources */,
 				8723F96E2C1F742600AAAD38 /* ToDoItem + extension.swift in Sources */,
 				871C0A482C275D3A00B66CC9 /* Color + extension.swift in Sources */,
 				871C0AD12C31D12E00B66CC9 /* CalendarTableView.swift in Sources */,
+				877281D82C37402E00DF0944 /* Categories.swift in Sources */,
 				871C0A552C28AB5000B66CC9 /* EnviromentValues + ext.swift in Sources */,
 				871C0A4D2C2830BD00B66CC9 /* UIApplication + ext.swift in Sources */,
 				871C0A572C28B1B800B66CC9 /* ListCell.swift in Sources */,
