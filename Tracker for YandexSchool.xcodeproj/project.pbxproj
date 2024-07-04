@@ -135,7 +135,6 @@
 			children = (
 				877281D92C37436100DF0944 /* Components */,
 				871C0A412C27356200B66CC9 /* CreateToDoItemViewModel.swift */,
-				877281DA2C37438D00DF0944 /* CategoriesView.swift */,
 				871C0A432C27534B00B66CC9 /* CreateToDoItem.swift */,
 			);
 			path = CreateItemView;
@@ -296,6 +295,7 @@
 				8723F95D2C1F5E6B00AAAD38 /* TextFieldView.swift */,
 				871C0A3F2C27224B00B66CC9 /* ListView.swift */,
 				871C0A612C2AFE5400B66CC9 /* CustomColorPicker.swift */,
+				877281DA2C37438D00DF0944 /* CategoriesView.swift */,
 				871C0A452C27586B00B66CC9 /* DeleteButtonView.swift */,
 				871C0A3A2C26364400B66CC9 /* PriorityDeadLineView.swift */,
 			);

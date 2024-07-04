@@ -47,6 +47,9 @@ final class CreateToDoItemViewModel: ObservableObject {
     
     func addItem() {
         let priority = updatePriority(from: selectedIcon)
+        if !colorPickerActivate {
+            pickedColor = nil
+        }
         if let changedItem = changedItem {
             let item = ToDoItem(
                 id: changedItem.id,
