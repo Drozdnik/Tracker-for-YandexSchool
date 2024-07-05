@@ -104,7 +104,7 @@ extension CalendarViewController: CollectionScrollDelegate, TableScrollDelegate 
     
     func didScrollToSection(index: Int) {
         collectionView.isProgrammaticAction = true
-        collectionView.selectItem(at: index, animated: false, scrollPosition: .centeredHorizontally)
+        collectionView.selectItem(at: index, animated: true, scrollPosition: .centeredHorizontally)
         collectionView.isProgrammaticAction = false
     }
 }

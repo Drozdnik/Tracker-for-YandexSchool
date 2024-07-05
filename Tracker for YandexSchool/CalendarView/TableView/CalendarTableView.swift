@@ -48,7 +48,7 @@ final class CalendarTableView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        let bottomInset = bounds.height - 60 
+        let bottomInset = bounds.height - 60
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: bottomInset, right: 0)
     }
 }
