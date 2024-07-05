@@ -53,7 +53,8 @@ final class CalendarViewPresenter {
                 flag: !item.flag,
                 createdAt: item.createdAt,
                 changedAt: Date(),
-                pickedColor: item.pickedColor
+                pickedColor: item.pickedColor,
+                category: item.category
             )
             
             fileCache.addItem(updatedItem)

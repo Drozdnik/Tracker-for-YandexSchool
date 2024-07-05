@@ -6,7 +6,7 @@ final class TableViewCell: UITableViewCell {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        label.numberOfLines = 0
+        label.numberOfLines = 1
         label.textColor = .black
         label.backgroundColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -54,7 +54,7 @@ final class TableViewCell: UITableViewCell {
             
             strikeThroughView.heightAnchor.constraint(equalToConstant: 1),
             strikeThroughView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            strikeThroughView.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
+            strikeThroughView.trailingAnchor.constraint(equalTo: colorView.trailingAnchor),
             strikeThroughView.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor)
         ])
     }
