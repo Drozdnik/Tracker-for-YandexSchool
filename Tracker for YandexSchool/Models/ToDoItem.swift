@@ -16,6 +16,7 @@ struct ToDoItem {
     let createdAt: Date
     let changedAt: Date?
     let pickedColor: Color?
+    let category: Categories?
     
     init(
         id: UUID? = nil,
@@ -25,7 +26,8 @@ struct ToDoItem {
         flag: Bool = false,
         createdAt: Date = Date(),
         changedAt: Date? = nil,
-        pickedColor: Color? = nil
+        pickedColor: Color? = nil,
+        category: Categories? = nil
     ) {
         self.id = id ?? UUID()
         self.text = text
@@ -35,6 +37,7 @@ struct ToDoItem {
         self.createdAt = createdAt
         self.changedAt = changedAt
         self.pickedColor = pickedColor
+        self.category = category
     }
 }
 

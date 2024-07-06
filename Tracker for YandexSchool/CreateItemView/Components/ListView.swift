@@ -47,7 +47,9 @@ struct ImportanceListView: View {
                 CustomColorPicker(viewModel: viewModel)
             }
             Divider()
-            
+            HStack {
+                CategoriesView(viewModel: viewModel)
+            }
             HStack {
                 VStack{
                     Text("Сделать до")

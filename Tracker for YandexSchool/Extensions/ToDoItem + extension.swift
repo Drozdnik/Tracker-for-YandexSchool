@@ -73,8 +73,6 @@ extension ToDoItem: ToDoItemParseProtocol {
         )
     }
 
-    // В CSV файле пустые данные заполнены как nil
-    // Формат ввода  id,"text",priority,flag,createdAt,deadLine,changedAt
     static func parseCSV(csvString: String) -> [ToDoItem] {
         let isoFormatter = ISO8601DateFormatter.shared
         

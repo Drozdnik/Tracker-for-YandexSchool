@@ -2,7 +2,6 @@
 import Foundation
 
 protocol FileCache {
-    var items: [ToDoItem] {get}
     func getItems() -> [ToDoItem]
     func addItem(_ item: ToDoItem)
     func deleteItem(id: UUID) throws
@@ -11,7 +10,17 @@ protocol FileCache {
 }
 
 final class FileCacheImpl: FileCache {
-    private(set) var items: [ToDoItem] = []
+    private(set) var items: [ToDoItem] = [
+        ToDoItem(text: "Task 1", priority: .high, deadLine: Date(), flag: true),
+        ToDoItem(text: "Task 2", priority: .low, deadLine: Date(), flag: false),
+        ToDoItem(text: "Task 3", priority: .low, deadLine: Calendar.current.date(byAdding: .day, value: 7, to: Date())!, flag: false),
+        ToDoItem(text: "Task 4", priority: .low, deadLine: Calendar.current.date(byAdding: .day, value: 2, to: Date())!, flag: false),
+        ToDoItem(text: "Task 5", priority: .low, deadLine: Calendar.current.date(byAdding: .day, value: 3, to: Date())!, flag: false),
+        ToDoItem(text: "Task 6", priority: .low, deadLine: Calendar.current.date(byAdding: .day, value: 4, to: Date())!, flag: false),
+        ToDoItem(text: "Task 7", priority: .low, deadLine: Calendar.current.date(byAdding: .day, value: 5, to: Date())!, flag: false),
+        ToDoItem(text: "Task 8", priority: .low, deadLine: Calendar.current.date(byAdding: .day, value: 6, to: Date())!, flag: false),
+        ToDoItem(text: "Task 9", priority: .low, deadLine: nil, flag: false)
+    ]
     private static let manager = FileManager.default
     private let fileName: String
     
@@ -25,21 +34,21 @@ final class FileCacheImpl: FileCache {
     
     func addItem(_ item: ToDoItem) {
         for i in 0..<items.count {
-                if items[i].id == item.id {
-                    items[i] = item
-                    return
-                }
+            if items[i].id == item.id {
+                items[i] = item
+                return
             }
-            items.append(item)
         }
-   
+        items.append(item)
+    }
+    
     func deleteItem(id: UUID) throws {
         guard items.contains(where: { $0.id == id }) else {
             throw FileCacheError.itemNotFound
         }
         items.removeAll(where: { $0.id == id })
     }
-
+    
     
     func saveToFile() throws {
         do {

@@ -2,6 +2,7 @@ import SwiftUI
 
 struct MainView:View {
     @State private var isBottomSheetPresented: Bool = false
+    @State private var showCalendarView: Bool = false
     @ObservedObject var viewModel: MainViewModel
     @Environment(\.containerDI) var container
     @Environment(\.horizontalSizeClass) var sizeClass
@@ -63,40 +64,44 @@ struct MainView:View {
                     itemToEdit = nil
                     isEdditing = false
                 }){
-                    
-                    if let itemToEdit = itemToEdit{
-                        CreateToDoItem(viewModel: CreateToDoItemViewModel(fileCache: container.fileCache, item: itemToEdit))
-                    } else {
-                        CreateToDoItem(viewModel: CreateToDoItemViewModel(fileCache: container.fileCache))
-                    }
-                   
+                    CreateToDoItem(viewModel: CreateToDoItemViewModel(fileCache: container.fileCache, item: itemToEdit))
                 }
-                
                 VStack{
                     Spacer()
-                    Button(action: {
-                        if UIDevice.current.userInterfaceIdiom == .pad {
-                           
-                        } else {
-                            isBottomSheetPresented = true
-                        }
-                        
-                    }) {
-                        PlusView()
-                            .frame(width: 44, height: 44)
-                            .background(Color.blue)
-                            .clipShape(Circle())
-                            .shadow(color: Color.black.opacity(0.3), radius: 5, x: 0, y: 5)
-                    }
-                    
+                    PlusView(action: {
+                        isBottomSheetPresented = true
+                    })
                     .padding(.bottom, 10)
                 }
             }
             .navigationTitle("Мои дела")
             .background(Color.backgroundColor)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        showCalendarView = true
+                    }) {
+                        Image(systemName: "calendar")
+                    }
+                    .padding(.horizontal, 15)
+                }
+            }
+            .fullScreenCover(isPresented: $showCalendarView) {
+                NavigationView {
+                    CalendarViewControllerRepresentable(fileCache: container.fileCache)
+                        .toolbarBackground(Color(UIColor.background), for: .navigationBar)
+                        .toolbarBackground(.visible, for: .navigationBar)
+                        .ignoresSafeArea()
+                }
+                .edgesIgnoringSafeArea(.all)
+            }
+            .onAppear(){
+                viewModel.getItems()
+            }
         }
     }
 }
+
 
 #Preview {
     MainView(viewModel: MainViewModel(fileCache: FileCacheImpl(fileName: "file")))
