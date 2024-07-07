@@ -51,6 +51,7 @@
 		8723F9892C22122A00AAAD38 /* JSONErrorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F9882C22122A00AAAD38 /* JSONErrorEnum.swift */; };
 		877281D82C37402E00DF0944 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877281D72C37402E00DF0944 /* Categories.swift */; };
 		877281DB2C37438D00DF0944 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877281DA2C37438D00DF0944 /* CategoriesView.swift */; };
+		8772821B2C3AC23100DF0944 /* CocoaLumberjackSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8772821A2C3AC23100DF0944 /* CocoaLumberjackSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8772821B2C3AC23100DF0944 /* CocoaLumberjackSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +320,9 @@
 			dependencies = (
 			);
 			name = "Tracker for YandexSchool";
+			packageProductDependencies = (
+				8772821A2C3AC23100DF0944 /* CocoaLumberjackSwift */,
+			);
 			productName = "Tracker for YandexSchool";
 			productReference = 8723F9582C1F5E6B00AAAD38 /* Tracker for YandexSchool.app */;
 			productType = "com.apple.product-type.application";
@@ -368,6 +373,9 @@
 				Base,
 			);
 			mainGroup = 8723F94F2C1F5E6B00AAAD38;
+			packageReferences = (
+				877282192C3AC23100DF0944 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */,
+			);
 			productRefGroup = 8723F9592C1F5E6B00AAAD38 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -709,6 +717,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		877282192C3AC23100DF0944 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CocoaLumberjack/CocoaLumberjack";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.8.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8772821A2C3AC23100DF0944 /* CocoaLumberjackSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 877282192C3AC23100DF0944 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */;
+			productName = CocoaLumberjackSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8723F9502C1F5E6B00AAAD38 /* Project object */;
 }
