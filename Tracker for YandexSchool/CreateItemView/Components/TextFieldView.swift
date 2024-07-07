@@ -4,7 +4,6 @@ struct TextFieldView: View {
     @ObservedObject var viewModel: CreateToDoItemViewModel
     @FocusState private var taskNameIsFocused: Bool
  
-    
     init(viewModel: CreateToDoItemViewModel) {
         self.viewModel = viewModel
     }
@@ -36,7 +35,3 @@ struct TextFieldView: View {
         }
     }
 }
-
-//#Preview {
-//    TextFieldView(taskData: CreateToDoItemViewModel())
-//}

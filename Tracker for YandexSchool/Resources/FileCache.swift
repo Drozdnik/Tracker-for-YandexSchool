@@ -1,4 +1,3 @@
-
 import Foundation
 
 protocol FileCache {
@@ -28,16 +27,14 @@ final class FileCacheImpl: FileCache {
         self.fileName = fileName
     }
     
-    func getItems() -> [ToDoItem]{
+    func getItems() -> [ToDoItem] {
         return items
     }
     
     func addItem(_ item: ToDoItem) {
-        for i in 0..<items.count {
-            if items[i].id == item.id {
-                items[i] = item
-                return
-            }
+        for index in 0..<items.count where items[index].id == item.id {
+            items[index] = item
+            return
         }
         items.append(item)
     }
@@ -48,7 +45,6 @@ final class FileCacheImpl: FileCache {
         }
         items.removeAll(where: { $0.id == id })
     }
-    
     
     func saveToFile() throws {
         do {
@@ -65,20 +61,19 @@ final class FileCacheImpl: FileCache {
         do {
             let url = try getUrlForManager()
             let data = try Data(contentsOf: url)
-            if let json = try JSONSerialization.jsonObject(with: data) as? [[String : Any]]{
+            if let json = try JSONSerialization.jsonObject(with: data) as? [[String : Any]] {
                 items = json.compactMap({ToDoItem.parse(json: $0)})
             }
-        } catch{
+        } catch {
             assertionFailure("Load from file error")
             throw FileCacheError.loadingError
         }
     }
     
-    private func getUrlForManager() throws -> URL{
+    private func getUrlForManager() throws -> URL {
         guard let url = FileCacheImpl.manager.urls(for: .documentDirectory, in: .userDomainMask).first else {
             throw FileCacheError.urlCreationError
         }
         return url.appendingPathComponent(fileName)
     }
 }
-

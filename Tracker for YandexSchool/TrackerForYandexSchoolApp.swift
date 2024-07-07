@@ -2,7 +2,7 @@ import SwiftUI
 import CocoaLumberjackSwift
 
 @main
-struct Tracker_for_YandexSchoolApp: App {
+struct TrackerForYandexSchoolApp: App {
     @Environment(\.containerDI) var container
     
     init() {

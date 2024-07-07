@@ -1,6 +1,6 @@
 import Foundation
 
-enum FileCacheError: Error{
+enum FileCacheError: Error {
     case itemNotFound
     case savingError
     case urlCreationError

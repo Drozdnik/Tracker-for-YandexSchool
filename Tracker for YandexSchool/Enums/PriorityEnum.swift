@@ -1,6 +1,5 @@
 import Foundation
 
-
 enum Priority: String, Comparable {
     static func < (lhs: Priority, rhs: Priority) -> Bool {
         return lhs.order < rhs.order
@@ -18,5 +17,3 @@ enum Priority: String, Comparable {
         }
     }
 }
-
-

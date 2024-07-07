@@ -40,7 +40,6 @@ final class CalendarViewController: UIViewController {
         view.addSubview(tableView)
         view.backgroundColor = .background
         
-        
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -81,7 +80,7 @@ final class CalendarViewController: UIViewController {
     }
     
     private func showCreateToDoItem() {
-        let createToDoItemView = CreateToDoItem(viewModel: CreateToDoItemViewModel(fileCache: fileCache)){ [weak self] in
+        let createToDoItemView = CreateToDoItem(viewModel: CreateToDoItemViewModel(fileCache: fileCache)) { [weak self] in
             self?.presenter.loadData()
             self?.presenter.onUpdateCollection?()
             self?.presenter.onUpdateTable?()

@@ -18,8 +18,8 @@ struct ImportanceListView: View {
             
             Divider()
             
-            HStack{
-                VStack(spacing: 2){
+            HStack {
+                VStack(spacing: 2) {
                     Text("Выбрать цвет")
                     
                     if viewModel.colorPickerActivate {
@@ -35,7 +35,7 @@ struct ImportanceListView: View {
                 }
                 
                 Toggle("", isOn: $viewModel.colorPickerActivate.animation(.bouncy(duration: 0.7)))
-                    .onChange(of: viewModel.colorPickerActivate){
+                    .onChange(of: viewModel.colorPickerActivate) {
                         viewModel.colorPickerIsShown = true
                     }
             }
@@ -51,14 +51,14 @@ struct ImportanceListView: View {
                 CategoriesView(viewModel: viewModel)
             }
             HStack {
-                VStack{
+                VStack {
                     Text("Сделать до")
                     if viewModel.deadLineActivate {
-                        if let deadLine = viewModel.deadLine{
+                        if let deadLine = viewModel.deadLine {
                             Text("\(DateFormatter.dayMonthYear.string(from: deadLine))")
                                 .foregroundStyle(.blue)
                                 .onTapGesture {
-                                    withAnimation(.bouncy(duration: 0.7)){
+                                    withAnimation(.bouncy(duration: 0.7)) {
                                         viewModel.datePickerIsShown.toggle()
                                     }
                                 }
@@ -78,7 +78,7 @@ struct ImportanceListView: View {
             if viewModel.deadLineActivate && viewModel.datePickerIsShown {
                 Divider()
                 if let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: Date()) {
-                    DatePicker("Выберите дату", selection: Binding (
+                    DatePicker("Выберите дату", selection: Binding(
                         get: { viewModel.deadLine ?? tomorrow },
                         set: {
                             viewModel.deadLine = $0

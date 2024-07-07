@@ -18,12 +18,12 @@ final class MainViewModel: ObservableObject {
         sortTasks()
     }
     
-    func findFinishedTasks(){
+    func findFinishedTasks() {
         finishedTasks = items.filter { $0.flag }.count
     }
     
     func toogleFlag(for itemID: UUID) {
-        if let index = items.firstIndex(where: {$0.id == itemID}){
+        if let index = items.firstIndex(where: {$0.id == itemID}) {
             let updatetItem = items[index]
             let newItem = ToDoItem(
                 id: updatetItem.id,
@@ -77,4 +77,3 @@ final class MainViewModel: ObservableObject {
         }
     }
 }
-

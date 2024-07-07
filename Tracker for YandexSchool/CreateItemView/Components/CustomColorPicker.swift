@@ -12,7 +12,22 @@ struct CustomColorPicker: View {
         VStack {
             GeometryReader { geometry in
                 Rectangle()
-                    .fill(  LinearGradient(gradient: Gradient(colors: [.red, .orange, .yellow, .green, .blue, .purple]), startPoint: .leading, endPoint: .trailing))
+                    .fill(
+                        LinearGradient(
+                            gradient: Gradient(
+                                colors: [
+                                    .red,
+                                    .orange,
+                                    .yellow,
+                                    .green,
+                                    .blue,
+                                    .purple
+                                ]
+                            ),
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    )
                     .mask(
                         LinearGradient(gradient: Gradient(colors: [Color.white, Color.white.opacity(0)]), startPoint: .top, endPoint: .bottom)
                     )

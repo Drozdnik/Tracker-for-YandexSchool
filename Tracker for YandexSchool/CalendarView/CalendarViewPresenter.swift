@@ -33,7 +33,6 @@ final class CalendarViewPresenter {
         return groupedItems[dateKey]?.count ?? 0
     }
     
-    
     func titleForHeaderInSection(section: Int) -> String {
         return sortedDates[section]
     }

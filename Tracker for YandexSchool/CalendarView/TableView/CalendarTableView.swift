@@ -85,7 +85,7 @@ extension CalendarTableView: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let completeAction = UIContextualAction(style: .normal, title: nil) { [weak self] action, view, completionHandler in
+        let completeAction = UIContextualAction(style: .normal, title: nil) { [weak self] _, _, completionHandler in
             self?.presenter.toggleCompletion(at: indexPath)
             tableView.reloadRows(at: [indexPath], with: .none)
             completionHandler(true)
@@ -95,9 +95,8 @@ extension CalendarTableView: UITableViewDelegate {
         return UISwipeActionsConfiguration(actions: [completeAction])
     }
 
-    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let uncompleteAction = UIContextualAction(style: .normal, title: nil) { [weak self] action, view, completionHandler in
+        let uncompleteAction = UIContextualAction(style: .normal, title: nil) { [weak self] _, _, completionHandler in
             self?.presenter.toggleCompletion(at: indexPath)
             tableView.reloadRows(at: [indexPath], with: .none)
             completionHandler(true)
@@ -109,14 +108,15 @@ extension CalendarTableView: UITableViewDelegate {
     }
 }
 
-
 extension CalendarTableView: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return presenter.numberOfSections()
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: CalendarTableViewHeader.reuseIdentifier) as? CalendarTableViewHeader else {
+        guard let header = tableView.dequeueReusableHeaderFooterView(
+            withIdentifier: CalendarTableViewHeader.reuseIdentifier
+        ) as? CalendarTableViewHeader else {
             return nil
         }
         
@@ -145,5 +145,3 @@ extension CalendarTableView: UITableViewDataSource {
         return cell
     }
 }
-
-

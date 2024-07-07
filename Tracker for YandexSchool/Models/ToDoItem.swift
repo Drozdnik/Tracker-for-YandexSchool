@@ -40,5 +40,3 @@ struct ToDoItem {
         self.category = category
     }
 }
-
-
