@@ -1,4 +1,5 @@
 import SwiftUI
+import CocoaLumberjackSwift
 
 struct MainView:View {
     @State private var isBottomSheetPresented: Bool = false
@@ -65,6 +66,7 @@ struct MainView:View {
                 }, content: {
                     CreateToDoItem(viewModel: CreateToDoItemViewModel(fileCache: container.fileCache, item: itemToEdit))
                 })
+                
                 VStack {
                     Spacer()
                     PlusView(action: {

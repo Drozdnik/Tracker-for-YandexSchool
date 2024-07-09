@@ -27,13 +27,13 @@ struct TrackerForYandexSchoolApp: App {
     }
     
     private func setupLogging() {
-           DDLog.add(DDOSLogger.sharedInstance)
+        DDLog.add(DDOSLogger.sharedInstance)
         
-           let fileLogger: DDFileLogger = DDFileLogger()
-           fileLogger.rollingFrequency = TimeInterval(60*60*24 * 7)
-           fileLogger.logFileManager.maximumNumberOfLogFiles = 7
-           DDLog.add(fileLogger)
-           
-           dynamicLogLevel = DDLogLevel.verbose
-       }
+        let fileLogger: DDFileLogger = DDFileLogger()
+        fileLogger.rollingFrequency = TimeInterval(60*60*24 * 7)
+        fileLogger.logFileManager.maximumNumberOfLogFiles = 7
+        DDLog.add(fileLogger)
+        
+        dynamicLogLevel = DDLogLevel.verbose
+    }
 }

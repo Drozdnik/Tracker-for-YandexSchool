@@ -1,4 +1,5 @@
 import Foundation
+import CocoaLumberjackSwift
 
 protocol FileCache {
     func getItems() -> [ToDoItem]
@@ -36,6 +37,7 @@ final class FileCacheImpl: FileCache {
             items[index] = item
             return
         }
+        DDLogInfo("Добавление элемента: \(item.text) с ID: \(item.id.uuidString)")
         items.append(item)
     }
     

@@ -465,7 +465,7 @@
 		};
 		8772821C2C3AC85E00DF0944 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -480,7 +480,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "echo \"Running SwiftLint...\"\necho \"SwiftLint will lint directories:\"\necho \"$SRCROOT/Tracker for YandexSchool\"\n\nif [[ \"$(uname -m)\" == \"arm64\" ]]; then\n  export PATH=\"/opt/homebrew/bin:$PATH\"\n  echo \"Added /opt/homebrew/bin to PATH\"\nfi\necho \"Running SwiftLint...\"\necho \"SwiftLint will lint directories:\"\necho \"$SRCROOT/Tracker for YandexSchool\"\n\nif [[ \"$(uname -m)\" == \"arm64\" ]]; then\n  export PATH=\"/opt/homebrew/bin:$PATH\"\n  echo \"Added /opt/homebrew/bin to PATH\"\nfi\n\nif command -v swiftlint >/dev/null 2>&1; then\n  echo \"SwiftLint found, running autocorrect...\"\n  swiftlint autocorrect --config \"/Users/mihail/Desktop/Tracker-for-YandexSchool/.swiftlint.yml\" \"/Users/mihail/Desktop/Tracker-for-YandexSchool/Tracker for YandexSchool\"\n  echo \"Running lint...\"\n  swiftlint lint --config \"/Users/mihail/Desktop/Tracker-for-YandexSchool/.swiftlint.yml\" \"/Users/mihail/Desktop/Tracker-for-YandexSchool/Tracker for YandexSchool\"\nelse\n  echo \"warning: SwiftLint not installed, see https://github.com/realm/SwiftLint#installation\"\nfi\n\nif command -v swiftlint >/dev/null 2>&1; then\n  echo \"SwiftLint found, running autocorrect...\"\n  swiftlint autocorrect --config \"/Users/mihail/Desktop/Tracker-for-YandexSchool/.swiftlint.yml\" \"/Users/mihail/Desktop/Tracker-for-YandexSchool/Tracker for YandexSchool\"\n  echo \"Running lint...\"\n  swiftlint lint --config \"/Users/mihail/Desktop/Tracker-for-YandexSchool/.swiftlint.yml\" \"/Users/mihail/Desktop/Tracker-for-YandexSchool/Tracker for YandexSchool\"\nelse\n  echo \"warning: SwiftLint not installed, see https://github.com/realm/SwiftLint#installation\"\nfi\n";
+			shellScript = "\nif [[ \"$(uname -m)\" == \"arm64\" ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif command -v swiftlint >/dev/null 2>&1; then\n    swiftlint --config \"${SRCROOT}/.swiftlint.yml\"\nelse\n    echo \"warning: SwiftLint command not found - See https://github.com/realm/SwiftLint#installation for installation instructions.\"\nfi\n";
 		};
 		9F3422C8F1FD12ACFC1033CD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
