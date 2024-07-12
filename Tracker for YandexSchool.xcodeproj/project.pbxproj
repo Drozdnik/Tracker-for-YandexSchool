@@ -42,6 +42,8 @@
 		87237CC82C41CA4A0058F417 /* FileCache in Frameworks */ = {isa = PBXBuildFile; productRef = 87237CC72C41CA4A0058F417 /* FileCache */; };
 		87237CCB2C41D3BD0058F417 /* FileCache in Frameworks */ = {isa = PBXBuildFile; productRef = 87237CCA2C41D3BD0058F417 /* FileCache */; };
 		87237CCE2C41D4AB0058F417 /* FileCache in Frameworks */ = {isa = PBXBuildFile; productRef = 87237CCD2C41D4AB0058F417 /* FileCache */; };
+		87237CD02C41D79D0058F417 /* URLSession + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87237CCF2C41D79D0058F417 /* URLSession + ext.swift */; };
+		87237CD22C41D8320058F417 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87237CD12C41D8320058F417 /* NetworkError.swift */; };
 		8723F95C2C1F5E6B00AAAD38 /* TrackerForYandexSchoolApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F95B2C1F5E6B00AAAD38 /* TrackerForYandexSchoolApp.swift */; };
 		8723F95E2C1F5E6B00AAAD38 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F95D2C1F5E6B00AAAD38 /* TextFieldView.swift */; };
 		8723F9602C1F5E6C00AAAD38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8723F95F2C1F5E6C00AAAD38 /* Assets.xcassets */; };
@@ -49,6 +51,7 @@
 		8723F9822C21A2E400AAAD38 /* Tracker_for_YandexSchoolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F9812C21A2E400AAAD38 /* Tracker_for_YandexSchoolTests.swift */; };
 		877281DB2C37438D00DF0944 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877281DA2C37438D00DF0944 /* CategoriesView.swift */; };
 		8772821B2C3AC23100DF0944 /* CocoaLumberjackSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8772821A2C3AC23100DF0944 /* CocoaLumberjackSwift */; };
+		87F02BC82C41E74A0099270A /* NetworkServiceActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F02BC72C41E74A0099270A /* NetworkServiceActor.swift */; };
 		C4E3E61963DA368C7AEE2F91 /* Pods_Tracker_for_YandexSchoolTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF1319F037C919441D0480C /* Pods_Tracker_for_YandexSchoolTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +100,8 @@
 		871C0ADC2C31FCE400B66CC9 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		871C0ADE2C32040000B66CC9 /* CalendarViewControllerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewControllerRepresentable.swift; sourceTree = "<group>"; };
 		871C0AE02C33623D00B66CC9 /* CollectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionItem.swift; sourceTree = "<group>"; };
+		87237CCF2C41D79D0058F417 /* URLSession + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession + ext.swift"; sourceTree = "<group>"; };
+		87237CD12C41D8320058F417 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		8723F9582C1F5E6B00AAAD38 /* Tracker for YandexSchool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tracker for YandexSchool.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8723F95B2C1F5E6B00AAAD38 /* TrackerForYandexSchoolApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerForYandexSchoolApp.swift; sourceTree = "<group>"; };
 		8723F95D2C1F5E6B00AAAD38 /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
@@ -105,6 +110,7 @@
 		8723F97F2C21A2E400AAAD38 /* Tracker for YandexSchoolTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tracker for YandexSchoolTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8723F9812C21A2E400AAAD38 /* Tracker_for_YandexSchoolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker_for_YandexSchoolTests.swift; sourceTree = "<group>"; };
 		877281DA2C37438D00DF0944 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
+		87F02BC72C41E74A0099270A /* NetworkServiceActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceActor.swift; sourceTree = "<group>"; };
 		AEF1319F037C919441D0480C /* Pods_Tracker_for_YandexSchoolTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tracker_for_YandexSchoolTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B80C98C91542D565D08F0CB6 /* Pods-Tracker for YandexSchool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tracker for YandexSchool.debug.xcconfig"; path = "Target Support Files/Pods-Tracker for YandexSchool/Pods-Tracker for YandexSchool.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -228,6 +234,7 @@
 		8723F95A2C1F5E6B00AAAD38 /* Tracker for YandexSchool */ = {
 			isa = PBXGroup;
 			children = (
+				87F02BC62C41E7070099270A /* Actors */,
 				871C0ACB2C31A11E00B66CC9 /* CalendarView */,
 				871C0A632C2B7C2A00B66CC9 /* MainForIpad */,
 				871C0A492C281FFC00B66CC9 /* MainView */,
@@ -266,6 +273,7 @@
 				871C0A472C275D3A00B66CC9 /* Color + extension.swift */,
 				871C0A4C2C2830BD00B66CC9 /* UIApplication + ext.swift */,
 				871C0A592C28D12300B66CC9 /* DateFormatter + ext.swift */,
+				87237CCF2C41D79D0058F417 /* URLSession + ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -274,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				871C0A5F2C2A303A00B66CC9 /* ToDoItemConfigurationEnum.swift */,
+				87237CD12C41D8320058F417 /* NetworkError.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -307,6 +316,14 @@
 				871C0A3A2C26364400B66CC9 /* PriorityDeadLineView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		87F02BC62C41E7070099270A /* Actors */ = {
+			isa = PBXGroup;
+			children = (
+				87F02BC72C41E74A0099270A /* NetworkServiceActor.swift */,
+			);
+			path = Actors;
 			sourceTree = "<group>";
 		};
 		E437C4952C5F0D6D3077317C /* Pods */ = {
@@ -500,6 +517,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87F02BC82C41E74A0099270A /* NetworkServiceActor.swift in Sources */,
 				871C0ACD2C31A17200B66CC9 /* DatesCollectionView.swift in Sources */,
 				8723F95E2C1F5E6B00AAAD38 /* TextFieldView.swift in Sources */,
 				8723F95C2C1F5E6B00AAAD38 /* TrackerForYandexSchoolApp.swift in Sources */,
@@ -510,6 +528,7 @@
 				871C0A532C28A84400B66CC9 /* DiContainer.swift in Sources */,
 				871C0A422C27356200B66CC9 /* CreateToDoItemViewModel.swift in Sources */,
 				871C0ADD2C31FCE400B66CC9 /* CalendarViewController.swift in Sources */,
+				87237CD02C41D79D0058F417 /* URLSession + ext.swift in Sources */,
 				871C0A4F2C28395C00B66CC9 /* PlusView.swift in Sources */,
 				877281DB2C37438D00DF0944 /* CategoriesView.swift in Sources */,
 				871C0A482C275D3A00B66CC9 /* Color + extension.swift in Sources */,
@@ -528,6 +547,7 @@
 				871C0AD72C31F75400B66CC9 /* CalendarTableViewHeader.swift in Sources */,
 				871C0ACF2C31CDE300B66CC9 /* DateCell.swift in Sources */,
 				871C0A5A2C28D12300B66CC9 /* DateFormatter + ext.swift in Sources */,
+				87237CD22C41D8320058F417 /* NetworkError.swift in Sources */,
 				871C0A512C28930400B66CC9 /* MainViewModel.swift in Sources */,
 				871C0A442C27534B00B66CC9 /* CreateToDoItem.swift in Sources */,
 				871C0A652C2B7C4700B66CC9 /* MainViewForIpad.swift in Sources */,
