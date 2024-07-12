@@ -1,4 +1,5 @@
 import SwiftUI
+import FileCache
 
 final class MainViewModel: ObservableObject {
     private let fileCache: FileCache

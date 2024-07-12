@@ -1,7 +1,7 @@
 import Foundation
 import CocoaLumberjackSwift
 
-protocol FileCache {
+public protocol FileCache {
     func getItems() -> [ToDoItem]
     func addItem(_ item: ToDoItem)
     func deleteItem(id: UUID) throws
@@ -9,20 +9,20 @@ protocol FileCache {
     func loadFromFile() throws
 }
 
-final class FileCacheImpl: FileCache {
-    private(set) var items: [ToDoItem] = []
+public final class FileCacheImpl: FileCache {
+    public private(set) var items: [ToDoItem] = []
     private static let manager = FileManager.default
     private let fileName: String
     
-    init(fileName: String) {
+    public init(fileName: String) {
         self.fileName = fileName
     }
     
-    func getItems() -> [ToDoItem] {
+    public func getItems() -> [ToDoItem] {
         return items
     }
     
-    func addItem(_ item: ToDoItem) {
+    public func addItem(_ item: ToDoItem) {
         for index in 0..<items.count where items[index].id == item.id {
             items[index] = item
             return
@@ -31,14 +31,14 @@ final class FileCacheImpl: FileCache {
         items.append(item)
     }
     
-    func deleteItem(id: UUID) throws {
+    public func deleteItem(id: UUID) throws {
         guard items.contains(where: { $0.id == id }) else {
             throw FileCacheError.itemNotFound
         }
         items.removeAll(where: { $0.id == id })
     }
     
-    func saveToFile() throws {
+    public func saveToFile() throws {
         do {
             let json = try JSONSerialization.data(withJSONObject: items.map({$0.json}))
             let url = try getUrlForManager()
@@ -49,7 +49,7 @@ final class FileCacheImpl: FileCache {
         }
     }
     
-    func loadFromFile() throws {
+    public func loadFromFile() throws {
         do {
             let url = try getUrlForManager()
             let data = try Data(contentsOf: url)

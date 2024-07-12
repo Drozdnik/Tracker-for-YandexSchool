@@ -2,7 +2,7 @@ import Foundation
 
 extension ToDoItem: ToDoItemParseProtocol {
     
-    var json: Any {
+    public var json: Any {
         let isoFormatter = ISO8601DateFormatter.shared
         var jsonObject: [String: Any] = [
             "id": id.uuidString,
@@ -30,7 +30,7 @@ extension ToDoItem: ToDoItemParseProtocol {
         }
     }
     
-    static func parse(json: Any) -> ToDoItem? {
+    public static func parse(json: Any) -> ToDoItem? {
         let isoFormatter = ISO8601DateFormatter.shared
         
         guard let jsonAsData = json as? Data else {
@@ -72,7 +72,7 @@ extension ToDoItem: ToDoItemParseProtocol {
         )
     }
     
-    static func parseCSV(csvString: String) -> [ToDoItem] {
+    public static func parseCSV(csvString: String) -> [ToDoItem] {
         let isoFormatter = ISO8601DateFormatter.shared
         
         var items: [ToDoItem] = []
@@ -101,7 +101,7 @@ extension ToDoItem: ToDoItemParseProtocol {
         return items
     }
     
-    static func parseCSVRow(_ row: String) -> [String] {
+    public static func parseCSVRow(_ row: String) -> [String] {
         var columns = [String]()
         let pattern = #" *"(?:[^"\\]*(?:\\.[^"\\]*)*)"|[^,]+"#
         do {

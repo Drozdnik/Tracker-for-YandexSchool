@@ -1,4 +1,5 @@
 import SwiftUI
+import FileCache
 
 struct MainViewForIpad: View {
     var viewModel: MainViewModel

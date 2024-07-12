@@ -1,6 +1,6 @@
 import Foundation
 
-enum JSONErrorEnum: Error {
+public enum JSONErrorEnum: Error {
     case createJSONError
     case jsonAsDataError
 }

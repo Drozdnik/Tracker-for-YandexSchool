@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -38,19 +38,15 @@
 		871C0ADD2C31FCE400B66CC9 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C0ADC2C31FCE400B66CC9 /* CalendarViewController.swift */; };
 		871C0ADF2C32040000B66CC9 /* CalendarViewControllerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C0ADE2C32040000B66CC9 /* CalendarViewControllerRepresentable.swift */; };
 		871C0AE12C33623E00B66CC9 /* CollectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C0AE02C33623D00B66CC9 /* CollectionItem.swift */; };
+		87237CC52C41C9DE0058F417 /* FileCache in Frameworks */ = {isa = PBXBuildFile; productRef = 87237CC42C41C9DE0058F417 /* FileCache */; };
+		87237CC82C41CA4A0058F417 /* FileCache in Frameworks */ = {isa = PBXBuildFile; productRef = 87237CC72C41CA4A0058F417 /* FileCache */; };
+		87237CCB2C41D3BD0058F417 /* FileCache in Frameworks */ = {isa = PBXBuildFile; productRef = 87237CCA2C41D3BD0058F417 /* FileCache */; };
+		87237CCE2C41D4AB0058F417 /* FileCache in Frameworks */ = {isa = PBXBuildFile; productRef = 87237CCD2C41D4AB0058F417 /* FileCache */; };
 		8723F95C2C1F5E6B00AAAD38 /* TrackerForYandexSchoolApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F95B2C1F5E6B00AAAD38 /* TrackerForYandexSchoolApp.swift */; };
 		8723F95E2C1F5E6B00AAAD38 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F95D2C1F5E6B00AAAD38 /* TextFieldView.swift */; };
 		8723F9602C1F5E6C00AAAD38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8723F95F2C1F5E6C00AAAD38 /* Assets.xcassets */; };
 		8723F9632C1F5E6C00AAAD38 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8723F9622C1F5E6C00AAAD38 /* Preview Assets.xcassets */; };
-		8723F96A2C1F5F3200AAAD38 /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F9692C1F5F3100AAAD38 /* ToDoItem.swift */; };
-		8723F96E2C1F742600AAAD38 /* ToDoItem + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F96D2C1F742600AAAD38 /* ToDoItem + extension.swift */; };
-		8723F9712C1F838000AAAD38 /* PriorityEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F9702C1F838000AAAD38 /* PriorityEnum.swift */; };
-		8723F9762C20C64C00AAAD38 /* FileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F9752C20C64C00AAAD38 /* FileCache.swift */; };
-		8723F9782C20D0BE00AAAD38 /* IsoFormatter + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F9772C20D0BE00AAAD38 /* IsoFormatter + extension.swift */; };
-		8723F97A2C20E04800AAAD38 /* FileCacheError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F9792C20E04800AAAD38 /* FileCacheError.swift */; };
 		8723F9822C21A2E400AAAD38 /* Tracker_for_YandexSchoolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F9812C21A2E400AAAD38 /* Tracker_for_YandexSchoolTests.swift */; };
-		8723F9892C22122A00AAAD38 /* JSONErrorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723F9882C22122A00AAAD38 /* JSONErrorEnum.swift */; };
-		877281D82C37402E00DF0944 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877281D72C37402E00DF0944 /* Categories.swift */; };
 		877281DB2C37438D00DF0944 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877281DA2C37438D00DF0944 /* CategoriesView.swift */; };
 		8772821B2C3AC23100DF0944 /* CocoaLumberjackSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8772821A2C3AC23100DF0944 /* CocoaLumberjackSwift */; };
 		C4E3E61963DA368C7AEE2F91 /* Pods_Tracker_for_YandexSchoolTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF1319F037C919441D0480C /* Pods_Tracker_for_YandexSchoolTests.framework */; };
@@ -106,16 +102,8 @@
 		8723F95D2C1F5E6B00AAAD38 /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
 		8723F95F2C1F5E6C00AAAD38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8723F9622C1F5E6C00AAAD38 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		8723F9692C1F5F3100AAAD38 /* ToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
-		8723F96D2C1F742600AAAD38 /* ToDoItem + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToDoItem + extension.swift"; sourceTree = "<group>"; };
-		8723F9702C1F838000AAAD38 /* PriorityEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityEnum.swift; sourceTree = "<group>"; };
-		8723F9752C20C64C00AAAD38 /* FileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCache.swift; sourceTree = "<group>"; };
-		8723F9772C20D0BE00AAAD38 /* IsoFormatter + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IsoFormatter + extension.swift"; sourceTree = "<group>"; };
-		8723F9792C20E04800AAAD38 /* FileCacheError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCacheError.swift; sourceTree = "<group>"; };
 		8723F97F2C21A2E400AAAD38 /* Tracker for YandexSchoolTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tracker for YandexSchoolTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8723F9812C21A2E400AAAD38 /* Tracker_for_YandexSchoolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker_for_YandexSchoolTests.swift; sourceTree = "<group>"; };
-		8723F9882C22122A00AAAD38 /* JSONErrorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONErrorEnum.swift; sourceTree = "<group>"; };
-		877281D72C37402E00DF0944 /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		877281DA2C37438D00DF0944 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		AEF1319F037C919441D0480C /* Pods_Tracker_for_YandexSchoolTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tracker_for_YandexSchoolTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B80C98C91542D565D08F0CB6 /* Pods-Tracker for YandexSchool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tracker for YandexSchool.debug.xcconfig"; path = "Target Support Files/Pods-Tracker for YandexSchool/Pods-Tracker for YandexSchool.debug.xcconfig"; sourceTree = "<group>"; };
@@ -126,7 +114,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87237CCB2C41D3BD0058F417 /* FileCache in Frameworks */,
+				87237CCE2C41D4AB0058F417 /* FileCache in Frameworks */,
 				8772821B2C3AC23100DF0944 /* CocoaLumberjackSwift in Frameworks */,
+				87237CC82C41CA4A0058F417 /* FileCache in Frameworks */,
+				87237CC52C41C9DE0058F417 /* FileCache in Frameworks */,
 				84D7E4057EB86D500709D59F /* Pods_Tracker_for_YandexSchool.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,9 +254,7 @@
 		8723F96B2C1F73B700AAAD38 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				8723F9692C1F5F3100AAAD38 /* ToDoItem.swift */,
 				871C0AD22C31D22300B66CC9 /* ToDoItemSection.swift */,
-				877281D72C37402E00DF0944 /* Categories.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -272,9 +262,7 @@
 		8723F96C2C1F73CE00AAAD38 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				8723F96D2C1F742600AAAD38 /* ToDoItem + extension.swift */,
 				871C0A542C28AB5000B66CC9 /* EnviromentValues + ext.swift */,
-				8723F9772C20D0BE00AAAD38 /* IsoFormatter + extension.swift */,
 				871C0A472C275D3A00B66CC9 /* Color + extension.swift */,
 				871C0A4C2C2830BD00B66CC9 /* UIApplication + ext.swift */,
 				871C0A592C28D12300B66CC9 /* DateFormatter + ext.swift */,
@@ -285,9 +273,6 @@
 		8723F96F2C1F837200AAAD38 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
-				8723F9702C1F838000AAAD38 /* PriorityEnum.swift */,
-				8723F9792C20E04800AAAD38 /* FileCacheError.swift */,
-				8723F9882C22122A00AAAD38 /* JSONErrorEnum.swift */,
 				871C0A5F2C2A303A00B66CC9 /* ToDoItemConfigurationEnum.swift */,
 			);
 			path = Enums;
@@ -296,7 +281,6 @@
 		8723F9722C20BFEF00AAAD38 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8723F9752C20C64C00AAAD38 /* FileCache.swift */,
 				871C0A522C28A84400B66CC9 /* DiContainer.swift */,
 				871C0A6A2C2D303700B66CC9 /* DeviceUtils.swift */,
 			);
@@ -356,6 +340,10 @@
 			name = "Tracker for YandexSchool";
 			packageProductDependencies = (
 				8772821A2C3AC23100DF0944 /* CocoaLumberjackSwift */,
+				87237CC42C41C9DE0058F417 /* FileCache */,
+				87237CC72C41CA4A0058F417 /* FileCache */,
+				87237CCA2C41D3BD0058F417 /* FileCache */,
+				87237CCD2C41D4AB0058F417 /* FileCache */,
 			);
 			productName = "Tracker for YandexSchool";
 			productReference = 8723F9582C1F5E6B00AAAD38 /* Tracker for YandexSchool.app */;
@@ -410,6 +398,7 @@
 			mainGroup = 8723F94F2C1F5E6B00AAAD38;
 			packageReferences = (
 				877282192C3AC23100DF0944 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */,
+				87237CCC2C41D4AB0058F417 /* XCLocalSwiftPackageReference "FileCache" */,
 			);
 			productRefGroup = 8723F9592C1F5E6B00AAAD38 /* Products */;
 			projectDirPath = "";
@@ -521,15 +510,10 @@
 				871C0A532C28A84400B66CC9 /* DiContainer.swift in Sources */,
 				871C0A422C27356200B66CC9 /* CreateToDoItemViewModel.swift in Sources */,
 				871C0ADD2C31FCE400B66CC9 /* CalendarViewController.swift in Sources */,
-				8723F9782C20D0BE00AAAD38 /* IsoFormatter + extension.swift in Sources */,
-				8723F9712C1F838000AAAD38 /* PriorityEnum.swift in Sources */,
-				8723F9892C22122A00AAAD38 /* JSONErrorEnum.swift in Sources */,
 				871C0A4F2C28395C00B66CC9 /* PlusView.swift in Sources */,
 				877281DB2C37438D00DF0944 /* CategoriesView.swift in Sources */,
-				8723F96E2C1F742600AAAD38 /* ToDoItem + extension.swift in Sources */,
 				871C0A482C275D3A00B66CC9 /* Color + extension.swift in Sources */,
 				871C0AD12C31D12E00B66CC9 /* CalendarTableView.swift in Sources */,
-				877281D82C37402E00DF0944 /* Categories.swift in Sources */,
 				871C0A552C28AB5000B66CC9 /* EnviromentValues + ext.swift in Sources */,
 				871C0A4D2C2830BD00B66CC9 /* UIApplication + ext.swift in Sources */,
 				871C0A572C28B1B800B66CC9 /* ListCell.swift in Sources */,
@@ -540,17 +524,14 @@
 				871C0AD32C31D22300B66CC9 /* ToDoItemSection.swift in Sources */,
 				871C0A4B2C28201200B66CC9 /* MainView.swift in Sources */,
 				871C0AD52C31D44600B66CC9 /* CalendarViewPresenter.swift in Sources */,
-				8723F97A2C20E04800AAAD38 /* FileCacheError.swift in Sources */,
 				871C0A622C2AFE5400B66CC9 /* CustomColorPicker.swift in Sources */,
 				871C0AD72C31F75400B66CC9 /* CalendarTableViewHeader.swift in Sources */,
 				871C0ACF2C31CDE300B66CC9 /* DateCell.swift in Sources */,
 				871C0A5A2C28D12300B66CC9 /* DateFormatter + ext.swift in Sources */,
 				871C0A512C28930400B66CC9 /* MainViewModel.swift in Sources */,
-				8723F9762C20C64C00AAAD38 /* FileCache.swift in Sources */,
 				871C0A442C27534B00B66CC9 /* CreateToDoItem.swift in Sources */,
 				871C0A652C2B7C4700B66CC9 /* MainViewForIpad.swift in Sources */,
 				871C0ADF2C32040000B66CC9 /* CalendarViewControllerRepresentable.swift in Sources */,
-				8723F96A2C1F5F3200AAAD38 /* ToDoItem.swift in Sources */,
 				871C0A462C27586B00B66CC9 /* DeleteButtonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -825,6 +806,13 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		87237CCC2C41D4AB0058F417 /* XCLocalSwiftPackageReference "FileCache" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = FileCache;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		877282192C3AC23100DF0944 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -837,6 +825,22 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		87237CC42C41C9DE0058F417 /* FileCache */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FileCache;
+		};
+		87237CC72C41CA4A0058F417 /* FileCache */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FileCache;
+		};
+		87237CCA2C41D3BD0058F417 /* FileCache */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FileCache;
+		};
+		87237CCD2C41D4AB0058F417 /* FileCache */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FileCache;
+		};
 		8772821A2C3AC23100DF0944 /* CocoaLumberjackSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 877282192C3AC23100DF0944 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */;

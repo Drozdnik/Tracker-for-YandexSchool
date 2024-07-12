@@ -1,4 +1,6 @@
 import SwiftUI
+import FileCache
+
 enum SwitchcerViewElementEnum: Hashable {
     case text(String)
     case image(String)

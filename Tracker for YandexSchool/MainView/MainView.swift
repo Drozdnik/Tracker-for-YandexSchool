@@ -1,5 +1,6 @@
 import SwiftUI
 import CocoaLumberjackSwift
+import FileCache
 
 struct MainView:View {
     @State private var isBottomSheetPresented: Bool = false

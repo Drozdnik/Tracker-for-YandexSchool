@@ -1,4 +1,5 @@
 import SwiftUI
+import FileCache
 
 struct FilterMenu: View {
     @ObservedObject var viewModel: MainViewModel

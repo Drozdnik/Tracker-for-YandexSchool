@@ -1,24 +1,24 @@
 import SwiftUI
 
-protocol ToDoItemParseProtocol {
-    var json: Any {get}
+public protocol ToDoItemParseProtocol {
+    var json: Any { get }
     
     static func parse(json: Any) -> Self?
     static func parseCSV(csvString: String) -> [Self]
 }
 
-struct ToDoItem {
-    let id: UUID
-    let text: String
-    let priority: Priority
-    let deadLine: Date?
-    let flag: Bool
-    let createdAt: Date
-    let changedAt: Date?
-    let pickedColor: Color?
-    let category: Categories?
+public struct ToDoItem {
+    public let id: UUID
+    public let text: String
+    public let priority: Priority
+    public let deadLine: Date?
+    public let flag: Bool
+    public let createdAt: Date
+    public let changedAt: Date?
+    public let pickedColor: Color?
+    public let category: Categories?
     
-    init(
+    public init(
         id: UUID? = nil,
         text: String,
         priority: Priority,
