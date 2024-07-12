@@ -62,11 +62,11 @@ final class CalendarViewController: UIViewController {
         self.title = "Календарь дел"
         let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonPressed))
         navigationItem.leftBarButtonItem = backButton
-
+        
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.backgroundColor = .background
     }
-
+    
     private func setupSUIButton() {
         let button = PlusView {
             self.showCreateToDoItem()

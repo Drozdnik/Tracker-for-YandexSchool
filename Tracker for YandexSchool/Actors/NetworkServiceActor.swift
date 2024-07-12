@@ -1,9 +1,16 @@
 import Foundation
 
 actor NetworkServiceActor {
-    private let session = URLSession.shared
+    var task: URLSessionDataTask?
+    var isCancelled: Bool = false
     
-    func dataTask(for URLRequest: URLRequest) async throws -> (Data, URLResponse) {
-        try await session.data(for: URLRequest)
+    func set(_ dataTask: URLSessionDataTask) {
+        task = dataTask
+    }
+    
+    func cancel() {
+        isCancelled = true
+        task?.cancel()
     }
 }
+
