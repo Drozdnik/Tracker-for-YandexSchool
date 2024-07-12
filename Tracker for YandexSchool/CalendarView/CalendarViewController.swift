@@ -1,5 +1,6 @@
 import UIKit
 import SwiftUI
+import CocoaLumberjackSwift
 
 final class CalendarViewController: UIViewController {
     private var fileCache: FileCache
@@ -30,6 +31,10 @@ final class CalendarViewController: UIViewController {
         tableView.tableScrollDelegate = self
         collectionView.collectionScrollDelegate = self
         setupNavigationBar()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        DDLogInfo("Переход на экран CalendarView")
     }
     
     private func setupView() {
