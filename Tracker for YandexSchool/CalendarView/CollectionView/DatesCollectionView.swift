@@ -1,5 +1,6 @@
 import UIKit
 
+@MainActor
 protocol CollectionScrollDelegate: AnyObject {
     func didSelectItem(at index: Int)
 }

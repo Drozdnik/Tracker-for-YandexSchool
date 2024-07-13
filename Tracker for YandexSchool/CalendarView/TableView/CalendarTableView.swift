@@ -1,5 +1,6 @@
 import UIKit
 
+@MainActor
 protocol TableScrollDelegate: AnyObject {
     func didScrollToSection(index: Int)
 }
