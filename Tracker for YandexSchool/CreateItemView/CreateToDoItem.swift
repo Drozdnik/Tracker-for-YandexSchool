@@ -1,5 +1,7 @@
 import SwiftUI
 import Combine
+import CocoaLumberjackSwift
+import FileCache
 
 struct CreateToDoItem: View {
     @ObservedObject private var viewModel: CreateToDoItemViewModel
@@ -11,6 +13,7 @@ struct CreateToDoItem: View {
     init(viewModel: CreateToDoItemViewModel, onDismiss:  (() -> Void)? = nil) {
         self.viewModel = viewModel
         self.onDismiss = onDismiss
+        
     }
     
     var body: some View {
@@ -45,10 +48,12 @@ struct CreateToDoItem: View {
                 }
             }
             .onAppear {
+                DDLogInfo("Переход на экран добавления/редактирования")
                 orientationChangePublisher = NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)
                     .compactMap { _ in UIDevice.current.orientation }
                     .sink { newOrientation in
                         orientation = newOrientation
+                        
                     }
             }
             .onDisappear {
@@ -90,7 +95,6 @@ struct CreateToDoItem: View {
     }
 }
 
-// Preview
 struct CreateToDoItem_Previews: PreviewProvider {
     static var previews: some View {
         CreateToDoItem(viewModel: CreateToDoItemViewModel(fileCache: FileCacheImpl(fileName: "file")))

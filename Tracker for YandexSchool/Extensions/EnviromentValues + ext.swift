@@ -1,4 +1,3 @@
-
 import SwiftUI
 
 private struct ContainerEnvKey: EnvironmentKey {
@@ -7,8 +6,7 @@ private struct ContainerEnvKey: EnvironmentKey {
 
 extension EnvironmentValues {
     var containerDI: DiContainer {
-        get { self[ContainerEnvKey.self] }
-        set {  }
+        self[ContainerEnvKey.self]
     }
     
 }

@@ -1,4 +1,6 @@
 import XCTest
+import FileCache
+
 @testable import Tracker_for_YandexSchool
 
 final class Tracker_for_YandexSchoolTests: XCTestCase {

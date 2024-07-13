@@ -14,6 +14,4 @@ extension DateFormatter {
         formatter.setLocalizedDateFormatFromTemplate("dMMMMYYYY")
         return formatter
     }()
-    
 }
-

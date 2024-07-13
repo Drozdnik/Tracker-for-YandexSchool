@@ -9,12 +9,11 @@ struct DeleteButtonView: View {
         self.viewModel = viewModel
     }
 
-    
     var body: some View {
         
         Button(action: {
             action?()
-        }) {
+        }, label: {
             Text("Удалить")
                 .foregroundStyle(viewModel.taskName.isEmpty ? .gray : .red)
                 .frame(maxWidth: .infinity)
@@ -22,7 +21,7 @@ struct DeleteButtonView: View {
                 .background(.whiteDarkTheme)
                 .cornerRadius(10)
                 .opacity(viewModel.taskName.isEmpty ? 0.5 : 1.0)
-        }
+        })
         .disabled(viewModel.taskName.isEmpty)
     }
 }

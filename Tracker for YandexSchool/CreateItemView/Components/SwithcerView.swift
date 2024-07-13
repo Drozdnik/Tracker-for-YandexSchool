@@ -1,13 +1,15 @@
 import SwiftUI
-enum SwitchcerViewElementEnum: Hashable{
+import FileCache
+
+enum SwitchcerViewElementEnum: Hashable {
     case text(String)
     case image(String)
    
 }
+
 struct SwitcherView: View {
     @ObservedObject var viewModel: CreateToDoItemViewModel
 
-    
     private let icons: [SwitchcerViewElementEnum] = [
         .image("arrow.down"),
         .text("нет"),

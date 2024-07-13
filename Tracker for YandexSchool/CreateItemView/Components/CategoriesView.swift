@@ -1,4 +1,5 @@
 import SwiftUI
+import FileCache
 
 struct CategoriesView: View {
     @ObservedObject var viewModel: CreateToDoItemViewModel
@@ -34,52 +35,50 @@ struct CategoriesView: View {
                 }
             }
             .frame(height: 56)
-
+            
             if showColorPicker {
                 HStack {
                     TextField("Введите название категории", text: $newCategoryName)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding()
-
+                    
                     Button(action: {
                         let newColor = viewModel.pickedColor ?? .clear
                         let newCategory = Categories(name: newCategoryName, color: newColor)
                         viewModel.addCategory(category: newCategory)
-                        newCategoryName = "" 
+                        newCategoryName = ""
                         showColorPicker = false
-                    }) {
+                    }, label: {
                         Image(systemName: "plus.circle.fill")
-                            .foregroundColor(viewModel.pickedColor)
+                            .foregroundColor(viewModel.pickedColor ?? .gray)
                             .padding(.trailing, 10)
-                    }
+                    })
+                    
+                    CustomColorPicker(viewModel: viewModel)
                 }
-                
-                CustomColorPicker(viewModel: viewModel)
             }
         }
     }
-}
-
-
-struct CategoryCell: View {
-    let category: Categories
-    var isSelected: Bool
     
-    var body: some View {
-        Text(category.name)
-            .padding(.vertical, 8)
-            .padding(.horizontal, 16)
-            .background(isSelected ? category.color.opacity(0.5) : category.color)
-            .cornerRadius(10)
-            .foregroundColor(.black)
-            .overlay(
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(isSelected ? Color.black : Color.clear, lineWidth: 2)
-            )
+    struct CategoryCell: View {
+        let category: Categories
+        var isSelected: Bool
+        
+        var body: some View {
+            Text(category.name)
+                .padding(.vertical, 8)
+                .padding(.horizontal, 16)
+                .background(isSelected ? category.color.opacity(0.5) : category.color)
+                .cornerRadius(10)
+                .foregroundColor(.black)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(isSelected ? Color.black : Color.clear, lineWidth: 2)
+                )
+        }
     }
-}
-
-
-#Preview() {
-    CategoriesView(viewModel: CreateToDoItemViewModel(fileCache: FileCacheImpl(fileName: "file")))
+    
+    #Preview() {
+        CategoriesView(viewModel: CreateToDoItemViewModel(fileCache: FileCacheImpl(fileName: "file")))
+    }
 }

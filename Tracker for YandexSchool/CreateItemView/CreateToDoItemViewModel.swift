@@ -1,5 +1,5 @@
 import SwiftUI
-
+import FileCache
 final class CreateToDoItemViewModel: ObservableObject {
     private let fileCache: FileCache
     private var changedItem: ToDoItem?
@@ -7,9 +7,9 @@ final class CreateToDoItemViewModel: ObservableObject {
     private let tomorrow: Date? = Calendar.current.date(byAdding: .day, value: 1, to: Date())
     @Published var taskName: String = ""
     @Published var selectedIcon: SwitchcerViewElementEnum = .text("нет")
-    @Published var deadLine: Date? = nil
+    @Published var deadLine: Date?
     @Published var datePickerIsShown: Bool = false
-    @Published var pickedColor: Color? = nil
+    @Published var pickedColor: Color? 
     @Published var colorPickerIsShown: Bool = false
     @Published var colorPickerActivate: Bool = false
     @Published var selectedCategory: Categories?
@@ -25,15 +25,13 @@ final class CreateToDoItemViewModel: ObservableObject {
             }
         }
     }
-    
-    
     init(fileCache: FileCache, item: ToDoItem? = nil) {
         self.fileCache = fileCache
         self.changedItem = item
         self.categories = [Categories(name: "Работа", color: Color.red),
-        Categories(name: "Учеба", color: Color.blue),
-        Categories(name: "Хобби", color: Color.green),
-        Categories(name: "Другое", color: Color.clear)]
+                           Categories(name: "Учеба", color: Color.blue),
+                           Categories(name: "Хобби", color: Color.green),
+                           Categories(name: "Другое", color: Color.clear)]
         if let item = item {
             self.taskName = item.text
             self.selectedIcon = getIcon(from: item.priority)
@@ -76,12 +74,12 @@ final class CreateToDoItemViewModel: ObservableObject {
     }
     
     func showDatePicker(_ isActivate: Bool) {
-        if isActivate{
+        if isActivate {
             datePickerIsShown = true
         }
     }
     
-    func addCategory(category: Categories){
+    func addCategory(category: Categories) {
         categories.insert(category, at: categories.count - 1)
     }
     
@@ -109,4 +107,3 @@ final class CreateToDoItemViewModel: ObservableObject {
         }
     }
 }
-

@@ -1,5 +1,7 @@
 import UIKit
 import SwiftUI
+import CocoaLumberjackSwift
+import FileCache
 
 final class CalendarViewController: UIViewController {
     private var fileCache: FileCache
@@ -32,6 +34,10 @@ final class CalendarViewController: UIViewController {
         setupNavigationBar()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        DDLogInfo("Переход на экран CalendarView")
+    }
+    
     private func setupView() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -39,7 +45,6 @@ final class CalendarViewController: UIViewController {
         view.addSubview(collectionView)
         view.addSubview(tableView)
         view.backgroundColor = .background
-        
         
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -57,11 +62,11 @@ final class CalendarViewController: UIViewController {
         self.title = "Календарь дел"
         let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonPressed))
         navigationItem.leftBarButtonItem = backButton
-
+        
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.backgroundColor = .background
     }
-
+    
     private func setupSUIButton() {
         let button = PlusView {
             self.showCreateToDoItem()
@@ -81,7 +86,7 @@ final class CalendarViewController: UIViewController {
     }
     
     private func showCreateToDoItem() {
-        let createToDoItemView = CreateToDoItem(viewModel: CreateToDoItemViewModel(fileCache: fileCache)){ [weak self] in
+        let createToDoItemView = CreateToDoItem(viewModel: CreateToDoItemViewModel(fileCache: fileCache)) { [weak self] in
             self?.presenter.loadData()
             self?.presenter.onUpdateCollection?()
             self?.presenter.onUpdateTable?()

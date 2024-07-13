@@ -1,4 +1,6 @@
 import SwiftUI
+import FileCache
+
 struct CustomColorPicker: View {
     @ObservedObject var viewModel: CreateToDoItemViewModel
     @State private var brightness: CGFloat = 1.0
@@ -12,7 +14,22 @@ struct CustomColorPicker: View {
         VStack {
             GeometryReader { geometry in
                 Rectangle()
-                    .fill(  LinearGradient(gradient: Gradient(colors: [.red, .orange, .yellow, .green, .blue, .purple]), startPoint: .leading, endPoint: .trailing))
+                    .fill(
+                        LinearGradient(
+                            gradient: Gradient(
+                                colors: [
+                                    .red,
+                                    .orange,
+                                    .yellow,
+                                    .green,
+                                    .blue,
+                                    .purple
+                                ]
+                            ),
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    )
                     .mask(
                         LinearGradient(gradient: Gradient(colors: [Color.white, Color.white.opacity(0)]), startPoint: .top, endPoint: .bottom)
                     )

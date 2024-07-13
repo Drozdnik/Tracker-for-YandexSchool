@@ -1,4 +1,6 @@
 import SwiftUI
+import CocoaLumberjackSwift
+import FileCache
 
 struct MainView:View {
     @State private var isBottomSheetPresented: Bool = false
@@ -10,10 +12,10 @@ struct MainView:View {
     @State private var isEdditing: Bool?
     
     var body: some View {
-        NavigationStack{
+        NavigationStack {
             ZStack {
                 VStack {
-                    HStack{
+                    HStack {
                         Text("Выполнено - \(viewModel.finishedTasks)")
                         Spacer()
                         FilterMenu(viewModel: viewModel)
@@ -22,32 +24,31 @@ struct MainView:View {
                     List {
                         ForEach(viewModel.items, id: \.id) { item in
                             ListCell(item: item)
-                                .swipeActions(edge: .leading, allowsFullSwipe: true){
-                                    Button (action: {
+                                .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                                    Button(action: {
                                         viewModel.toogleFlag(for: item.id)
-                                    }){
+                                    }, label: {
                                         Label("Выполнено", systemImage: "checkmark.circle.fill")
-                                    }
+                                    })
                                     .tint(.green)
                                 }
                                 .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                     Button(role: .destructive, action: {
-                                    }) {
+                                    }, label: {
                                         Label("Удалить", systemImage: "trash")
-                                    }
+                                    })
                                     Button(action: {
                                         itemToEdit = item
                                         isEdditing = true
                                         isBottomSheetPresented = true
-                                    })
-                                    {
+                                    }, label: {
                                         Label("Редактировать", systemImage: "pencil")
-                                    }
+                                    })
                                     .tint(.blue)
                                 }
                         }
                         .onDelete(perform: { indexSet in
-                            if let index = indexSet.first{
+                            if let index = indexSet.first {
                                 viewModel.deleteItem(for: index)
                             }
                         })
@@ -63,10 +64,11 @@ struct MainView:View {
                     viewModel.getItems()
                     itemToEdit = nil
                     isEdditing = false
-                }){
+                }, content: {
                     CreateToDoItem(viewModel: CreateToDoItemViewModel(fileCache: container.fileCache, item: itemToEdit))
-                }
-                VStack{
+                })
+                
+                VStack {
                     Spacer()
                     PlusView(action: {
                         isBottomSheetPresented = true
@@ -80,9 +82,9 @@ struct MainView:View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         showCalendarView = true
-                    }) {
+                    }, label: {
                         Image(systemName: "calendar")
-                    }
+                    })
                     .padding(.horizontal, 15)
                 }
             }
@@ -95,13 +97,12 @@ struct MainView:View {
                 }
                 .edgesIgnoringSafeArea(.all)
             }
-            .onAppear(){
+            .onAppear {
                 viewModel.getItems()
             }
         }
     }
 }
-
 
 #Preview {
     MainView(viewModel: MainViewModel(fileCache: FileCacheImpl(fileName: "file")))

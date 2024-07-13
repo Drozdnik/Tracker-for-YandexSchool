@@ -1,4 +1,5 @@
 import SwiftUI
+import FileCache
 
 struct ListCell: View {
     var item: ToDoItem
@@ -29,7 +30,7 @@ struct ListCell: View {
                         .truncationMode(.tail)
                     
                     if let deadLine = item.deadLine {
-                        HStack(spacing: 2){
+                        HStack(spacing: 2) {
                             Image(systemName: "calendar")
                                 .foregroundStyle(.gray)
                                 .font(.caption)
@@ -53,8 +54,6 @@ struct ListCell: View {
         }
     }
 }
-
-
 
 #Preview {
     ListCell(item: ToDoItem( text: "Текст", priority: .high))

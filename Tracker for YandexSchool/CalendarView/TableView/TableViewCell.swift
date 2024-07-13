@@ -1,4 +1,5 @@
 import UIKit
+import FileCache
 
 final class TableViewCell: UITableViewCell {
     static let reuseIdentifier = "TableViewCell"

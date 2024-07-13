@@ -21,7 +21,6 @@ struct PlusView: View {
     }
 }
 
-
 #Preview {
     PlusView(action: {})
 }

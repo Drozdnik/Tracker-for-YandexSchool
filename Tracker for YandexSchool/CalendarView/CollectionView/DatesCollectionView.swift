@@ -78,7 +78,6 @@ final class DatesCollectionView: UIView {
     }
 }
 
-
 extension DatesCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return presenter.numberOfSections()
@@ -114,5 +113,3 @@ extension DatesCollectionView: UICollectionViewDelegate {
         isProgrammaticAction = false
     }
 }
-
-
