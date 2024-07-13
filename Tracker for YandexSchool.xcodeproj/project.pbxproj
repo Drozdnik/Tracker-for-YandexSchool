@@ -52,6 +52,7 @@
 		877281DB2C37438D00DF0944 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877281DA2C37438D00DF0944 /* CategoriesView.swift */; };
 		8772821B2C3AC23100DF0944 /* CocoaLumberjackSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8772821A2C3AC23100DF0944 /* CocoaLumberjackSwift */; };
 		87F02BC82C41E74A0099270A /* NetworkServiceActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F02BC72C41E74A0099270A /* NetworkServiceActor.swift */; };
+		87F02BCA2C41F8B30099270A /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F02BC92C41F8B30099270A /* NetworkTests.swift */; };
 		C4E3E61963DA368C7AEE2F91 /* Pods_Tracker_for_YandexSchoolTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF1319F037C919441D0480C /* Pods_Tracker_for_YandexSchoolTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -111,6 +112,7 @@
 		8723F9812C21A2E400AAAD38 /* Tracker_for_YandexSchoolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker_for_YandexSchoolTests.swift; sourceTree = "<group>"; };
 		877281DA2C37438D00DF0944 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		87F02BC72C41E74A0099270A /* NetworkServiceActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceActor.swift; sourceTree = "<group>"; };
+		87F02BC92C41F8B30099270A /* NetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
 		AEF1319F037C919441D0480C /* Pods_Tracker_for_YandexSchoolTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tracker_for_YandexSchoolTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B80C98C91542D565D08F0CB6 /* Pods-Tracker for YandexSchool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tracker for YandexSchool.debug.xcconfig"; path = "Target Support Files/Pods-Tracker for YandexSchool/Pods-Tracker for YandexSchool.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -300,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				8723F9812C21A2E400AAAD38 /* Tracker_for_YandexSchoolTests.swift */,
+				87F02BC92C41F8B30099270A /* NetworkTests.swift */,
 			);
 			path = "Tracker for YandexSchoolTests";
 			sourceTree = "<group>";
@@ -560,6 +563,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87F02BCA2C41F8B30099270A /* NetworkTests.swift in Sources */,
 				8723F9822C21A2E400AAAD38 /* Tracker_for_YandexSchoolTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,7 +7,7 @@ enum NetworkError: Error {
     case taskCanceled
 }
 
-func handleNetworkError(_ error: NetworkError){
+func handleNetworkError(_ error: NetworkError) {
     switch error {
     case .continuationError(let networkError):
         DDLogWarn("Ошибка в сетевом запросе \(networkError)")

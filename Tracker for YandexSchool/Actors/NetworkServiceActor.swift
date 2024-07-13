@@ -13,4 +13,3 @@ actor NetworkServiceActor {
         task?.cancel()
     }
 }
-
