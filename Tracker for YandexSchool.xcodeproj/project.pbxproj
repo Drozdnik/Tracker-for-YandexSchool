@@ -489,7 +489,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\nif [[ \"$(uname -m)\" == \"arm64\" ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif command -v swiftlint >/dev/null 2>&1; then\n    swiftlint --config \"${SRCROOT}/.swiftlint.yml\"\nelse\n    echo \"warning: SwiftLint command not found - See https://github.com/realm/SwiftLint#installation for installation instructions.\"\nfi\n";
+			shellScript = "\nif [[ \"$(uname -m)\" == \"arm64\" ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif command -v swiftlint >/dev/null 2>&1; then\n    swiftlint --config \"${SRCROOT}/.swiftlint.yml\"\n    ${PODS_ROOT}/SwiftLint/swiftlint\nelse\n    echo \"warning: SwiftLint command not found - See https://github.com/realm/SwiftLint#installation for installation instructions.\"\nfi\n";
 		};
 		9F3422C8F1FD12ACFC1033CD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

@@ -6,8 +6,8 @@ import FileCache
 struct CreateToDoItem: View {
     @ObservedObject private var viewModel: CreateToDoItemViewModel
     @Environment(\.presentationMode) var createToDoItemPresented
-    @State private var orientation: UIDeviceOrientation = UIDevice.current.orientation
-    @State private var orientationChangePublisher: AnyCancellable? 
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @Environment(\.verticalSizeClass) var verticalSizeClass
     var onDismiss: (() -> Void)?
     
     init(viewModel: CreateToDoItemViewModel, onDismiss:  (() -> Void)? = nil) {
@@ -20,7 +20,7 @@ struct CreateToDoItem: View {
         NavigationStack {
             GeometryReader { geometry in
                 ScrollView {
-                    if orientation.isPortrait {
+                    if horizontalSizeClass == .compact && verticalSizeClass == .regular {
                         verticalLayout()
                     } else {
                         horizontalLayout(geometry: geometry)
@@ -49,15 +49,6 @@ struct CreateToDoItem: View {
             }
             .onAppear {
                 DDLogInfo("Переход на экран добавления/редактирования")
-                orientationChangePublisher = NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)
-                    .compactMap { _ in UIDevice.current.orientation }
-                    .sink { newOrientation in
-                        orientation = newOrientation
-                        
-                    }
-            }
-            .onDisappear {
-                orientationChangePublisher?.cancel()
             }
         }
     }
@@ -71,8 +62,6 @@ struct CreateToDoItem: View {
             ImportanceListView(viewModel: viewModel)
             
             DeleteButtonView(action: viewModel.deleteButtonTapped, viewModel: viewModel)
-                .padding(.horizontal)
-                .padding(.bottom, 20)
             Spacer()
         }
     }
@@ -86,11 +75,9 @@ struct CreateToDoItem: View {
             VStack {
                 ImportanceListView(viewModel: viewModel)
                 DeleteButtonView(action: viewModel.deleteButtonTapped, viewModel: viewModel)
-                    .padding(.horizontal)
-                    .padding(.bottom, 20)
                 Spacer()
             }
-         
+            
         }
     }
 }

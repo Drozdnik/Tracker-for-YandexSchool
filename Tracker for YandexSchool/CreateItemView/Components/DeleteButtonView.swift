@@ -23,5 +23,7 @@ struct DeleteButtonView: View {
                 .opacity(viewModel.taskName.isEmpty ? 0.5 : 1.0)
         })
         .disabled(viewModel.taskName.isEmpty)
+        .padding(.horizontal)
+        .padding(.bottom, 20)
     }
 }
