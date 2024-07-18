@@ -1,6 +1,6 @@
 import Foundation
 import FileCache
-struct NetworkManager {
+class NetworkManager {
     enum CodeResult<String> {
         case success
         case failure(String)
@@ -8,10 +8,12 @@ struct NetworkManager {
 
     static let enviroment: BaseURLConfig = .dev
     private let router = Router<ToDoItemApi>()
+    private(set) var revision: Int?
     
     func getToDoList(completion: @escaping (_ items: [ToDoItem]?, _ error: String?) -> ()) async {
-        await router.request(.getList) { data, response, error in
-            if let error = error {
+        await router.request(.getList) { [weak self] data, response, error in
+            guard let self else { return }
+            if error != nil {
                 completion(nil, "Please check your network connection.")
                 return
             }
@@ -30,8 +32,9 @@ struct NetworkManager {
                 do {
                     let decoder = JSONDecoder()
                     decoder.dateDecodingStrategy = .secondsSince1970
-                    let apiResponse = try decoder.decode([ToDoItem].self, from: responseData)
-                    completion(apiResponse, nil)
+                    let apiResponse = try decoder.decode(ToDoItemResponse.self, from: responseData)
+                    self.revision = apiResponse.revision
+                    completion(apiResponse.list, nil)
                 } catch {
                     completion(nil, NetworkResponse.unableToDecode.rawValue)
                 }

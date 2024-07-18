@@ -46,6 +46,7 @@ struct TrackerForYandexSchoolApp: App {
                 DDLogError("Failed to fetch ToDo list: \(error)")
             } else if let items = items {
                 DDLogInfo("Fetched ToDo list: \(items)")
+                DDLogInfo("Fetched ToDo with revision: \(networkManager.revision ?? "No revision")")
             }
         }
     }

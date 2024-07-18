@@ -3,6 +3,6 @@ import FileCache
 
 struct ToDoItemResponse: Decodable {
     let status: String
-    let element: ToDoItem
+    let list: [ToDoItem]
     let revision: Int
 }
