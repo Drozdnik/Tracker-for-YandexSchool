@@ -1,13 +1,8 @@
 import SwiftUI
 
-public protocol ToDoItemParseProtocol {
-    var json: Any { get }
-    
-    static func parse(json: Any) -> Self?
-    static func parseCSV(csvString: String) -> [Self]
-}
 
-public struct ToDoItem {
+
+public struct ToDoItem: Decodable {
     public let id: UUID
     public let text: String
     public let priority: Priority
@@ -18,6 +13,10 @@ public struct ToDoItem {
     public let pickedColor: Color?
     public let category: Categories?
     
+    enum CodingKeys: String, CodingKey {
+        case id, text, priority, flag, createdAt, changedAt, pickedColor, category
+        case deadLine = "deadline"
+    }
     public init(
         id: UUID? = nil,
         text: String,
@@ -38,5 +37,18 @@ public struct ToDoItem {
         self.changedAt = changedAt
         self.pickedColor = pickedColor
         self.category = category
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(UUID.self, forKey: .id)
+        text = try container.decode(String.self, forKey: .text)
+        priority = try container.decode(Priority.self, forKey: .priority)
+        deadLine = try? container.decode(Date.self, forKey: .deadLine)
+        flag = try container.decode(Bool.self, forKey: .flag)
+        createdAt = try container.decode(Date.self, forKey: .createdAt)
+        changedAt = try? container.decode(Date.self, forKey: .changedAt)
+        pickedColor = nil
+        category = nil
     }
 }

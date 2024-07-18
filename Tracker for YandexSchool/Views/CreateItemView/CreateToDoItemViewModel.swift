@@ -86,19 +86,19 @@ final class CreateToDoItemViewModel: ObservableObject {
     private func updatePriority(from icon: SwitchcerViewElementEnum) -> Priority {
         switch icon {
         case .text("нет"):
-            return .normal
+            return .basic
         case .text("‼️"):
             return .high
         case .image("arrow.down"):
             return .low
         default:
-            return .normal
+            return .basic
         }
     }
     
     private func getIcon(from priority: Priority) -> SwitchcerViewElementEnum {
         switch priority {
-        case .normal:
+        case .basic:
             return .text("нет")
         case .high:
             return .text("‼️")

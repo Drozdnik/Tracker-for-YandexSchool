@@ -1,6 +1,6 @@
 import Foundation
 
-extension ToDoItem: ToDoItemParseProtocol {
+extension ToDoItem {
     
     public var json: Any {
         let isoFormatter = ISO8601DateFormatter.shared
@@ -11,7 +11,7 @@ extension ToDoItem: ToDoItemParseProtocol {
             "createdAt": isoFormatter.string(from: createdAt)
         ]
         
-        if priority != .normal {
+        if priority != .basic {
             jsonObject["priority"] = priority.rawValue
         }
         
@@ -58,7 +58,7 @@ extension ToDoItem: ToDoItemParseProtocol {
            let value = Priority(rawValue: priorityRaw) {
             priority = value
         } else {
-            priority = .normal
+            priority = .basic
         }
         
         return ToDoItem(
@@ -83,7 +83,7 @@ extension ToDoItem: ToDoItemParseProtocol {
             guard columns.count >= 7 else {continue}
             let id = UUID(uuidString: columns[0])
             let text = columns[1]
-            let priority = Priority(rawValue: columns[2]) ?? .normal
+            let priority = Priority(rawValue: columns[2]) ?? .basic
             let flag = columns[3] == "true"
             let createdAt = columns[4] != "nil" ? isoFormatter.date(from: columns[4]) : Date()
             let deadLine = columns[5] != "nil" ? isoFormatter.date(from: columns[5]) : nil

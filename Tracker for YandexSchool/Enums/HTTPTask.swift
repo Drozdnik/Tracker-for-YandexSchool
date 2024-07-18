@@ -1,8 +1,13 @@
-//
-//  HTTPTask.swift
-//  Tracker for YandexSchool
-//
-//  Created by Михаил  on 18.07.2024.
-//
-
 import Foundation
+
+public typealias HTTPHeaders = [String:String]
+public typealias Parameters = [String:Any]
+
+enum HTTPTask {
+    case request
+    case requestWithBody (
+        bodyParameters: Parameters?,
+        additionalHeaders: HTTPHeaders
+    )
+    case requestHeaders(additionalHeaders: HTTPHeaders)
+}

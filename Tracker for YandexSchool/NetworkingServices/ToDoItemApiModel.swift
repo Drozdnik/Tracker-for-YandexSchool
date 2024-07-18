@@ -1,8 +1,9 @@
-//
-//  ToDoItemApiModel.swift
-//  Tracker for YandexSchool
-//
-//  Created by Михаил  on 18.07.2024.
-//
-
 import Foundation
+import FileCache
+
+struct  ToDoItemResponce: Decodable {
+    let status: String
+    let list: [ToDoItem]
+    let revision: Int
+}
+
