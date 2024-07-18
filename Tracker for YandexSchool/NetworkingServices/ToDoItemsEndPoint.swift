@@ -21,7 +21,7 @@ extension ToDoItemApi: EndPointType {
     var environmentBaseURL: String {
         switch NetworkManager.enviroment {
         case .dev:
-            return "https://beta.mrdekk.ru/todo"
+            return "https://hive.mrdekk.ru/todo"
         }
     }
     var baseURL: URL {
@@ -64,13 +64,13 @@ extension ToDoItemApi: EndPointType {
         }
     }
     
-    var headers: HTTPHeaders? {
-        let bearerToken = "YOUR_BEARER_TOKEN_HERE"
-        
-        var headers = HTTPHeaders()
-        headers["Authorization"] = bearerToken
-        return headers
-    }
+//    var headers: HTTPHeaders? {
+//        let bearerToken = "Irime"
+//        
+//        var headers = HTTPHeaders()
+//        headers["Authorization"] = bearerToken
+//        return headers
+//    }
     
     
 }

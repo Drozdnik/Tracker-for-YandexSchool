@@ -3,6 +3,7 @@ import Foundation
 extension URLSession {
     func dataTask(for request: URLRequest) async throws -> (Data, URLResponse) {
         let networkActor = NetworkServiceActor()
+        print (request)
         return try await withTaskCancellationHandler {
             try await withCheckedThrowingContinuation { continuation in
                 let dataTask = self.dataTask(with: request) { data, response, error in

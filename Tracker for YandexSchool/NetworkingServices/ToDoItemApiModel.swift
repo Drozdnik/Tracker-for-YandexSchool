@@ -1,9 +1,8 @@
 import Foundation
 import FileCache
 
-struct  ToDoItemResponce: Decodable {
+struct ToDoItemResponse: Decodable {
     let status: String
-    let list: [ToDoItem]
+    let element: ToDoItem
     let revision: Int
 }
-

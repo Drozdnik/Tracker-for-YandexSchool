@@ -63,6 +63,8 @@
 		8772821B2C3AC23100DF0944 /* CocoaLumberjackSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8772821A2C3AC23100DF0944 /* CocoaLumberjackSwift */; };
 		87DD9EF72C49A2E600650479 /* ToDoItemApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DD9EF62C49A2E600650479 /* ToDoItemApiModel.swift */; };
 		87DD9EF92C49A41100650479 /* JSONDecoder + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DD9EF82C49A41100650479 /* JSONDecoder + ext.swift */; };
+		87DD9EFB2C49AAD900650479 /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DD9EFA2C49AAD900650479 /* NetworkResponse.swift */; };
+		87DD9EFD2C49B01700650479 /* RouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DD9EFC2C49B01700650479 /* RouterTests.swift */; };
 		87F02BC82C41E74A0099270A /* NetworkServiceActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F02BC72C41E74A0099270A /* NetworkServiceActor.swift */; };
 		87F02BCA2C41F8B30099270A /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F02BC92C41F8B30099270A /* NetworkTests.swift */; };
 		C4E3E61963DA368C7AEE2F91 /* Pods_Tracker_for_YandexSchoolTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF1319F037C919441D0480C /* Pods_Tracker_for_YandexSchoolTests.framework */; };
@@ -135,6 +137,8 @@
 		877281DA2C37438D00DF0944 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		87DD9EF62C49A2E600650479 /* ToDoItemApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemApiModel.swift; sourceTree = "<group>"; };
 		87DD9EF82C49A41100650479 /* JSONDecoder + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder + ext.swift"; sourceTree = "<group>"; };
+		87DD9EFA2C49AAD900650479 /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
+		87DD9EFC2C49B01700650479 /* RouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterTests.swift; sourceTree = "<group>"; };
 		87F02BC72C41E74A0099270A /* NetworkServiceActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceActor.swift; sourceTree = "<group>"; };
 		87F02BC92C41F8B30099270A /* NetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
 		AEF1319F037C919441D0480C /* Pods_Tracker_for_YandexSchoolTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tracker_for_YandexSchoolTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -308,6 +312,7 @@
 				87237CD12C41D8320058F417 /* NetworkError.swift */,
 				87479DED2C49035400FFFA7B /* HTTPMethod.swift */,
 				87479DEF2C4908F500FFFA7B /* HTTPTask.swift */,
+				87DD9EFA2C49AAD900650479 /* NetworkResponse.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -327,6 +332,7 @@
 			children = (
 				8723F9812C21A2E400AAAD38 /* Tracker_for_YandexSchoolTests.swift */,
 				87F02BC92C41F8B30099270A /* NetworkTests.swift */,
+				87DD9EFC2C49B01700650479 /* RouterTests.swift */,
 			);
 			path = "Tracker for YandexSchoolTests";
 			sourceTree = "<group>";
@@ -610,6 +616,7 @@
 				871C0A572C28B1B800B66CC9 /* ListCell.swift in Sources */,
 				871C0AE12C33623E00B66CC9 /* CollectionItem.swift in Sources */,
 				871C0A402C27224B00B66CC9 /* ListView.swift in Sources */,
+				87DD9EFB2C49AAD900650479 /* NetworkResponse.swift in Sources */,
 				871C0A5C2C292D6E00B66CC9 /* FilterMenu.swift in Sources */,
 				87479DF72C49162200FFFA7B /* JSONParameterEncoder.swift in Sources */,
 				871C0ADB2C31F94F00B66CC9 /* TableViewCell.swift in Sources */,
@@ -636,6 +643,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				87F02BCA2C41F8B30099270A /* NetworkTests.swift in Sources */,
+				87DD9EFD2C49B01700650479 /* RouterTests.swift in Sources */,
 				8723F9822C21A2E400AAAD38 /* Tracker_for_YandexSchoolTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

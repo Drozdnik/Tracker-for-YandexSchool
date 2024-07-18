@@ -4,6 +4,7 @@ import CocoaLumberjackSwift
 @main
 struct TrackerForYandexSchoolApp: App {
     @Environment(\.containerDI) var container
+    private let networkManager = NetworkManager()
     
     init() {
         setupLogging()
@@ -21,6 +22,9 @@ struct TrackerForYandexSchoolApp: App {
                 MainView(viewModel: MainViewModel(fileCache: container.fileCache))
                     .onAppear {
                         DDLogInfo("Загрузка интерфейса для iPhone")
+                        Task {
+                            await loadToDoList()
+                        }
                     }
             }
         }
@@ -35,5 +39,14 @@ struct TrackerForYandexSchoolApp: App {
         DDLog.add(fileLogger)
         
         dynamicLogLevel = DDLogLevel.verbose
+    }
+    private func loadToDoList() async {
+        await networkManager.getToDoList { items, error in
+            if let error = error {
+                DDLogError("Failed to fetch ToDo list: \(error)")
+            } else if let items = items {
+                DDLogInfo("Fetched ToDo list: \(items)")
+            }
+        }
     }
 }

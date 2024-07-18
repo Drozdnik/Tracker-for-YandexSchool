@@ -14,9 +14,13 @@ public struct ToDoItem: Decodable {
     public let category: Categories?
     
     enum CodingKeys: String, CodingKey {
-        case id, text, priority, flag, createdAt, changedAt, pickedColor, category
-        case deadLine = "deadline"
+        case id, text, importance, done, color, priority
+        case deadline = "deadLine"
+        case createdAt = "created_at"
+        case changedAt = "changed_at"
+        case lastUpdatedBy = "last_updated_by"
     }
+    
     public init(
         id: UUID? = nil,
         text: String,
@@ -44,10 +48,10 @@ public struct ToDoItem: Decodable {
         id = try container.decode(UUID.self, forKey: .id)
         text = try container.decode(String.self, forKey: .text)
         priority = try container.decode(Priority.self, forKey: .priority)
-        deadLine = try? container.decode(Date.self, forKey: .deadLine)
-        flag = try container.decode(Bool.self, forKey: .flag)
+        deadLine = try? container.decode(Date.self, forKey: .deadline)
         createdAt = try container.decode(Date.self, forKey: .createdAt)
         changedAt = try? container.decode(Date.self, forKey: .changedAt)
+        flag = false
         pickedColor = nil
         category = nil
     }

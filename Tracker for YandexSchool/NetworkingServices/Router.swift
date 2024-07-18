@@ -7,6 +7,7 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
         let session = URLSession.shared
         do {
             let request = try self.buildRequest(from: router)
+            logRequest(request)
             let (data, response) = try await session.dataTask(for: request)
             completion(data, response, nil)
         } catch {
@@ -18,7 +19,7 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
         self.task?.cancel()
     }
     
-    private func buildRequest(from route: EndPoint) throws -> URLRequest {
+   func buildRequest(from route: EndPoint) throws -> URLRequest {
         var request = URLRequest(
             url: route.baseURL.appendingPathComponent(route.path),
             cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
@@ -30,6 +31,7 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
             switch route.task {
             case .request:
                 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                request.setValue("Bearer Irime", forHTTPHeaderField: "Authorization")
                 self.addAditionalHeaders(nil, request: &request)
                 
             case .requestWithBody(
@@ -65,5 +67,28 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
         for (key, value) in headers {
             request.setValue(value, forHTTPHeaderField: key)
         }
+    }
+    
+    private func logRequest(_ request: URLRequest) {
+        print("\n------------------\n")
+        print("Request URL: \(request.url?.absoluteString ?? "No URL")")
+        print("HTTP Method: \(request.httpMethod ?? "No HTTP Method")")
+        
+        print("Headers: ")
+        if let headers = request.allHTTPHeaderFields {
+            for (header, value) in headers {
+                print("\(header): \(value)")
+            }
+        } else {
+            print("No headers")
+        }
+        
+        print("Body: ")
+        if let body = request.httpBody, let bodyString = String(data: body, encoding: .utf8) {
+            print(bodyString)
+        } else {
+            print("No body")
+        }
+        print("\n------------------\n")
     }
 }
