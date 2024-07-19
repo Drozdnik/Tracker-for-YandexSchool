@@ -6,7 +6,7 @@ public typealias Parameters = [String:Any]
 enum HTTPTask {
     case request
     case requestWithBody (
-        bodyParameters: Parameters?,
+        bodyParameters: Parameters,
         additionalHeaders: HTTPHeaders
     )
     case requestHeaders(additionalHeaders: HTTPHeaders)

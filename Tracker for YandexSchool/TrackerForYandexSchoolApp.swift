@@ -1,11 +1,10 @@
 import SwiftUI
 import CocoaLumberjackSwift
-
+import FileCache
 @main
 struct TrackerForYandexSchoolApp: App {
     @Environment(\.containerDI) var container
 
-    
     init() {
         setupLogging()
         DDLogInfo("Приложение запущено")
@@ -45,6 +44,9 @@ struct TrackerForYandexSchoolApp: App {
             if let error = error {
                 DDLogError("Failed to fetch ToDo list: \(error)")
             } else if let items = items {
+                for item in items {
+                    container.fileCache.addItem(item)
+                }
                 DDLogInfo("Fetched ToDo list: \(items)")
                 DDLogInfo("Fetched ToDo with revision: \(container.networkManager.revision ?? "No revision")")
             }

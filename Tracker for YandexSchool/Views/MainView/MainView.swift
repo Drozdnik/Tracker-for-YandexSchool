@@ -59,13 +59,21 @@ struct MainView:View {
                         viewModel.getItems()
                     }
                 }
-                .sheet(isPresented: $isBottomSheetPresented, onDismiss: {
+                .sheet(isPresented: $isBottomSheetPresented,
+                       onDismiss: {
                     
                     viewModel.getItems()
                     itemToEdit = nil
                     isEdditing = false
-                }, content: {
-                    CreateToDoItem(viewModel: CreateToDoItemViewModel(fileCache: container.fileCache, item: itemToEdit))
+                },
+                       content: {
+                    CreateToDoItem(
+                        viewModel: CreateToDoItemViewModel(
+                            fileCache: container.fileCache,
+                            item: itemToEdit,
+                            networkManager: container.networkManager
+                        )
+                    )
                 })
                 
                 VStack {
@@ -90,7 +98,7 @@ struct MainView:View {
             }
             .fullScreenCover(isPresented: $showCalendarView) {
                 NavigationView {
-                    CalendarViewControllerRepresentable(fileCache: container.fileCache)
+                    CalendarViewControllerRepresentable(fileCache: container.fileCache, networkManager: container.networkManager)
                         .toolbarBackground(Color(UIColor.background), for: .navigationBar)
                         .toolbarBackground(.visible, for: .navigationBar)
                         .ignoresSafeArea()

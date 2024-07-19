@@ -57,7 +57,3 @@ struct CustomColorPicker: View {
         return Color(hue: hue, saturation: saturation, brightness: Double(brightness))
     }
 }
-
-#Preview{
-    CustomColorPicker(viewModel: CreateToDoItemViewModel(fileCache: FileCacheImpl(fileName: "file")))
-}

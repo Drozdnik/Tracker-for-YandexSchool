@@ -23,7 +23,7 @@ struct URLParametrEncoder: ParameterEncoder {
         }
         
         if urlRequest.value(forHTTPHeaderField: "Content-Type") == nil {
-            urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+            urlRequest.setValue("text/plain", forHTTPHeaderField: "Content-Type")
         }
     }
 }

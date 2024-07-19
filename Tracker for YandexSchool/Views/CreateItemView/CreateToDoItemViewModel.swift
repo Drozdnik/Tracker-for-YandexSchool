@@ -1,6 +1,9 @@
 import SwiftUI
 import FileCache
+import CocoaLumberjackSwift
+
 final class CreateToDoItemViewModel: ObservableObject {
+    private let networkManager: NetworkManager
     private let fileCache: FileCache
     private var changedItem: ToDoItem?
     private var changedAt: Date?
@@ -25,8 +28,9 @@ final class CreateToDoItemViewModel: ObservableObject {
             }
         }
     }
-    init(fileCache: FileCache, item: ToDoItem? = nil) {
+    init(fileCache: FileCache, item: ToDoItem? = nil, networkManager: NetworkManager) {
         self.fileCache = fileCache
+        self.networkManager = networkManager
         self.changedItem = item
         self.categories = [Categories(name: "Работа", color: Color.red),
                            Categories(name: "Учеба", color: Color.blue),
@@ -43,7 +47,7 @@ final class CreateToDoItemViewModel: ObservableObject {
         }
     }
     
-    func addItem() {
+    func addItem(){
         let priority = updatePriority(from: selectedIcon)
         if !colorPickerActivate {
             pickedColor = nil
@@ -62,6 +66,9 @@ final class CreateToDoItemViewModel: ObservableObject {
             fileCache.addItem(item)
         } else {
             let item = ToDoItem(text: taskName, priority: priority, deadLine: deadLine, pickedColor: pickedColor, category: selectedCategory)
+            Task {
+                await addItemNetwork(item: item)
+            }
             fileCache.addItem(item)
         }
     }
@@ -81,6 +88,16 @@ final class CreateToDoItemViewModel: ObservableObject {
     
     func addCategory(category: Categories) {
         categories.insert(category, at: categories.count - 1)
+    }
+    
+    private func addItemNetwork(item: ToDoItem) async {
+        await networkManager.addToDoItem(item) { error in
+            if let error = error {
+                print(error)
+            } else {
+                DDLogInfo("Item sucessfully added to network")
+            }
+        }
     }
     
     private func updatePriority(from icon: SwitchcerViewElementEnum) -> Priority {

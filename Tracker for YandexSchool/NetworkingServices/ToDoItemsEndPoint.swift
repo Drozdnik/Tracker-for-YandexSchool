@@ -5,7 +5,7 @@ enum ToDoItemApi {
     case getList
     case upgradeOnServer(revision: Int)
     case getElement(id: UUID)
-    case addElement(ToDoItem, revision: Int)
+    case addElement(ToDoItem, revision: Int, id: UUID)
     case changeElement(id: UUID, revision: Int)
     case deleteElement(id: UUID, revision: Int)
 }
@@ -13,8 +13,6 @@ enum ToDoItemApi {
 enum BaseURLConfig {
     case dev
 }
-
-
 
 extension ToDoItemApi: EndPointType {
     
@@ -46,12 +44,12 @@ extension ToDoItemApi: EndPointType {
         switch self {
         case .getList, .getElement, .upgradeOnServer:
             return .get
-        case .addElement:
-            return .post
         case .changeElement:
             return .put
         case .deleteElement:
             return .delete
+        case .addElement:
+            return .post
         }
     }
     
@@ -59,8 +57,13 @@ extension ToDoItemApi: EndPointType {
         switch self {
         case .getList, .getElement, .deleteElement, .changeElement:
             return .request
-        case .upgradeOnServer(let revision), .addElement(_, let revision):
+        case .upgradeOnServer(let revision)/*, .addElement(_, let revision)*/:
             return .requestHeaders(additionalHeaders: ["X-Last-Known-Revision": "\(revision)"])
+        case .addElement(let item, let revision, _):
+            return .requestWithBody(
+                bodyParameters: item.jsonData,
+                additionalHeaders: ["X-Last-Known-Revision": "\(revision)"]
+            )
         }
     }
     
@@ -71,6 +74,4 @@ extension ToDoItemApi: EndPointType {
 //        headers["Authorization"] = bearerToken
 //        return headers
 //    }
-    
-    
 }

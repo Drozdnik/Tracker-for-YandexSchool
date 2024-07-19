@@ -2,8 +2,9 @@ import Foundation
 import FileCache
 
 protocol NetworkManager {
-    func getToDoList(completion: @escaping (_ items: [ToDoItem]?, _ error: String?) -> ()) async
-    func addToDoItem(_ item: ToDoItem, completion: @escaping (_ error: String?) -> ()) async
+    var revision: Int? { get set }
+    func getToDoList(completion: @escaping (_ items: [ToDoItem]?, _ error: String?) -> Void) async
+    func addToDoItem(_ item: ToDoItem, completion: @escaping (_ error: String?) -> Void) async
 }
 
 class DefaultNetworkManager: NetworkManager {
@@ -14,9 +15,9 @@ class DefaultNetworkManager: NetworkManager {
 
     static let enviroment: BaseURLConfig = .dev
     private let router = Router<ToDoItemApi>()
-    private(set) var revision: Int?
+    var revision: Int?
     
-    func getToDoList(completion: @escaping (_ items: [ToDoItem]?, _ error: String?) -> ()) async {
+    func getToDoList(completion: @escaping (_ items: [ToDoItem]?, _ error: String?) -> Void) async {
         await router.request(.getList) { [weak self] data, response, error in
             guard let self else { return }
             if error != nil {
@@ -40,8 +41,10 @@ class DefaultNetworkManager: NetworkManager {
                     decoder.dateDecodingStrategy = .secondsSince1970
                     let apiResponse = try decoder.decode(ToDoItemResponse.self, from: responseData)
                     self.revision = apiResponse.revision
+                    print(self.revision)
                     completion(apiResponse.list, nil)
                 } catch {
+                    print("Ошибка декодирования: \(error)")
                     completion(nil, NetworkResponse.unableToDecode.rawValue)
                 }
             case .failure(let networkFailureError):
@@ -50,12 +53,13 @@ class DefaultNetworkManager: NetworkManager {
         }
     }
     
-    func addToDoItem(_ item: ToDoItem, completion: @escaping (_ error: String?) -> ()) async {
+    func addToDoItem(_ item: ToDoItem, completion: @escaping (_ error: String?) -> Void
+    ) async {
             guard let revision = self.revision else {
                 completion(NetworkResponse.badRevision.rawValue)
                 return
             }
-            await router.request(.addElement(item, revision: revision)) { [weak self] data, response, error in
+        await router.request(.addElement(item, revision: revision, id: item.id)) { [weak self] data, response, error in
                 guard let self = self else { return }
 
                 if error != nil {
@@ -81,8 +85,7 @@ class DefaultNetworkManager: NetworkManager {
             }
         }
     
-    
-    private func handleNetworkResponse(_ response: HTTPURLResponse) -> CodeResult<String>{
+    private func handleNetworkResponse(_ response: HTTPURLResponse) -> CodeResult<String> {
         switch response.statusCode {
         case 200...299: return .success
         case 401: return .failure(NetworkResponse.authenticationError.rawValue)

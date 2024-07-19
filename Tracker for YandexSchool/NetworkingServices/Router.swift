@@ -25,7 +25,7 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
             cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
             timeoutInterval: 10.0
         )
-        
+        // Todo: find betterPlace to token
         request.httpMethod = route.httpMethod.rawValue
         do {
             switch route.task {
@@ -38,8 +38,10 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
                 let bodyParameters,
                 let additionalHeaders
             ):
-                try self.configureParameters(bodyParameters: bodyParameters, request: &request)
-                self.addAditionalHeaders(additionalHeaders, request: &request)
+                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                request.setValue("Bearer Irime", forHTTPHeaderField: "Authorization")
+                    try self.configureParameters(parameter: bodyParameters, request: &request)
+                    self.addAditionalHeaders(additionalHeaders, request: &request)
             case .requestHeaders(let headers):
                 self.addAditionalHeaders(headers, request: &request)
             }
@@ -50,13 +52,11 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
     }
     
     private func configureParameters(
-        bodyParameters: Parameters?,
+        parameter: Parameters,
         request: inout URLRequest
     ) throws {
         do {
-            if let bodyParameters = bodyParameters {
-                try JSONParameterEncoder.encode(urlRequest: &request, parameters: bodyParameters)
-            }
+            try JSONParameterEncoder.encode(urlRequest: &request, parameters: parameter)
         } catch {
             throw error
         }

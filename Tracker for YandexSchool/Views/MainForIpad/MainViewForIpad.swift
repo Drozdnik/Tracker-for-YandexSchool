@@ -8,7 +8,7 @@ struct MainViewForIpad: View {
     var body: some View {
         HStack {
             MainView(viewModel: MainViewModel(fileCache: container.fileCache))
-            CreateToDoItem(viewModel: CreateToDoItemViewModel(fileCache: container.fileCache, item: itemToEdit))
+            CreateToDoItem(viewModel: CreateToDoItemViewModel(fileCache: container.fileCache, item: itemToEdit, networkManager: container.networkManager))
         }
     }
 }
