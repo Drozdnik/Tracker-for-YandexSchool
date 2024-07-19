@@ -4,7 +4,7 @@ import FileCache
 @main
 struct TrackerForYandexSchoolApp: App {
     @Environment(\.containerDI) var container
-
+    
     init() {
         setupLogging()
         DDLogInfo("Приложение запущено")
@@ -13,17 +13,14 @@ struct TrackerForYandexSchoolApp: App {
     var body: some Scene {
         WindowGroup {
             if UIDevice.current.userInterfaceIdiom == .pad {
-                MainViewForIpad(viewModel: MainViewModel(fileCache: container.fileCache))
+                MainViewForIpad(viewModel: MainViewModel(fileCache: container.fileCache, networkManager: container.networkManager))
                     .onAppear {
                         DDLogInfo("Загрузка интерфейса для iPad")
                     }
             } else {
-                MainView(viewModel: MainViewModel(fileCache: container.fileCache))
+                MainView(viewModel: MainViewModel(fileCache: container.fileCache, networkManager: container.networkManager))
                     .onAppear {
                         DDLogInfo("Загрузка интерфейса для iPhone")
-                        Task {
-                            await loadToDoList()
-                        }
                     }
             }
         }
@@ -38,18 +35,5 @@ struct TrackerForYandexSchoolApp: App {
         DDLog.add(fileLogger)
         
         dynamicLogLevel = DDLogLevel.verbose
-    }
-    private func loadToDoList() async {
-        await container.networkManager.getToDoList { items, error in
-            if let error = error {
-                DDLogError("Failed to fetch ToDo list: \(error)")
-            } else if let items = items {
-                for item in items {
-                    container.fileCache.addItem(item)
-                }
-                DDLogInfo("Fetched ToDo list: \(items)")
-                DDLogInfo("Fetched ToDo with revision: \(container.networkManager.revision ?? "No revision")")
-            }
-        }
     }
 }

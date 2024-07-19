@@ -20,6 +20,6 @@ struct FilterMenu: View {
     }
 }
 
-#Preview{
-    FilterMenu(viewModel: MainViewModel(fileCache: FileCacheImpl(fileName: "file")))
-}
+//#Preview{
+//    FilterMenu(viewModel: MainViewModel(fileCache: FileCacheImpl(fileName: "file")))
+//}

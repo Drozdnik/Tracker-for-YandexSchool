@@ -47,7 +47,7 @@ final class CreateToDoItemViewModel: ObservableObject {
         }
     }
     
-    func addItem(){
+    func addItem() {
         let priority = updatePriority(from: selectedIcon)
         if !colorPickerActivate {
             pickedColor = nil
@@ -73,7 +73,7 @@ final class CreateToDoItemViewModel: ObservableObject {
         }
     }
     
-    func deleteButtonTapped() {
+    func deleteButtonTapped() -> Void {
         taskName = ""
         selectedIcon = .text("нет")
         deadLineActivate = false

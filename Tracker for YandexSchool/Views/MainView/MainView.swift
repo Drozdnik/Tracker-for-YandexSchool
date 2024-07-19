@@ -106,12 +106,10 @@ struct MainView:View {
                 .edgesIgnoringSafeArea(.all)
             }
             .onAppear {
-                viewModel.getItems()
+                Task {
+                    await viewModel.loadToDoList()
+                }
             }
         }
     }
-}
-
-#Preview {
-    MainView(viewModel: MainViewModel(fileCache: FileCacheImpl(fileName: "file")))
 }

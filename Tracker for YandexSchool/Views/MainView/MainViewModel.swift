@@ -1,16 +1,19 @@
 import SwiftUI
 import FileCache
 
+
 final class MainViewModel: ObservableObject {
     private let fileCache: FileCache
+    private let networkManager: NetworkManager
     
     @Published var items: [ToDoItem] = []
     @Published var showFinished: Bool = true
     @Published var sortByPriority: Bool = true
     @Published var finishedTasks: Int = 0
     
-    init(fileCache: FileCache) {
+    init(fileCache: FileCache, networkManager: NetworkManager) {
         self.fileCache = fileCache
+        self.networkManager = networkManager
     }
     
     func getItems() {
@@ -64,6 +67,28 @@ final class MainViewModel: ObservableObject {
         sortTasks()
     }
     
+    func loadToDoList() {
+        Task {
+            await networkManager.getToDoList { [weak self] items, error in
+                guard let self = self else { return }
+                
+                if let error = error {
+                    print("Failed to fetch ToDo list: \(error)")
+                } else if let items = items {
+                    DispatchQueue.main.sync {
+                        self.items = items
+                        for item in items {
+                            self.fileCache.addItem(item)
+                        }
+                        print("Fetched ToDo list with \(items.count) items")
+                        self.getItems()
+                    }
+                }
+            }
+        }
+    }
+
+
     private func filterTasks() {
         if !showFinished {
             items = items.filter { !$0.flag }

@@ -7,7 +7,7 @@ struct MainViewForIpad: View {
     @Environment(\.containerDI) private var container
     var body: some View {
         HStack {
-            MainView(viewModel: MainViewModel(fileCache: container.fileCache))
+            MainView(viewModel: MainViewModel(fileCache: container.fileCache, networkManager: container.networkManager))
             CreateToDoItem(viewModel: CreateToDoItemViewModel(fileCache: container.fileCache, item: itemToEdit, networkManager: container.networkManager))
         }
     }
