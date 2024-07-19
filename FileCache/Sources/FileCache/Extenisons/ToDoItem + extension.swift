@@ -2,33 +2,29 @@ import Foundation
 
 extension ToDoItem {
     
-    public var json: Any {
-        let isoFormatter = ISO8601DateFormatter.shared
-        var jsonObject: [String: Any] = [
-            "id": id.uuidString,
-            "text": text,
-            "flag": flag,
-            "createdAt": isoFormatter.string(from: createdAt)
-        ]
-        
-        if priority != .basic {
-            jsonObject["priority"] = priority.rawValue
-        }
-        
-        if let deadLine = deadLine {
-            jsonObject["deadLine"] = isoFormatter.string(from: deadLine)
-        }
-        
-        if let changedAt = changedAt {
-            jsonObject["changedAt"] = isoFormatter.string(from: changedAt)
-        }
-        
-        if let json = try? JSONSerialization.data(withJSONObject: jsonObject) {
-            return json
-        } else {
-            return JSONErrorEnum.createJSONError
-        }
-    }
+    public var json: [String: Any] {
+           let isoFormatter = ISO8601DateFormatter.shared
+           var jsonObject: [String: Any] = [
+               "id": id.uuidString,
+               "text": text,
+               "done": flag,
+               "created_at": isoFormatter.string(from: createdAt)
+           ]
+           
+           if priority != .basic {
+               jsonObject["importance"] = priority.rawValue
+           }
+           
+           if let deadLine = deadLine {
+               jsonObject["deadline"] = isoFormatter.string(from: deadLine)
+           }
+           
+           if let changedAt = changedAt {
+               jsonObject["changed_at"] = isoFormatter.string(from: changedAt)
+           }
+           
+           return jsonObject
+       }
     
     public static func parse(json: Any) -> ToDoItem? {
         let isoFormatter = ISO8601DateFormatter.shared

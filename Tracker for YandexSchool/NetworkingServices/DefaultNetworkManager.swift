@@ -1,6 +1,12 @@
 import Foundation
 import FileCache
-class NetworkManager {
+
+protocol NetworkManager {
+    func getToDoList(completion: @escaping (_ items: [ToDoItem]?, _ error: String?) -> ()) async
+    func addToDoItem(_ item: ToDoItem, completion: @escaping (_ error: String?) -> ()) async
+}
+
+class DefaultNetworkManager: NetworkManager {
     enum CodeResult<String> {
         case success
         case failure(String)
@@ -43,6 +49,38 @@ class NetworkManager {
             }
         }
     }
+    
+    func addToDoItem(_ item: ToDoItem, completion: @escaping (_ error: String?) -> ()) async {
+            guard let revision = self.revision else {
+                completion(NetworkResponse.badRevision.rawValue)
+                return
+            }
+            await router.request(.addElement(item, revision: revision)) { [weak self] data, response, error in
+                guard let self = self else { return }
+
+                if error != nil {
+                    completion(NetworkResponse.badInternet.rawValue)
+                    return
+                }
+                
+                guard let response = response as? HTTPURLResponse else {
+                    completion(NetworkResponse.badRequest.rawValue)
+                    return
+                }
+                
+                switch self.handleNetworkResponse(response) {
+                case .success:
+                    guard data != nil else {
+                        completion(NetworkResponse.noData.rawValue)
+                        return
+                    }
+                    completion(nil)
+                case .failure(let networkFailureError):
+                    completion(networkFailureError)
+                }
+            }
+        }
+    
     
     private func handleNetworkResponse(_ response: HTTPURLResponse) -> CodeResult<String>{
         switch response.statusCode {

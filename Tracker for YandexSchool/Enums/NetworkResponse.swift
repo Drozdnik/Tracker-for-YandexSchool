@@ -9,4 +9,5 @@ enum NetworkResponse: String {
     case failed = "Network request failed."
     case noData = "Response returned with no data to decode."
     case unableToDecode = "We could not decode the response."
+    case badInternet = "Bad internet"
 }

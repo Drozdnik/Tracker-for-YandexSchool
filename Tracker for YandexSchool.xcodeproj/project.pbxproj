@@ -58,7 +58,7 @@
 		87479DF92C4923F300FFFA7B /* NetworkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87479DF82C4923F300FFFA7B /* NetworkRouter.swift */; };
 		87479DFB2C4924D900FFFA7B /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87479DFA2C4924D900FFFA7B /* Router.swift */; };
 		87479DFD2C4943D900FFFA7B /* ToDoItemsEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87479DFC2C4943D900FFFA7B /* ToDoItemsEndPoint.swift */; };
-		87479DFF2C494F4600FFFA7B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87479DFE2C494F4600FFFA7B /* NetworkManager.swift */; };
+		87479DFF2C494F4600FFFA7B /* DefaultNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87479DFE2C494F4600FFFA7B /* DefaultNetworkManager.swift */; };
 		877281DB2C37438D00DF0944 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877281DA2C37438D00DF0944 /* CategoriesView.swift */; };
 		8772821B2C3AC23100DF0944 /* CocoaLumberjackSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8772821A2C3AC23100DF0944 /* CocoaLumberjackSwift */; };
 		87DD9EF72C49A2E600650479 /* ToDoItemApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DD9EF62C49A2E600650479 /* ToDoItemApiModel.swift */; };
@@ -133,7 +133,7 @@
 		87479DF82C4923F300FFFA7B /* NetworkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRouter.swift; sourceTree = "<group>"; };
 		87479DFA2C4924D900FFFA7B /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		87479DFC2C4943D900FFFA7B /* ToDoItemsEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemsEndPoint.swift; sourceTree = "<group>"; };
-		87479DFE2C494F4600FFFA7B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		87479DFE2C494F4600FFFA7B /* DefaultNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNetworkManager.swift; sourceTree = "<group>"; };
 		877281DA2C37438D00DF0944 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		87DD9EF62C49A2E600650479 /* ToDoItemApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemApiModel.swift; sourceTree = "<group>"; };
 		87DD9EF82C49A41100650479 /* JSONDecoder + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder + ext.swift"; sourceTree = "<group>"; };
@@ -346,7 +346,7 @@
 				87479DF82C4923F300FFFA7B /* NetworkRouter.swift */,
 				87479DFA2C4924D900FFFA7B /* Router.swift */,
 				87479DFC2C4943D900FFFA7B /* ToDoItemsEndPoint.swift */,
-				87479DFE2C494F4600FFFA7B /* NetworkManager.swift */,
+				87479DFE2C494F4600FFFA7B /* DefaultNetworkManager.swift */,
 				87DD9EF62C49A2E600650479 /* ToDoItemApiModel.swift */,
 			);
 			path = NetworkingServices;
@@ -586,7 +586,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87479DFF2C494F4600FFFA7B /* NetworkManager.swift in Sources */,
+				87479DFF2C494F4600FFFA7B /* DefaultNetworkManager.swift in Sources */,
 				87479DFB2C4924D900FFFA7B /* Router.swift in Sources */,
 				87479DEE2C49035400FFFA7B /* HTTPMethod.swift in Sources */,
 				87479DF92C4923F300FFFA7B /* NetworkRouter.swift in Sources */,

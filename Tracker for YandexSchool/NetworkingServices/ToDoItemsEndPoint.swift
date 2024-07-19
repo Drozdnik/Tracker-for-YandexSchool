@@ -19,7 +19,7 @@ enum BaseURLConfig {
 extension ToDoItemApi: EndPointType {
     
     var environmentBaseURL: String {
-        switch NetworkManager.enviroment {
+        switch DefaultNetworkManager.enviroment {
         case .dev:
             return "https://hive.mrdekk.ru/todo"
         }
