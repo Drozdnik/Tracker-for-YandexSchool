@@ -44,7 +44,6 @@ class DefaultNetworkManager: NetworkManager {
                     print(self.revision)
                     completion(apiResponse.list, nil)
                 } catch {
-                    print("Ошибка декодирования: \(error)")
                     completion(nil, NetworkResponse.unableToDecode.rawValue)
                 }
             case .failure(let networkFailureError):
@@ -74,9 +73,17 @@ class DefaultNetworkManager: NetworkManager {
                 
                 switch self.handleNetworkResponse(response) {
                 case .success:
-                    guard data != nil else {
+                    guard let reponseData = data else {
                         completion(NetworkResponse.noData.rawValue)
                         return
+                    }
+                    do {
+                        let decoder = JSONDecoder()
+                        decoder.dateDecodingStrategy = .secondsSince1970
+                        let apiResponce = try decoder.decode(ToDoItemResponse.self, from: reponseData)
+                        self.revision = apiResponce.revision
+                    } catch {
+                        completion(NetworkResponse.unableToDecode.rawValue)
                     }
                     completion(nil)
                 case .failure(let networkFailureError):
@@ -84,6 +91,74 @@ class DefaultNetworkManager: NetworkManager {
                 }
             }
         }
+    
+    func patchItems(completion: @escaping (_ items: [ToDoItem]?, _ error: String?) -> Void) async {
+        guard let revision = self.revision else {
+            completion(nil, NetworkResponse.badInternet.rawValue)
+            return
+        }
+        await router.request(.upgradeOnServer(revision: revision)) { data, response, error in
+            if error != nil {
+                completion([],NetworkResponse.badInternet.rawValue)
+            }
+            guard let response = response as? HTTPURLResponse else {
+                completion(nil, NetworkResponse.badRequest.rawValue)
+                return
+            }
+            switch self.handleNetworkResponse(response) {
+            case .success:
+                guard let reponseData = data else {
+                    completion(nil, NetworkResponse.noData.rawValue)
+                    return
+                }
+                do {
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = .secondsSince1970
+                    let apiResponce = try decoder.decode(ToDoItemResponse.self, from: reponseData)
+                    self.revision = apiResponce.revision
+                } catch {
+                    completion(nil, NetworkResponse.unableToDecode.rawValue)
+                }
+//                completion(nil, nil)
+            case .failure(let networkFailureError):
+                completion(nil, networkFailureError)
+            }
+        }
+    }
+    
+    func getElementById(id: UUID, completion: @escaping (_ item: ToDoItem?, _ error: String?) -> Void) async {
+        guard let revision = self.revision else {
+            completion(nil, NetworkResponse.badInternet.rawValue)
+            return
+        }
+        await router.request(.getElement(id: id)) { data, response, error in
+            if error != nil {
+                completion(nil, NetworkResponse.badInternet.rawValue)
+            }
+            guard let response = response as? HTTPURLResponse else {
+                completion(nil, NetworkResponse.badRequest.rawValue)
+                return
+            }
+            switch self.handleNetworkResponse(response) {
+            case .success:
+                guard let reponseData = data else {
+                    completion(nil, NetworkResponse.noData.rawValue)
+                    return
+                }
+                do {
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = .secondsSince1970
+                    let apiResponce = try decoder.decode(ToDoItemResponse.self, from: reponseData)
+                    self.revision = apiResponce.revision
+                } catch {
+                    completion(nil, NetworkResponse.unableToDecode.rawValue)
+                }
+//                completion(nil, nil)
+            case .failure(let networkFailureError):
+                completion(nil, networkFailureError)
+            }
+        }
+    }
     
     private func handleNetworkResponse(_ response: HTTPURLResponse) -> CodeResult<String> {
         switch response.statusCode {
