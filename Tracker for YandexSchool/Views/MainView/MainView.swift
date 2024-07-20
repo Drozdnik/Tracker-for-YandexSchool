@@ -34,6 +34,7 @@ struct MainView:View {
                                 }
                                 .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                     Button(role: .destructive, action: {
+                                        viewModel.deleteItem(for: item.id)
                                     }, label: {
                                         Label("Удалить", systemImage: "trash")
                                     })
@@ -47,11 +48,6 @@ struct MainView:View {
                                     .tint(.blue)
                                 }
                         }
-                        .onDelete(perform: { indexSet in
-                            if let index = indexSet.first {
-                                viewModel.deleteItem(for: index)
-                            }
-                        })
                     }
                     .scrollContentBackground(.hidden)
                     .listRowBackground(Color.backgroundColor)
@@ -59,13 +55,21 @@ struct MainView:View {
                         viewModel.getItems()
                     }
                 }
-                .sheet(isPresented: $isBottomSheetPresented, onDismiss: {
+                .sheet(isPresented: $isBottomSheetPresented,
+                       onDismiss: {
                     
                     viewModel.getItems()
                     itemToEdit = nil
                     isEdditing = false
-                }, content: {
-                    CreateToDoItem(viewModel: CreateToDoItemViewModel(fileCache: container.fileCache, item: itemToEdit))
+                },
+                       content: {
+                    CreateToDoItem(
+                        viewModel: CreateToDoItemViewModel(
+                            fileCache: container.fileCache,
+                            item: itemToEdit,
+                            networkManager: container.networkManager
+                        )
+                    )
                 })
                 
                 VStack {
@@ -90,7 +94,7 @@ struct MainView:View {
             }
             .fullScreenCover(isPresented: $showCalendarView) {
                 NavigationView {
-                    CalendarViewControllerRepresentable(fileCache: container.fileCache)
+                    CalendarViewControllerRepresentable(fileCache: container.fileCache, networkManager: container.networkManager)
                         .toolbarBackground(Color(UIColor.background), for: .navigationBar)
                         .toolbarBackground(.visible, for: .navigationBar)
                         .ignoresSafeArea()
@@ -98,12 +102,10 @@ struct MainView:View {
                 .edgesIgnoringSafeArea(.all)
             }
             .onAppear {
-                viewModel.getItems()
+                Task {
+                    await viewModel.loadToDoList()
+                }
             }
         }
     }
-}
-
-#Preview {
-    MainView(viewModel: MainViewModel(fileCache: FileCacheImpl(fileName: "file")))
 }

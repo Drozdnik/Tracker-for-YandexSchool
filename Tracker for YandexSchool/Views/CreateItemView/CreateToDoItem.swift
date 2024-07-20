@@ -39,7 +39,9 @@ struct CreateToDoItem: View {
                 
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     Button("Сохранить", action: {
-                        viewModel.addItem()
+                        Task {
+                            viewModel.addItem()
+                        }
                         onDismiss?()
                         createToDoItemPresented.wrappedValue.dismiss()
                     })
@@ -79,11 +81,5 @@ struct CreateToDoItem: View {
             }
             
         }
-    }
-}
-
-struct CreateToDoItem_Previews: PreviewProvider {
-    static var previews: some View {
-        CreateToDoItem(viewModel: CreateToDoItemViewModel(fileCache: FileCacheImpl(fileName: "file")))
     }
 }

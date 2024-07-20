@@ -100,7 +100,3 @@ struct ImportanceListView: View {
         .background(Color.backgroundColor.edgesIgnoringSafeArea(.all))
     }
 }
-
-#Preview {
-    ImportanceListView(viewModel: CreateToDoItemViewModel(fileCache: FileCacheImpl(fileName: "file")))
-}

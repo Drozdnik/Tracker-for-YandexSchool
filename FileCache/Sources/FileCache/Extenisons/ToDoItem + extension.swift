@@ -1,34 +1,43 @@
 import Foundation
+import SwiftUI
+import UIKit
 
-extension ToDoItem: ToDoItemParseProtocol {
+extension ToDoItem: Sendable {
     
-    public var json: Any {
+    public var jsonData: [String:Any] {
         let isoFormatter = ISO8601DateFormatter.shared
+        isoFormatter.formatOptions = [.withInternetDateTime, .withDashSeparatorInDate, .withColonSeparatorInTime]
+        
         var jsonObject: [String: Any] = [
             "id": id.uuidString,
             "text": text,
-            "flag": flag,
-            "createdAt": isoFormatter.string(from: createdAt)
+            "done": flag,
+            "created_at": Int(createdAt.timeIntervalSince1970),
+            "importance": priority.rawValue
         ]
         
-        if priority != .normal {
-            jsonObject["priority"] = priority.rawValue
-        }
         
         if let deadLine = deadLine {
-            jsonObject["deadLine"] = isoFormatter.string(from: deadLine)
+            jsonObject["deadline"] = Int(deadLine.timeIntervalSince1970)
         }
         
         if let changedAt = changedAt {
-            jsonObject["changedAt"] = isoFormatter.string(from: changedAt)
+            jsonObject["changed_at"] = Int(changedAt.timeIntervalSince1970)
+        } else {
+            jsonObject["changed_at"] = Int(createdAt.timeIntervalSince1970)
         }
         
-        if let json = try? JSONSerialization.data(withJSONObject: jsonObject) {
-            return json
-        } else {
-            return JSONErrorEnum.createJSONError
+        if let colorString = pickedColor?.toHexString() {
+            jsonObject["color"] = colorString
         }
+        
+        jsonObject["last_updated_by"] = "2DB30CFC-F536-43E2-A826-A5D5D5EFA4F1"
+        
+        let wrappedObject = ["element": jsonObject]
+        
+        return wrappedObject
     }
+    
     
     public static func parse(json: Any) -> ToDoItem? {
         let isoFormatter = ISO8601DateFormatter.shared
@@ -58,7 +67,7 @@ extension ToDoItem: ToDoItemParseProtocol {
            let value = Priority(rawValue: priorityRaw) {
             priority = value
         } else {
-            priority = .normal
+            priority = .basic
         }
         
         return ToDoItem(
@@ -83,7 +92,7 @@ extension ToDoItem: ToDoItemParseProtocol {
             guard columns.count >= 7 else {continue}
             let id = UUID(uuidString: columns[0])
             let text = columns[1]
-            let priority = Priority(rawValue: columns[2]) ?? .normal
+            let priority = Priority(rawValue: columns[2]) ?? .basic
             let flag = columns[3] == "true"
             let createdAt = columns[4] != "nil" ? isoFormatter.date(from: columns[4]) : Date()
             let deadLine = columns[5] != "nil" ? isoFormatter.date(from: columns[5]) : nil
@@ -125,3 +134,31 @@ extension ToDoItem: ToDoItemParseProtocol {
         return columns
     }
 }
+//Почему то не хотелось тянуться из другого файла
+extension Color {
+    public func toHexString() -> String {
+        if #available(iOS 14.0, *) {
+            guard let components = UIColor(self).cgColor.components else {
+                return "#000000"
+            }
+            let red: CGFloat
+            let green: CGFloat
+            let blue: CGFloat
+            
+            if components.count >= 3 {
+                red = components[0]
+                green = components[1]
+                blue = components[2]
+            } else {
+                red = components[0]
+                green = components[0]
+                blue = components[0]
+            }
+            
+            return String(format: "#%02X%02X%02X", Int(red * 255), Int(green * 255), Int(blue * 255))
+        } else {
+            return" #000000"
+        }
+    }
+}
+

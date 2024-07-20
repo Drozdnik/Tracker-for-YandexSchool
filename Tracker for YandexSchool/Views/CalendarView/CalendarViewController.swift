@@ -5,12 +5,14 @@ import FileCache
 
 final class CalendarViewController: UIViewController {
     private var fileCache: FileCache
+    private var networkManager: NetworkManager
     private var presenter: CalendarViewPresenter
     private var tableView: CalendarTableView
     private var collectionView: DatesCollectionView
     
-    init(fileCache: FileCache) {
+    init(fileCache: FileCache, networkManager: NetworkManager) {
         self.fileCache = fileCache
+        self.networkManager = networkManager
         self.presenter = CalendarViewPresenter(fileCache: fileCache)
         self.tableView = CalendarTableView(presenter: presenter)
         self.collectionView = DatesCollectionView(presenter: presenter)
@@ -86,7 +88,7 @@ final class CalendarViewController: UIViewController {
     }
     
     private func showCreateToDoItem() {
-        let createToDoItemView = CreateToDoItem(viewModel: CreateToDoItemViewModel(fileCache: fileCache)) { [weak self] in
+        let createToDoItemView = CreateToDoItem(viewModel: CreateToDoItemViewModel(fileCache: fileCache, networkManager: networkManager)) { [weak self] in
             self?.presenter.loadData()
             self?.presenter.onUpdateCollection?()
             self?.presenter.onUpdateTable?()

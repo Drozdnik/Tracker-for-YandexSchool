@@ -78,7 +78,7 @@ struct CategoriesView: View {
         }
     }
     
-    #Preview() {
-        CategoriesView(viewModel: CreateToDoItemViewModel(fileCache: FileCacheImpl(fileName: "file")))
-    }
+//    #Preview() {
+//        CategoriesView(viewModel: CreateToDoItemViewModel(fileCache: FileCacheImpl(fileName: "file"), networkManager: DefaultNetworkManager as! NetworkManager))
+//    }
 }

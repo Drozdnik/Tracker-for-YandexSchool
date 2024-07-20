@@ -1,6 +1,6 @@
 import SwiftUI
 import CocoaLumberjackSwift
-
+import FileCache
 @main
 struct TrackerForYandexSchoolApp: App {
     @Environment(\.containerDI) var container
@@ -13,12 +13,12 @@ struct TrackerForYandexSchoolApp: App {
     var body: some Scene {
         WindowGroup {
             if UIDevice.current.userInterfaceIdiom == .pad {
-                MainViewForIpad(viewModel: MainViewModel(fileCache: container.fileCache))
+                MainViewForIpad(viewModel: MainViewModel(fileCache: container.fileCache, networkManager: container.networkManager))
                     .onAppear {
                         DDLogInfo("Загрузка интерфейса для iPad")
                     }
             } else {
-                MainView(viewModel: MainViewModel(fileCache: container.fileCache))
+                MainView(viewModel: MainViewModel(fileCache: container.fileCache, networkManager: container.networkManager))
                     .onAppear {
                         DDLogInfo("Загрузка интерфейса для iPhone")
                     }

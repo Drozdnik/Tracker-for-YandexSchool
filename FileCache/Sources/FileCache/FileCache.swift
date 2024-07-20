@@ -40,7 +40,7 @@ public final class FileCacheImpl: FileCache {
     
     public func saveToFile() throws {
         do {
-            let json = try JSONSerialization.data(withJSONObject: items.map({$0.json}))
+            let json = try JSONSerialization.data(withJSONObject: items.map({$0.jsonData}))
             let url = try getUrlForManager()
             try json.write(to: url)
         } catch {

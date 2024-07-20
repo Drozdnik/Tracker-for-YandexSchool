@@ -37,7 +37,3 @@ struct SwitcherView: View {
         
     }
 }
-
-#Preview {
-    SwitcherView(viewModel: CreateToDoItemViewModel(fileCache: FileCacheImpl(fileName: "file")))
-}
