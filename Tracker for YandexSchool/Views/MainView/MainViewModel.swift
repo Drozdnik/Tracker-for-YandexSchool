@@ -1,6 +1,6 @@
 import SwiftUI
 import FileCache
-
+import CocoaLumberjackSwift
 
 final class MainViewModel: ObservableObject {
     private let fileCache: FileCache
@@ -45,13 +45,24 @@ final class MainViewModel: ObservableObject {
         }
     }
     
-    func deleteItem(for item: Int) {
-        let itemID = items[item].id
+    func deleteItem(for id: UUID) {
+        guard let index = items.firstIndex(where: { $0.id == id }) else {
+            assertionFailure("Item с id \(id) не найден")
+            return
+        }
+        
+        let item = items[index]
+        
         do {
-            try fileCache.deleteItem(id: itemID)
-            getItems()
+            try fileCache.deleteItem(id: item.id)
         } catch {
-            assertionFailure("Item с id \(itemID) не найден")
+            print("Ошибка при удалении элемента из кеша: \(error)")
+        }
+        
+        items.remove(at: index)
+        
+        Task {
+            await deleteItemNetwork(id: item.id)
         }
     }
     
@@ -69,26 +80,62 @@ final class MainViewModel: ObservableObject {
     
     func loadToDoList() {
         Task {
-            await networkManager.getToDoList { [weak self] items, error in
-                guard let self = self else { return }
-                
-                if let error = error {
-                    print("Failed to fetch ToDo list: \(error)")
-                } else if let items = items {
-                    DispatchQueue.main.sync {
-                        self.items = items
-                        for item in items {
+            await networkManager.networkRequest(with: .getList) { [weak self] result in
+                DispatchQueue.main.async {
+                    guard let self = self else { return }
+                    
+                    switch result {
+                    case .success(let response):
+                        self.items = response.list
+                        for item in response.list {
                             self.fileCache.addItem(item)
                         }
-                        print("Fetched ToDo list with \(items.count) items")
+                        print("Fetched ToDo list with \(response.list.count) items")
                         self.getItems()
+                        
+                    case .failure(let error):
+                        print("Failed to fetch ToDo list: \(error)")
                     }
                 }
             }
         }
     }
-
-
+    
+    func deleteItemNetwork(id: UUID) {
+        Task {
+            networkManager.synchronizeIfNeeded { [weak self] synchronizedItems in
+                guard let self = self else { return }
+                if let synchronizedItems {
+                    for item in synchronizedItems {
+                        fileCache.addItem(item)
+                    }
+                    self.performDeleteItemNetwork(id: id)
+                } else {
+                    self.performDeleteItemNetwork(id: id)
+                }
+            }
+        }
+    }
+    
+    
+    private func performDeleteItemNetwork(id: UUID) {
+        Task {
+            await networkManager.networkRequest(with: .deleteElement(id: id, revision: networkManager.revision)) { [weak self] result in
+                DispatchQueue.main.async {
+                    guard let self = self else { return }
+                    switch result {
+                    case .success(_):
+                        DDLogInfo("Successfully deleted item with id: \(id)")
+                        
+                    case .failure(let error):
+                        DDLogWarn("Failed to delete item with id: \(id) with \(error)")
+                    }
+                }
+            }
+        }
+    }
+    
+    
     private func filterTasks() {
         if !showFinished {
             items = items.filter { !$0.flag }

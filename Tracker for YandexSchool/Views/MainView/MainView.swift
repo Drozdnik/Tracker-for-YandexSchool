@@ -34,6 +34,7 @@ struct MainView:View {
                                 }
                                 .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                     Button(role: .destructive, action: {
+                                        viewModel.deleteItem(for: item.id)
                                     }, label: {
                                         Label("Удалить", systemImage: "trash")
                                     })
@@ -47,11 +48,6 @@ struct MainView:View {
                                     .tint(.blue)
                                 }
                         }
-                        .onDelete(perform: { indexSet in
-                            if let index = indexSet.first {
-                                viewModel.deleteItem(for: index)
-                            }
-                        })
                     }
                     .scrollContentBackground(.hidden)
                     .listRowBackground(Color.backgroundColor)

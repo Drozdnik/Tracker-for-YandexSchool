@@ -6,7 +6,7 @@ enum ToDoItemApi {
     case upgradeOnServer(revision: Int)
     case getElement(id: UUID)
     case addElement(ToDoItem, revision: Int, id: UUID)
-    case changeElement(id: UUID, revision: Int)
+    case changeElement(item: ToDoItem, id: UUID, revision: Int)
     case deleteElement(id: UUID, revision: Int)
 }
 
@@ -33,7 +33,7 @@ extension ToDoItemApi: EndPointType {
         switch self {
         case .getList, .upgradeOnServer:
             return "/list"
-        case .getElement(let id), .changeElement(let id, _), .deleteElement(let id, _):
+        case .getElement(let id), .changeElement(_, let id, _), .deleteElement(let id, _):
             return "/list/\(id)"
         case .addElement:
             return "/list"
@@ -42,7 +42,7 @@ extension ToDoItemApi: EndPointType {
     
     var httpMethod: HTTPMethod {
         switch self {
-        case .getList, .getElement, .upgradeOnServer:
+        case .getList, .getElement:
             return .get
         case .changeElement:
             return .put
@@ -50,28 +50,25 @@ extension ToDoItemApi: EndPointType {
             return .delete
         case .addElement:
             return .post
+        case .upgradeOnServer:
+            return .patch
         }
     }
     
     var task: HTTPTask {
         switch self {
-        case .getList, .getElement, .deleteElement, .changeElement:
+        case .getList, .getElement:
             return .request
-        case .upgradeOnServer(let revision)/*, .addElement(_, let revision)*/:
-            return .requestHeaders(additionalHeaders: ["X-Last-Known-Revision": "\(revision)"])
-        case .addElement(let item, let revision, _):
+        case .upgradeOnServer(let revision), .deleteElement(_, let revision):
+            return .requestHeaders(
+                additionalHeaders: ["X-Last-Known-Revision": "\(revision)",
+                                    "Authorization": "Bearer Irime"
+                                   ])
+        case .addElement(let item, let revision, _), .changeElement( let item, _, let revision):
             return .requestWithBody(
                 bodyParameters: item.jsonData,
                 additionalHeaders: ["X-Last-Known-Revision": "\(revision)"]
             )
         }
     }
-    
-//    var headers: HTTPHeaders? {
-//        let bearerToken = "Irime"
-//        
-//        var headers = HTTPHeaders()
-//        headers["Authorization"] = bearerToken
-//        return headers
-//    }
 }
