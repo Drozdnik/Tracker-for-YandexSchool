@@ -35,7 +35,7 @@ final class NetworkTests: XCTestCase {
                 XCTFail("Not cancelled")
             } catch {
                 if let error = error as? NetworkError, case .taskCanceled = error {
-                    print("Task was successfully cancelled.")
+                    DDLogInfo("Task was successfully cancelled.")
                 } else {
                     XCTFail("Task failed for an unexpected reason: \(error)")
                 }

@@ -56,7 +56,7 @@ final class MainViewModel: ObservableObject {
         do {
             try fileCache.deleteItem(id: item.id)
         } catch {
-            print("Ошибка при удалении элемента из кеша: \(error)")
+            DDLogWarn("Ошибка при удалении элемента из кеша: \(error)")
         }
         
         items.remove(at: index)
@@ -83,23 +83,33 @@ final class MainViewModel: ObservableObject {
             await networkManager.networkRequest(with: .getList) { [weak self] result in
                 DispatchQueue.main.async {
                     guard let self = self else { return }
-                    
+
                     switch result {
                     case .success(let response):
-                        self.items = response.list
-                        for item in response.list {
-                            self.fileCache.addItem(item)
+                        if let listResponse = response as? ToDoListResponse {
+                            self.items = listResponse.list
+                            for item in listResponse.list {
+                                self.fileCache.addItem(item)
+                            }
+                            DDLogInfo("Fetched ToDo list with \(listResponse.list.count) items")
+                            self.getItems()
+                        } else if let itemResponse = response as? ToDoItemResponse {
+                            self.items = [itemResponse.element]
+                            self.fileCache.addItem(itemResponse.element)
+                            DDLogInfo("Fetched ToDo list with 1 item")
+                            self.getItems()
+                        } else {
+                            DDLogWarn("Response was not in expected format")
                         }
-                        print("Fetched ToDo list with \(response.list.count) items")
-                        self.getItems()
                         
                     case .failure(let error):
-                        print("Failed to fetch ToDo list: \(error)")
+                        DDLogWarn("Failed to fetch ToDo list: \(error)")
                     }
                 }
             }
         }
     }
+
     
     func deleteItemNetwork(id: UUID) {
         Task {

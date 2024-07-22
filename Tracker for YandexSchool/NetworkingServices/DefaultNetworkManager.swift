@@ -1,9 +1,10 @@
 import Foundation
 import FileCache
+import CocoaLumberjackSwift
 
 protocol NetworkManager {
     var revision: Int { get set }
-    func networkRequest(with route: ToDoItemApi, completion: @escaping (Result<ToDoItemResponse, NetworkResponse>) -> Void) async
+    func networkRequest(with route: ToDoItemApi, completion: @escaping (Result<Any, NetworkResponse>) -> Void) async
     func synchronizeIfNeeded(completion: @escaping ([ToDoItem]?) -> Void)
     var isDirty: Bool { get set }
 }
@@ -13,17 +14,17 @@ class DefaultNetworkManager: NetworkManager {
         case success
         case failure(String)
     }
- 
+    
     static let enviroment: BaseURLConfig = .dev
     private let router = Router<ToDoItemApi>()
     var revision: Int = 0
     var isDirty: Bool = false
     
-    func networkRequest(with route: ToDoItemApi, completion: @escaping (Result<ToDoItemResponse, NetworkResponse>) -> Void) async {
+    func networkRequest(with route: ToDoItemApi, completion: @escaping (Result<Any, NetworkResponse>) -> Void) async {
         await router.request(route) { [weak self] (data: Data?, response: URLResponse?, error: Error?) in
             guard let self = self else { return }
             
-            if error != nil {
+            if let error = error {
                 self.isDirty = true
                 completion(.failure(.badInternet))
                 return
@@ -44,22 +45,31 @@ class DefaultNetworkManager: NetworkManager {
                 do {
                     let decoder = JSONDecoder()
                     decoder.dateDecodingStrategy = .secondsSince1970
-                    let decodedData = try decoder.decode(ToDoItemResponse.self, from: data)
-                    if self.revision != decodedData.revision {
-                        self.revision = decodedData.revision
+                    switch route {
+                    case .getList, .upgradeOnServer:
+                        let decodedData = try decoder.decode(ToDoListResponse.self, from: data)
+                        if self.revision != decodedData.revision {
+                            self.revision = decodedData.revision
+                        }
+                        completion(.success(decodedData))
+                    default:
+                        let decodedData = try decoder.decode(ToDoItemResponse.self, from: data)
+                        if self.revision != decodedData.revision {
+                            self.revision = decodedData.revision
+                        }
+                        completion(.success(decodedData))
                     }
-                    completion(.success(decodedData))
                 } catch {
                     self.isDirty = true
                     completion(.failure(.unableToDecode))
                 }
-            case .failure(let error):
+            case .failure(let networkResponse):
                 self.isDirty = true
-                print (error)
-                completion(.failure(.failedError))
+                completion(.failure(.unableToDecode))
             }
         }
     }
+    
     
     func synchronizeIfNeeded(completion: @escaping ([ToDoItem]?) -> Void) {
         if isDirty {
@@ -67,12 +77,19 @@ class DefaultNetworkManager: NetworkManager {
                 let result = await networkRequest(with: .upgradeOnServer(revision: revision)) { syncResult in
                     switch syncResult {
                     case .success(let response):
-                        self.isDirty = false
-                        DispatchQueue.main.async {
-                            completion(response.list)
+                        DispatchQueue.main.async { [weak self] in
+                            guard let self = self else { return }
+                            self.isDirty = false
+                            if let listResponse = response as? ToDoListResponse {
+                                completion(listResponse.list)
+                            } else if let itemResponse = response as? ToDoItemResponse {
+                                completion([itemResponse.element])
+                            } else {
+                                completion(nil)
+                            }
                         }
                     case .failure(let error):
-                        print("Ошибка синхронизации: \(error)")
+                        DDLogWarn("Ошибка синхронизации: \(error)")
                         DispatchQueue.main.async {
                             completion(nil)
                         }
@@ -83,8 +100,9 @@ class DefaultNetworkManager: NetworkManager {
             completion(nil)
         }
     }
-
-
+    
+    
+    
     
     private func handleNetworkResponse(_ response: HTTPURLResponse) -> CodeResult<String> {
         switch response.statusCode {
