@@ -77,4 +77,4 @@ struct CategoriesView: View {
                 )
         }
     }
-    
+}
