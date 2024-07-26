@@ -2,6 +2,7 @@ import Foundation
 import SwiftUI
 import UIKit
 
+@available(iOS 17, *)
 extension ToDoItem: Sendable {
     
     public var jsonData: [String:Any] {

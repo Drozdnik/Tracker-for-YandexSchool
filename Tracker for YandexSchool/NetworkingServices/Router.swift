@@ -68,7 +68,7 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
             request.setValue(value, forHTTPHeaderField: key)
         }
     }
-    
+    // сделать логер
     private func logRequest(_ request: URLRequest) {
         print("\n------------------\n")
         print("Request URL: \(request.url?.absoluteString ?? "No URL")")

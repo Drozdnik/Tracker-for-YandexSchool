@@ -1,6 +1,6 @@
 import Foundation
 import CocoaLumberjackSwift
-
+@available(iOS 17, *)
 public protocol FileCache {
     func getItems() -> [ToDoItem]
     func addItem(_ item: ToDoItem)
@@ -8,7 +8,7 @@ public protocol FileCache {
     func saveToFile() throws
     func loadFromFile() throws
 }
-
+@available(iOS 17, *)
 public final class FileCacheImpl: FileCache {
     public private(set) var items: [ToDoItem] = []
     private static let manager = FileManager.default
