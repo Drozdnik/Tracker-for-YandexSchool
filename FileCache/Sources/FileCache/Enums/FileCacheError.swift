@@ -5,4 +5,5 @@ public enum FileCacheError: Error {
     case savingError
     case urlCreationError
     case loadingError
+    case deleteError
 }

@@ -9,7 +9,7 @@ public enum Priority: String, Comparable, Decodable {
         return lhs.order < rhs.order
     }
     
-    private var order: Int {
+    public var order: Int {
         switch self {
         case .high: return 3
         case .basic: return 2

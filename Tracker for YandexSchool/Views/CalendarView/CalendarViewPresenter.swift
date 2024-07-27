@@ -13,7 +13,7 @@ final class CalendarViewPresenter {
     }
     
     func loadData() {
-        let items = fileCache.getItems()
+        let items = fileCache.getItems(sortedBy: .byCreationDateDescending)
         
         groupedItems.removeAll()
         
@@ -57,7 +57,7 @@ final class CalendarViewPresenter {
                 category: item.category
             )
             
-            fileCache.addItem(updatedItem)
+        try? fileCache.addItem(updatedItem)
         loadData()
         onUpdateTable?()
         }
