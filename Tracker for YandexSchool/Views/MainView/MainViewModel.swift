@@ -17,9 +17,7 @@ final class MainViewModel: ObservableObject {
     }
     
     func getItems() {
-        items = fileCache.getItems()
-        filterTasks()
-        sortTasks()
+        items = fileCache.getItems(sortedBy: .byPriorityDescending)
     }
     
     func findFinishedTasks() {
@@ -39,7 +37,7 @@ final class MainViewModel: ObservableObject {
                 changedAt: updatetItem.changedAt
             )
             
-          try?  fileCache.addItem(newItem)
+            try?  fileCache.addItem(newItem)
             getItems()
             findFinishedTasks()
         }
@@ -74,7 +72,6 @@ final class MainViewModel: ObservableObject {
     
     func toggleSortPreference() {
         sortByPriority.toggle()
-        getItems()
         sortTasks()
     }
     
@@ -83,7 +80,7 @@ final class MainViewModel: ObservableObject {
             await networkManager.networkRequest(with: .getList) { [weak self] result in
                 DispatchQueue.main.async {
                     guard let self = self else { return }
-
+                    
                     switch result {
                     case .success(let response):
                         if let listResponse = response as? ToDoListResponse {
@@ -103,14 +100,14 @@ final class MainViewModel: ObservableObject {
                         }
                         
                     case .failure(let error):
-                       _=self.fileCache.getItems()
+                        self.getItems()
                         DDLogWarn("Failed to fetch ToDo list: \(error)")
                     }
                 }
             }
         }
     }
-
+    
     
     func deleteItemNetwork(id: UUID) {
         Task {
@@ -148,16 +145,20 @@ final class MainViewModel: ObservableObject {
     
     
     private func filterTasks() {
-        if !showFinished {
-            items = items.filter { !$0.flag }
+        if showFinished {
+            items = fileCache.getItems(sortedBy: .showFinished)
+        } else {
+            if showFinished {
+                items = fileCache.getItems(sortedBy: .hideFinished)
+            }
         }
     }
     
     private func sortTasks() {
         if sortByPriority {
-            items.sort { $0.priority > $1.priority }
+            items = fileCache.getItems(sortedBy: .byPriorityDescending)
         } else {
-            items.sort { $0.createdAt < $1.createdAt }
+            items = fileCache.getItems(sortedBy: .byCreationDateDescending)
         }
     }
 }

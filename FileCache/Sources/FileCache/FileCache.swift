@@ -3,9 +3,15 @@ import CocoaLumberjackSwift
 import SwiftData
 import SwiftUI
 
+public enum SortOrder {
+    case byCreationDateDescending
+    case byPriorityDescending
+    case showFinished
+    case hideFinished
+}
 @available(iOS 17, *)
 public protocol FileCache {
-    func getItems() -> [ToDoItem]
+    func getItems(sortedBy: SortOrder) -> [ToDoItem]
     func addItem(_ item: ToDoItem) throws
     func deleteItem(id: UUID) throws
 }
@@ -25,13 +31,32 @@ public final class FileCacheImpl: FileCache {
             fatalError("Failed to initialize ModelContainer: \(error)")
         }
     }
-    
-    @MainActor public func getItems() -> [ToDoItem] {
+    // ToImprove
+    @MainActor public func getItems(sortedBy sortOrder: SortOrder) -> [ToDoItem] {
         let context = container.mainContext
         let fetchDescriptor = FetchDescriptor<TodoItemModel>()
         
         do {
-            let results = try context.fetch(fetchDescriptor)
+            var results = try context.fetch(fetchDescriptor)
+            
+            switch sortOrder {
+            case .byCreationDateDescending:
+                results.sort(by: { $0.createdAt > $1.createdAt })
+            case .byPriorityDescending:
+                results.sort {
+                    let lhsPriority = Priority(rawValue: $0.priorityRawValue)?.order ?? 0
+                    let rhsPriority = Priority(rawValue: $1.priorityRawValue)?.order ?? 0
+                    if lhsPriority == rhsPriority {
+                        return $0.createdAt > $1.createdAt
+                    }
+                    return lhsPriority > rhsPriority
+                }
+            case .showFinished:
+                _ = results
+            case .hideFinished:
+                results = results.filter { !$0.isCompleted }
+            }
+            
             return results.map { ToDoItem(from: $0) }
         } catch {
             DDLogError("Failed to fetch todo items: \(error)")
@@ -39,34 +64,33 @@ public final class FileCacheImpl: FileCache {
         }
     }
     
-    @MainActor public func addItem(_ item: ToDoItem) throws {
-            let context = container.mainContext
-            
-            let fetchDescriptor = FetchDescriptor<TodoItemModel>()
-            
-            do {
-                let results = try context.fetch(fetchDescriptor)
-                
-                if let existingItem = results.first(where: { $0.id == item.id.uuidString }) {
-                    existingItem.text = item.text
-                    existingItem.priorityRawValue = item.priority.rawValue
-                    existingItem.deadline = item.deadLine
-                    existingItem.isCompleted = item.flag
-                    existingItem.changeAt = item.changedAt ?? item.createdAt
-                    existingItem.hexColor = item.pickedColor?.toHex()
-                    existingItem.category = item.category?.name
-                } else {
-                    let todoModel = TodoItemModel(from: item)
-                    context.insert(todoModel)
-                }
-                try context.save()
-            } catch {
-                DDLogError("Failed to add or update todo item: \(error)")
-                throw FileCacheError.savingError
-            }
-        }
-
     
+    
+    @MainActor public func addItem(_ item: ToDoItem) throws {
+        let context = container.mainContext
+        let fetchDescriptor = FetchDescriptor<TodoItemModel>()
+        
+        do {
+            let results = try context.fetch(fetchDescriptor)
+            
+            if let existingItem = results.first(where: { $0.id == item.id.uuidString }) {
+                existingItem.text = item.text
+                existingItem.priorityRawValue = item.priority.rawValue
+                existingItem.deadline = item.deadLine
+                existingItem.isCompleted = item.flag
+                existingItem.changeAt = item.changedAt ?? item.createdAt
+                existingItem.hexColor = item.pickedColor?.toHex()
+                existingItem.category = item.category?.name
+            } else {
+                let todoModel = TodoItemModel(from: item)
+                context.insert(todoModel)
+            }
+            try context.save()
+        } catch {
+            DDLogError("Failed to add or update todo item: \(error)")
+            throw FileCacheError.savingError
+        }
+    }
     
     @MainActor public func deleteItem(id: UUID) throws {
         let context = container.mainContext

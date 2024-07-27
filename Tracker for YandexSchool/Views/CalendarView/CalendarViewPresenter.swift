@@ -13,7 +13,7 @@ final class CalendarViewPresenter {
     }
     
     func loadData() {
-        let items = fileCache.getItems()
+        let items = fileCache.getItems(sortedBy: .byCreationDateDescending)
         
         groupedItems.removeAll()
         
