@@ -66,13 +66,13 @@ final class CreateToDoItemViewModel: ObservableObject {
             Task {
                 await changeItemNetwork(item: item, id:item.id)
             }
-            fileCache.addItem(item)
+           try? fileCache.addItem(item)
         } else {
             let item = ToDoItem(text: taskName, priority: priority, deadLine: deadLine, pickedColor: pickedColor, category: selectedCategory)
             Task {
                 await addItemNetwork(item: item)
             }
-            fileCache.addItem(item)
+           try? fileCache.addItem(item)
         }
     }
     
@@ -99,7 +99,7 @@ final class CreateToDoItemViewModel: ObservableObject {
                 guard let self = self else { return }
                 if let synchronizedItems {
                     for item in synchronizedItems {
-                        self.fileCache.addItem(item)
+                      try? self.fileCache.addItem(item)
                     }
                     self.performAddItemNetwork(item: item)
                 } else {
@@ -137,7 +137,7 @@ final class CreateToDoItemViewModel: ObservableObject {
                 guard let self = self else { return }
                 if let synchronizedItems {
                     for item in synchronizedItems {
-                        self.fileCache.addItem(item)
+                       try? self.fileCache.addItem(item)
                     }
                     self.performChangeItemNetwork(item: item, id: id)
                 } else {

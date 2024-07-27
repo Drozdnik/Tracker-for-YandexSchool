@@ -81,4 +81,18 @@ extension Color {
 
         self.init(.sRGB, red: Double(r) / 255, green: Double(g) / 255, blue: Double(b) / 255, opacity: Double(a) / 255)
     }
+    
+    func toHex() -> String? {
+            let components = self.cgColor?.components
+            let r: CGFloat = components?[0] ?? 0.0
+            let g: CGFloat = components?[1] ?? 0.0
+            let b: CGFloat = components?[2] ?? 0.0
+            let a: CGFloat = components?[3] ?? 1.0
+            
+            if a < 1.0 {
+                return String(format: "%02X%02X%02X%02X", Int(r * 255), Int(g * 255), Int(b * 255), Int(a * 255))
+            } else {
+                return String(format: "%02X%02X%02X", Int(r * 255), Int(g * 255), Int(b * 255))
+            }
+        }
 }

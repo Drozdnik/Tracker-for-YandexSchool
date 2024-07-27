@@ -39,7 +39,7 @@ final class MainViewModel: ObservableObject {
                 changedAt: updatetItem.changedAt
             )
             
-            fileCache.addItem(newItem)
+          try?  fileCache.addItem(newItem)
             getItems()
             findFinishedTasks()
         }
@@ -89,13 +89,13 @@ final class MainViewModel: ObservableObject {
                         if let listResponse = response as? ToDoListResponse {
                             self.items = listResponse.list
                             for item in listResponse.list {
-                                self.fileCache.addItem(item)
+                                try? self.fileCache.addItem(item)
                             }
                             DDLogInfo("Fetched ToDo list with \(listResponse.list.count) items")
                             self.getItems()
                         } else if let itemResponse = response as? ToDoItemResponse {
                             self.items = [itemResponse.element]
-                            self.fileCache.addItem(itemResponse.element)
+                            try? self.fileCache.addItem(itemResponse.element)
                             DDLogInfo("Fetched ToDo list with 1 item")
                             self.getItems()
                         } else {
@@ -103,6 +103,7 @@ final class MainViewModel: ObservableObject {
                         }
                         
                     case .failure(let error):
+                       _=self.fileCache.getItems()
                         DDLogWarn("Failed to fetch ToDo list: \(error)")
                     }
                 }
@@ -117,7 +118,7 @@ final class MainViewModel: ObservableObject {
                 guard let self = self else { return }
                 if let synchronizedItems {
                     for item in synchronizedItems {
-                        fileCache.addItem(item)
+                        try? fileCache.addItem(item)
                     }
                     self.performDeleteItemNetwork(id: id)
                 } else {

@@ -57,7 +57,7 @@ final class CalendarViewPresenter {
                 category: item.category
             )
             
-            fileCache.addItem(updatedItem)
+        try? fileCache.addItem(updatedItem)
         loadData()
         onUpdateTable?()
         }

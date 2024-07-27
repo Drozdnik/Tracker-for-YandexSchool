@@ -5,28 +5,28 @@ import SwiftData
 @Model
 public final class TodoItemModel {
     @Attribute(.unique)
-    var id: String
+    public var id: String
 
     @Attribute(originalName: "created_at")
-    var createdAt: Date
+    public var createdAt: Date
 
-    var priority: Priority {
+    public var priority: Priority {
         Priority(rawValue: priorityRawValue) ?? .basic
     }
     @Attribute(originalName: "priority")
-    var priorityRawValue: String
+    public var priorityRawValue: String
 
     @Attribute(originalName: "change_at")
-    var changeAt: Date
+    public var changeAt: Date
 
-    var isCompleted: Bool
-    var text: String
-    var deadline: Date?
-    var hexColor: String?
-    var category: String?
-    var lastUpdatedBy: String?
+    public var isCompleted: Bool
+    public var text: String
+    public var deadline: Date?
+    public var hexColor: String?
+    public var category: String?
+    public var lastUpdatedBy: String?
 
-    init(
+    public init(
         id: String,
         text: String,
         createdAt: Date,
@@ -51,6 +51,7 @@ public final class TodoItemModel {
     }
 }
 
+@available(iOS 17, *)
 extension TodoItemModel {
     convenience init(from item: ToDoItem) {
         self.init(
